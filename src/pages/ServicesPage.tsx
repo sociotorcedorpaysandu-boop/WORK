@@ -64,7 +64,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate }) => {
                   ESCOPO DE ATUAÇÃO
                 </span>
                 <ul className="space-y-2.5 text-sm text-[#111111]/85">
-                  {SERVICES[0].detalhes.map((item, idx) => (
+                  {SERVICES[0].detalhes?.map((item, idx) => (
                     <li key={idx} className="flex items-start gap-3">
                       <span className="text-[#F58220] font-mono text-xs mt-0.5">·</span>
                       <span>{item}</span>
@@ -222,10 +222,10 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate }) => {
             <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-transparent flex items-center p-8 md:p-16">
               <div className="max-w-md text-white">
                 <span className="text-xs font-mono text-[#F58220] uppercase tracking-widest block mb-2 font-semibold">
-                  INTEGRAÇÃO BIM
+                  COMPATIBILIZAÇÃO TÉCNICA
                 </span>
                 <p className="font-editorial text-2xl sm:text-3xl font-light">
-                  Todos os projetos compatibilizados antes da primeira concretagem.
+                  Todos os projetos compatibilizados antes do início no canteiro.
                 </p>
               </div>
             </div>

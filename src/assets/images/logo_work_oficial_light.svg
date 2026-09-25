@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 80" width="340" height="80" fill="none">
+  <!-- Official Work Construtora Emblem (Light) -->
+  <g transform="translate(6, 6) scale(0.68)">
+    <!-- Left Column Body -->
+    <polygon points="10,24 20,20 30,24 30,82 10,82" fill="#FFFFFF" opacity="0.95" />
+    <!-- Left Column Pitched Top -->
+    <polygon points="10,24 20,20 30,24 20,27" fill="#F58220" />
+
+    <!-- First Diagonal Beam (Work Orange) -->
+    <polygon points="10,75 55,45 61,53 16,83" fill="#F58220" />
+
+    <!-- Second Diagonal Beam (Work Orange) -->
+    <polygon points="45,71 65,56 80,72 60,83" fill="#F58220" />
+
+    <!-- Right Column Body -->
+    <polygon points="70,32 80,28 90,32 90,82 70,82" fill="#FFFFFF" opacity="0.95" />
+
+    <!-- Right Column Orange Cap -->
+    <polygon points="70,32 80,28 90,32 90,44 70,44" fill="#F58220" />
+    <polygon points="70,32 80,28 90,32 80,35" fill="#F58220" />
+
+    <!-- Architectural Hairline Split -->
+    <line x1="52" y1="48" x2="59" y2="57" stroke="#111111" stroke-width="2.5" />
+  </g>
+
+  <!-- Official Lettering Lockup -->
+  <text x="82" y="45" fill="#FFFFFF" font-family="'Work Sans', system-ui, -apple-system, sans-serif" font-weight="700" font-size="34" letter-spacing="2.5">WORK</text>
+  <text x="84" y="66" fill="#CCCCCC" font-family="'Work Sans', system-ui, -apple-system, sans-serif" font-weight="600" font-size="11.5" letter-spacing="5">CONSTRUTORA</text>
+</svg>

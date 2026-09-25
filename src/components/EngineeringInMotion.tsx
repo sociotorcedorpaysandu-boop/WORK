@@ -20,9 +20,9 @@ const STEPS: StepData[] = [
     titulo: 'PLANEJAR',
     lead: 'Toda obra começa antes da execução.',
     descricao:
-      'Compatibilização de disciplinas complementares, análise geotécnica, orçamentação paramétrica e cronograma executivo. O planejamento prévio elimina retrabalhos e blinda o investimento.',
+      'Planejamento prévio, compatibilização de projetos e cronograma para iniciar cada obra com precisão.',
     image: municipalidadePlanejar,
-    labelEtapa: 'PRÉ-CONSTRUÇÃO'
+    labelEtapa: 'PLANEJAMENTO'
   },
   {
     num: '02',
@@ -30,9 +30,9 @@ const STEPS: StepData[] = [
     titulo: 'CONSTRUIR',
     lead: 'Gestão, engenharia e execução trabalhando de forma integrada.',
     descricao:
-      'Acompanhamento diário no canteiro, ensaios tecnológicos de concreto e aço, controle rigoroso de suprimentos e segurança do trabalho sob as mais estritas normas da engenharia brasileira.',
+      'Gestão, engenharia e execução atuando em conjunto no canteiro, com controle de materiais e mão de obra.',
     image: municipalidadeConstruir,
-    labelEtapa: 'CANTEIRO & EXECUÇÃO'
+    labelEtapa: 'EXECUÇÃO'
   },
   {
     num: '03',
@@ -40,9 +40,9 @@ const STEPS: StepData[] = [
     titulo: 'ENTREGAR',
     lead: 'Do planejamento à entrega.',
     descricao:
-      'Vistorias pormenorizadas, comissionamento de sistemas prediais, elaboração de as-built e entrega de chaves com conformidade técnica irretocável.',
+      'Finalização com rigor em cada detalhe, assegurando a entrega da obra com qualidade e conformidade.',
     image: municipalidadeEntregar,
-    labelEtapa: 'CONCLUSÃO & OPERAÇÃO'
+    labelEtapa: 'ENTREGA'
   }
 ];
 

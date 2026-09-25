@@ -103,8 +103,12 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate }) => {
                           <span className="text-[#F58220] font-semibold">
                             0{index + 1}
                           </span>
-                          <span>·</span>
-                          <span>{project.categoria}</span>
+                          {project.categoria && project.categoria !== '—' && (
+                            <>
+                              <span>·</span>
+                              <span>{project.categoria}</span>
+                            </>
+                          )}
                           {project.localizacao && (
                             <>
                               <span>·</span>
@@ -167,8 +171,12 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate }) => {
                       <span className="text-[#F58220] font-semibold">
                         0{index + 1}
                       </span>
-                      <span>·</span>
-                      <span>{project.categoria}</span>
+                      {project.categoria && project.categoria !== '—' && (
+                        <>
+                          <span>·</span>
+                          <span>{project.categoria}</span>
+                        </>
+                      )}
                       {project.localizacao && (
                         <>
                           <span>·</span>

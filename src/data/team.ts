@@ -1,5 +1,6 @@
 /**
  * WORK CONSTRUTORA - Equipe e Liderança Técnica
+ * Baseado estritamente no briefing oficial.
  */
 
 export interface TeamMember {
@@ -17,7 +18,7 @@ export const TEAM: TeamMember[] = [
     nome: 'Tarek Abdulmassih',
     cargo: 'Diretor e Administrativo',
     departamento: 'Diretoria',
-    bioCurta: 'Liderança estratégica, coordenação institucional e gestão executiva das operações e parcerias da Work Construtora.',
+    bioCurta: 'Gestão executiva e administrativa da Work Construtora.',
     iniciais: 'TA'
   },
   {
@@ -25,7 +26,7 @@ export const TEAM: TeamMember[] = [
     nome: 'Gabriel Costa',
     cargo: 'Administrativo',
     departamento: 'Administrativo',
-    bioCurta: 'Gestão de processos administrativos, suprimentos e controle orçamentário físico-financeiro.',
+    bioCurta: 'Atuação na gestão administrativa e de suprimentos.',
     iniciais: 'GC'
   },
   {
@@ -33,7 +34,7 @@ export const TEAM: TeamMember[] = [
     nome: 'Claudio Porpino',
     cargo: 'Engenharia',
     departamento: 'Engenharia',
-    bioCurta: 'Engenharia civil com foco em planejamento executivo, qualidade estrutural e acompanhamento técnico no canteiro.',
+    bioCurta: 'Engenharia e acompanhamento de obras.',
     iniciais: 'CP'
   },
   {
@@ -41,7 +42,7 @@ export const TEAM: TeamMember[] = [
     nome: 'Ailton Vale',
     cargo: 'Engenharia',
     departamento: 'Engenharia',
-    bioCurta: 'Supervisão técnica, compatibilização de projetos complementares e conformidade normativa.',
+    bioCurta: 'Engenharia e compatibilização técnica de projetos.',
     iniciais: 'AV'
   },
   {
@@ -49,7 +50,7 @@ export const TEAM: TeamMember[] = [
     nome: 'Carlos Rocha',
     cargo: 'Engenharia',
     departamento: 'Engenharia',
-    bioCurta: 'Gestão de canteiro, segurança do trabalho, logística de execução e garantia de padrões de acabamento.',
+    bioCurta: 'Engenharia e gestão de canteiro.',
     iniciais: 'CR'
   }
 ];

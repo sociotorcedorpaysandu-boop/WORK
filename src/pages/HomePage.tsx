@@ -186,12 +186,12 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                 <p className="text-base text-[#111111]/80 leading-relaxed">
                   Execução de obras e reformas residenciais, comerciais e industriais,
                   envolvendo planejamento, cronograma, materiais, mão de obra e controle de
-                  qualidade rigoroso do início à entrega das chaves.
+                  qualidade.
                 </p>
                 <div className="mt-6 pt-4 border-t border-[#E6E6E6]/60 flex flex-wrap gap-x-6 gap-y-2 text-xs text-[#111111]/60">
-                  <span>· Gestão de canteiro</span>
-                  <span>· Compatibilização técnica</span>
-                  <span>· Auditoria de custos</span>
+                  <span>· Planejamento e cronograma</span>
+                  <span>· Materiais e suprimentos</span>
+                  <span>· Controle de qualidade</span>
                 </div>
               </div>
             </div>
@@ -206,17 +206,16 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               <div className="lg:col-span-5">
                 <h3 className="font-editorial text-3xl sm:text-4xl text-[#111111] font-normal leading-tight">
                   Built to Suit <br />
-                  <span className="text-[#F58220]">BTS Corporativo</span>
+                  <span className="text-[#F58220]">BTS</span>
                 </h3>
                 <p className="mt-2 text-xs font-mono uppercase tracking-widest text-[#111111]/50">
-                  Sob medida para a operação da sua empresa
+                  Sob medida para a operação de cada empresa
                 </p>
               </div>
               <div className="lg:col-span-5">
                 <p className="text-base text-[#111111]/80 leading-relaxed">
                   Empreendimentos desenvolvidos sob medida para atender às necessidades
-                  específicas da operação de cada empresa, garantindo infraestrutura
-                  otimizada sem imobilização de capital em ativos fixos.
+                  específicas da operação de cada empresa.
                 </p>
 
                 {/* BTS Flow Line */}
@@ -258,16 +257,16 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                   Projetos de Engenharia
                 </h3>
                 <p className="mt-2 text-xs font-mono uppercase tracking-widest text-[#111111]/50">
-                  Disciplinas complementares integradas
+                  Disciplinas complementares de engenharia
                 </p>
               </div>
               <div className="lg:col-span-5">
                 <div className="divide-y divide-[#E6E6E6]">
                   {[
-                    { nome: 'Hidráulico', desc: 'Instalações prediais de água potável, esgoto e drenagem' },
-                    { nome: 'Elétrico', desc: 'Sistemas de potência, distribuição, subestações e automação' },
-                    { nome: 'Estrutural', desc: 'Cálculo de estruturas em concreto armado, metálica e fundações' },
-                    { nome: 'Incêndio', desc: 'Projetos de combate a incêndio e pânico (PPCI) e aprovações legais' }
+                    { nome: 'Hidráulico', desc: 'Instalações prediais de água e esgoto' },
+                    { nome: 'Elétrico', desc: 'Instalações e circuitos elétricos prediais' },
+                    { nome: 'Estrutural', desc: 'Cálculo e dimensionamento estrutural' },
+                    { nome: 'Incêndio', desc: 'Instalações de proteção e combate a incêndio' }
                   ].map((item) => (
                     <div key={item.nome} className="py-3.5 flex justify-between items-baseline gap-4">
                       <span className="font-editorial text-xl text-[#111111] font-medium">
@@ -331,7 +330,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                 <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 border-b border-[#E6E6E6] pb-6">
                   <div>
                     <span className="font-mono text-xs text-[#F58220] block mb-1">
-                      01 · {FEATURED_PROJECTS[0].categoria} · {FEATURED_PROJECTS[0].localizacao}
+                      01{FEATURED_PROJECTS[0].categoria && FEATURED_PROJECTS[0].categoria !== '—' ? ` · ${FEATURED_PROJECTS[0].categoria}` : ''} · {FEATURED_PROJECTS[0].localizacao}
                     </span>
                     <h3 className="font-editorial text-3xl sm:text-5xl text-[#111111] font-normal group-hover:text-[#F58220] transition-colors">
                       {FEATURED_PROJECTS[0].nome}
@@ -363,7 +362,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                   </div>
                   <div className="border-b border-[#E6E6E6] pb-4">
                     <span className="font-mono text-xs text-[#F58220] block mb-1">
-                      02 · {FEATURED_PROJECTS[1].categoria}
+                      02{FEATURED_PROJECTS[1].categoria && FEATURED_PROJECTS[1].categoria !== '—' ? ` · ${FEATURED_PROJECTS[1].categoria}` : ''} · {FEATURED_PROJECTS[1].localizacao}
                     </span>
                     <h3 className="font-editorial text-3xl sm:text-4xl text-[#111111] font-normal group-hover:text-[#F58220] transition-colors">
                       {FEATURED_PROJECTS[1].nome}
@@ -391,7 +390,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                   </div>
                   <div className="border-b border-[#E6E6E6] pb-4">
                     <span className="font-mono text-xs text-[#F58220] block mb-1">
-                      03 · {FEATURED_PROJECTS[2].categoria} · {FEATURED_PROJECTS[2].localizacao}
+                      03{FEATURED_PROJECTS[2].categoria && FEATURED_PROJECTS[2].categoria !== '—' ? ` · ${FEATURED_PROJECTS[2].categoria}` : ''} · {FEATURED_PROJECTS[2].localizacao}
                     </span>
                     <h3 className="font-editorial text-3xl sm:text-4xl text-[#111111] font-normal group-hover:text-[#F58220] transition-colors">
                       {FEATURED_PROJECTS[2].nome}
@@ -430,27 +429,27 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                 {
                   num: '01',
                   etapa: 'Planejamento',
-                  foco: 'Estudo de viabilidade técnica, orçamentação e cronograma executivo'
+                  foco: 'Estruturação de etapas e cronograma da obra'
                 },
                 {
                   num: '02',
                   etapa: 'Gestão',
-                  foco: 'Administração de suprimentos, compras diretas e controle financeiro'
+                  foco: 'Administração de suprimentos e processos'
                 },
                 {
                   num: '03',
                   etapa: 'Engenharia',
-                  foco: 'Compatibilização de projetos complementares e conformidade normativa'
+                  foco: 'Compatibilização de projetos e suporte técnico'
                 },
                 {
                   num: '04',
                   etapa: 'Execução',
-                  foco: 'Supervisão técnica contínua no canteiro e controle tecnológico'
+                  foco: 'Atuação direta no canteiro com rigor e qualidade'
                 },
                 {
                   num: '05',
                   etapa: 'Entrega',
-                  foco: 'Comissionamento de sistemas, as-built e entrega sem pendências'
+                  foco: 'Conclusão e entrega formal do empreendimento'
                 }
               ].map((step) => (
                 <div key={step.num} className="pt-8 relative">

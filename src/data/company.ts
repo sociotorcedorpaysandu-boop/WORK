@@ -1,5 +1,6 @@
 /**
  * WORK CONSTRUTORA - Dados Institucionais
+ * Baseado estritamente no briefing original da Work Construtora.
  */
 
 export interface CompanyPillar {
@@ -24,50 +25,48 @@ export const COMPANY_INFO = {
   telefoneLink: '5591991447742',
   email: 'abdulmassih.tarek@gmail.com',
   resumo:
-    'Criada em 2022, a Work Construtora atua no setor da construção civil com o propósito de oferecer soluções eficientes e de qualidade para obras e reformas. Nossa atuação combina planejamento, responsabilidade, organização, qualidade técnica, segurança e transparência.',
-  missao:
-    'Integrar gestão orçamentária, engenharia precisa e execução no canteiro para entregar empreendimentos sem surpresas, com rigor técnico e sofisticação construtiva.',
+    'Criada em 2022, a Work Construtora atua no setor da construção civil com o propósito de oferecer soluções eficientes e de qualidade para obras e reformas.',
   pilares: [
     {
       numero: '01',
       titulo: 'Planejamento',
-      descricao: 'Antecipação de riscos, cronogramas físico-financeiros factíveis e análise minuciosa de cada etapa antes do início no canteiro.'
+      descricao: 'Estruturação prévia de etapas e prazos para transformar projetos em resultados concretos.'
     },
     {
       numero: '02',
       titulo: 'Responsabilidade',
-      descricao: 'Compromisso com prazos, conformidade rigorosa com normas técnicas (ABNT) e respeito inegociável ao investimento do cliente.'
+      descricao: 'Compromisso com o cliente, prazos e integridade em cada obra.'
     },
     {
       numero: '03',
       titulo: 'Organização',
-      descricao: 'Canteiro limpo, processos padronizados, relatórios periódicos de evolução e transparência em todas as medições.'
+      descricao: 'Processos claros e gestão eficiente do canteiro à administração.'
     },
     {
       numero: '04',
       titulo: 'Qualidade Técnica',
-      descricao: 'Engenharia aplicada com rigor, compatibilização detalhada de projetos e seleção criteriosa de materiais e mão de obra.'
+      descricao: 'Engenharia aplicada com rigor em materiais, métodos e acabamentos.'
     },
     {
       numero: '05',
       titulo: 'Segurança',
-      descricao: 'Cumprimento estrito das Normas Regulamentadoras (NRs), proteção coletiva e individual de todos os trabalhadores.'
+      descricao: 'Atenção constante às práticas seguras de trabalho no canteiro.'
     },
     {
       numero: '06',
       titulo: 'Transparência',
-      descricao: 'Comunicação direta, prestação de contas clara e acesso irrestrito dos clientes ao andamento físico e contábil da obra.'
+      descricao: 'Relação direta, ética e transparente com clientes e parceiros.'
     }
   ] as CompanyPillar[],
 
-  // Seção DA GESTÃO À EXECUÇÃO
+  // Seção DA GESTÃO À EXECUÇÃO (Fluxo confirmado no briefing)
   fluxoExecucao: [
-    { numero: '01', nome: 'Planejamento', foco: 'Estudo de viabilidade, quantitativos e cronograma detalhado' },
-    { numero: '02', nome: 'Administração', foco: 'Gestão contratual, custos e controle financeiro diário' },
-    { numero: '03', nome: 'Suprimentos', foco: 'Negociação direta, logística de entrega e especificação técnica' },
-    { numero: '04', nome: 'Engenharia', foco: 'Compatibilização de projetos complementares e acompanhamento técnico' },
-    { numero: '05', nome: 'Execução', foco: 'Mão de obra qualificada no canteiro com supervisão diária' },
-    { numero: '06', nome: 'Acabamento', foco: 'Rigor milimétrico em revestimentos, esquadrias e instalações' },
-    { numero: '07', nome: 'Entrega', foco: 'Auditoria final, as-built, comissionamento e entrega de chaves' }
+    { numero: '01', nome: 'Planejamento', foco: 'Estruturação de cronograma e diretrizes da obra' },
+    { numero: '02', nome: 'Administração', foco: 'Gestão de contratos e acompanhamento geral' },
+    { numero: '03', nome: 'Suprimentos', foco: 'Gestão de materiais e logística de entrega' },
+    { numero: '04', nome: 'Engenharia', foco: 'Acompanhamento técnico e compatibilização de projetos' },
+    { numero: '05', nome: 'Execução', foco: 'Atuação direta no canteiro com rigor e alinhamento' },
+    { numero: '06', nome: 'Acabamento', foco: 'Atenção aos detalhes finais de cada ambiente' },
+    { numero: '07', nome: 'Entrega', foco: 'Conclusão dos serviços e entrega formal da obra' }
   ] as ExecutionStep[]
 };
