@@ -234,7 +234,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate }) => {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
           <div>
             <h2 className="font-editorial text-4xl text-[#111111] font-normal leading-tight">
-              Precisa de consultoria ou orçamento para seu projeto?
+              Tem um projeto ou obra em planejamento?
             </h2>
             <p className="text-sm text-[#111111]/70 mt-2">
               Apresente suas diretrizes ou projeto arquitetônico para análise técnica da Work.

@@ -245,31 +245,26 @@ export const CompanyPage: React.FC<CompanyPageProps> = ({ onNavigate }) => {
               <span className="text-xs font-mono text-[#F58220] uppercase tracking-widest block mb-8 font-semibold">
                 CORPO DE ENGENHARIA
               </span>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                {TEAM.filter((m) => m.departamento === 'Engenharia').map((member) => (
-                  <div key={member.id} className="p-6 bg-[#F7F7F5] border border-[#E6E6E6] space-y-4">
-                    <div className="flex gap-4 items-center">
-                      {/* Placeholder Fotográfico Neutro Provisório */}
-                      <div className="w-14 h-16 shrink-0 bg-white border border-[#E6E6E6] flex flex-col justify-between p-2 select-none">
-                        <span className="font-mono text-[8px] text-[#F58220] font-semibold">ENG</span>
-                        <span className="font-editorial text-xl text-[#111111]/70 self-center">
-                          {member.iniciais}
-                        </span>
-                        <div className="w-full h-[1px] bg-[#F58220]/40" />
-                      </div>
-
-                      <div>
-                        <h3 className="font-editorial text-2xl text-[#111111] font-normal">
-                          {member.nome}
-                        </h3>
-                        <p className="text-xs text-[#F58220] font-mono">
-                          {member.cargo}
-                        </p>
-                      </div>
+              <div className="border-y border-[#E6E6E6] divide-y md:divide-y-0 md:divide-x divide-[#E6E6E6] grid grid-cols-1 md:grid-cols-3">
+                {TEAM.filter((m) => m.departamento === 'Engenharia').map((member, idx) => (
+                  <div
+                    key={member.id}
+                    className="py-8 md:px-8 first:md:pl-0 last:md:pr-0 flex flex-col justify-between space-y-4"
+                  >
+                    <div className="space-y-3">
+                      <span className="font-mono text-xs text-[#F58220] font-semibold block">
+                        ENG / 0{idx + 1}
+                      </span>
+                      <h3 className="font-editorial text-2xl sm:text-3xl text-[#111111] font-normal leading-tight">
+                        {member.nome}
+                      </h3>
+                      <p className="text-xs font-mono uppercase tracking-wider text-[#F58220]">
+                        {member.cargo}
+                      </p>
                     </div>
 
                     {member.bioCurta && (
-                      <p className="text-xs text-[#111111]/70 leading-relaxed pt-1 border-t border-[#E6E6E6]/60">
+                      <p className="text-sm text-[#111111]/75 leading-relaxed pt-4 border-t border-[#E6E6E6]/60">
                         {member.bioCurta}
                       </p>
                     )}
@@ -286,15 +281,15 @@ export const CompanyPage: React.FC<CompanyPageProps> = ({ onNavigate }) => {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
           <div>
             <h2 className="font-editorial text-4xl sm:text-5xl font-normal leading-tight text-[#111111]">
-              Pronto para construir com segurança e precisão?
+              Vamos construir o próximo projeto?
             </h2>
             <p className="text-sm text-[#111111]/80 mt-2">
-              Nossa equipe está disponível para avaliar seu projeto e apresentar propostas executivas.
+              Fale com a Work e apresente sua necessidade.
             </p>
           </div>
           <button
             onClick={() => handleNav('/contato')}
-            className="px-8 py-4 bg-[#111111] text-white hover:bg-[#181818] text-xs font-semibold uppercase tracking-[0.16em] transition-colors cursor-pointer whitespace-nowrap shadow-lg"
+            className="px-8 py-4 bg-[#111111] text-white hover:bg-[#181818] text-xs font-semibold uppercase tracking-[0.16em] transition-colors cursor-pointer whitespace-nowrap"
           >
             Fale com a Work ↗
           </button>
