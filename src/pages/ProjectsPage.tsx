@@ -188,9 +188,11 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate }) => {
                         Saiba mais
                         <span className="text-[#F58220]">↗</span>
                       </span>
-                      <span className="font-mono text-xs text-[#111111]/40">
-                        {project.acabamento || 'Alto Padrão'}
-                      </span>
+                      {project.acabamento && project.acabamento !== '—' && (
+                        <span className="font-mono text-xs text-[#111111]/50">
+                          {project.acabamento}
+                        </span>
+                      )}
                     </div>
                   </div>
                 </div>

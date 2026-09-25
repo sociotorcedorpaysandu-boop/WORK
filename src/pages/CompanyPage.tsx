@@ -2,6 +2,7 @@ import React from 'react';
 import { COMPANY_INFO } from '@/src/data/company';
 import { TEAM } from '@/src/data/team';
 import motionEngineeringImg from '@/src/assets/images/engineering_in_motion_site_1790334507218.jpg';
+import teamLeadershipImg from '@/src/assets/images/team_leadership_work_1790336814200.jpg';
 
 interface CompanyPageProps {
   onNavigate: (path: string) => void;
@@ -119,7 +120,7 @@ export const CompanyPage: React.FC<CompanyPageProps> = ({ onNavigate }) => {
         </div>
       </section>
 
-      {/* Seção Central Obrigatória: DA GESTÃO À EXECUÇÃO */}
+      {/* Seção Central: DA GESTÃO À EXECUÇÃO */}
       <section className="py-24 sm:py-32 px-6 md:px-12 bg-[#111111] text-white border-t border-[#2A2A2A]">
         <div className="max-w-7xl mx-auto">
           <div className="pb-16 border-b border-[#2A2A2A] flex flex-col md:flex-row md:items-end justify-between gap-6">
@@ -136,7 +137,7 @@ export const CompanyPage: React.FC<CompanyPageProps> = ({ onNavigate }) => {
             </p>
           </div>
 
-          {/* Sequential Flow - Sem ícones conforme instrução */}
+          {/* Sequential Flow - Sem ícones */}
           <div className="mt-16 divide-y divide-[#2A2A2A]">
             {COMPANY_INFO.fluxoExecucao.map((etapa) => (
               <div
@@ -164,7 +165,7 @@ export const CompanyPage: React.FC<CompanyPageProps> = ({ onNavigate }) => {
         </div>
       </section>
 
-      {/* Seção EQUIPE (Composição Editorial Sem Cards Genéricos) */}
+      {/* Seção EQUIPE (Composição Editorial com Fotografia Neutra Provisória Elegante - Sem a palavra 'FOTO') */}
       <section className="py-24 sm:py-32 px-6 md:px-12 bg-[#FFFFFF]">
         <div className="max-w-7xl mx-auto">
           <div className="pb-16 border-b border-[#E6E6E6] flex flex-col md:flex-row md:items-end justify-between gap-6">
@@ -182,30 +183,67 @@ export const CompanyPage: React.FC<CompanyPageProps> = ({ onNavigate }) => {
             </p>
           </div>
 
-          {/* Editorial Roster Composition */}
-          <div className="mt-16 space-y-12">
+          {/* Fotografia Institucional de Liderança */}
+          <div className="mt-16 mb-20 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center bg-[#F7F7F5] border border-[#E6E6E6]">
+            <div className="lg:col-span-7 overflow-hidden aspect-[16/10] bg-[#E6E6E6]">
+              <img
+                src={teamLeadershipImg}
+                alt="Corpo técnico e liderança da Work Construtora em planejamento"
+                className="w-full h-full object-cover img-editorial"
+                loading="lazy"
+              />
+            </div>
+            <div className="lg:col-span-5 p-8 lg:p-12 space-y-4">
+              <span className="text-xs font-mono text-[#F58220] uppercase tracking-widest block font-semibold">
+                GOVERNANÇA & CANTEIRO
+              </span>
+              <h3 className="font-editorial text-3xl sm:text-4xl text-[#111111] font-normal leading-tight">
+                Integração direta entre diretoria e engenharia.
+              </h3>
+              <p className="text-sm text-[#111111]/75 leading-relaxed pt-2">
+                A liderança da Work Construtora atua diretamente na compatibilização e
+                fiscalização de cada contrato, assegurando que as metas orçamentárias e as
+                especificações técnicas sejam cumpridas rigorosamente.
+              </p>
+            </div>
+          </div>
+
+          {/* Editorial Roster Composition - Sem a palavra 'FOTO', com placeholders fotográficos neutros e monogramas técnicos */}
+          <div className="space-y-16">
             {/* Liderança e Administrativo */}
-            <div className="border-b border-[#E6E6E6] pb-12">
-              <span className="text-xs font-mono text-[#F58220] uppercase tracking-widest block mb-6">
+            <div className="border-b border-[#E6E6E6] pb-16">
+              <span className="text-xs font-mono text-[#F58220] uppercase tracking-widest block mb-8 font-semibold">
                 DIRETORIA & ADMINISTRAÇÃO
               </span>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                 {TEAM.filter((m) => m.departamento !== 'Engenharia').map((member) => (
-                  <div key={member.id} className="space-y-3">
-                    <div className="flex items-baseline gap-3">
-                      <span className="font-mono text-xs text-[#F58220] font-semibold">
+                  <div key={member.id} className="flex gap-6 items-start">
+                    {/* Placeholder Fotográfico Neutro & Elegante (Provisório sem palavra FOTO) */}
+                    <div className="w-24 h-28 sm:w-28 sm:h-36 shrink-0 bg-[#F2F2EF] border border-[#E6E6E6] flex flex-col justify-between p-3 select-none">
+                      <span className="font-mono text-[10px] text-[#F58220] font-semibold">
+                        WORK
+                      </span>
+                      <span className="font-editorial text-2xl sm:text-3xl text-[#111111]/70 self-center">
                         {member.iniciais}
                       </span>
+                      <span className="font-mono text-[9px] uppercase tracking-wider text-[#111111]/40">
+                        {member.departamento}
+                      </span>
+                    </div>
+
+                    <div className="space-y-2">
                       <h3 className="font-editorial text-3xl text-[#111111] font-normal">
                         {member.nome}
                       </h3>
+                      <p className="text-xs font-mono uppercase tracking-wider text-[#F58220]">
+                        {member.cargo}
+                      </p>
+                      {member.bioCurta && (
+                        <p className="text-sm text-[#111111]/75 leading-relaxed pt-1">
+                          {member.bioCurta}
+                        </p>
+                      )}
                     </div>
-                    <p className="text-xs font-mono uppercase tracking-wider text-[#111111]/60">
-                      {member.cargo}
-                    </p>
-                    <p className="text-sm text-[#111111]/80 leading-relaxed pt-2">
-                      {member.bioCurta}
-                    </p>
                   </div>
                 ))}
               </div>
@@ -213,29 +251,37 @@ export const CompanyPage: React.FC<CompanyPageProps> = ({ onNavigate }) => {
 
             {/* Corpo de Engenharia */}
             <div>
-              <span className="text-xs font-mono text-[#F58220] uppercase tracking-widest block mb-6">
+              <span className="text-xs font-mono text-[#F58220] uppercase tracking-widest block mb-8 font-semibold">
                 CORPO DE ENGENHARIA
               </span>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 {TEAM.filter((m) => m.departamento === 'Engenharia').map((member) => (
-                  <div key={member.id} className="p-6 bg-[#F7F7F5] border border-[#E6E6E6] space-y-2">
-                    <div className="flex justify-between items-baseline">
-                      <span className="font-mono text-xs text-[#F58220] font-semibold">
-                        {member.iniciais}
-                      </span>
-                      <span className="text-[10px] font-mono uppercase tracking-widest text-[#111111]/40">
-                        CANTEIRO & PROJETOS
-                      </span>
+                  <div key={member.id} className="p-6 bg-[#F7F7F5] border border-[#E6E6E6] space-y-4">
+                    <div className="flex gap-4 items-center">
+                      {/* Placeholder Fotográfico Neutro Provisório */}
+                      <div className="w-14 h-16 shrink-0 bg-white border border-[#E6E6E6] flex flex-col justify-between p-2 select-none">
+                        <span className="font-mono text-[8px] text-[#F58220] font-semibold">ENG</span>
+                        <span className="font-editorial text-xl text-[#111111]/70 self-center">
+                          {member.iniciais}
+                        </span>
+                        <div className="w-full h-[1px] bg-[#F58220]/40" />
+                      </div>
+
+                      <div>
+                        <h3 className="font-editorial text-2xl text-[#111111] font-normal">
+                          {member.nome}
+                        </h3>
+                        <p className="text-xs text-[#F58220] font-mono">
+                          {member.cargo}
+                        </p>
+                      </div>
                     </div>
-                    <h3 className="font-editorial text-2xl text-[#111111] font-normal">
-                      {member.nome}
-                    </h3>
-                    <p className="text-xs text-[#111111]/60 font-mono">
-                      {member.cargo}
-                    </p>
-                    <p className="text-xs text-[#111111]/75 leading-relaxed pt-2">
-                      {member.bioCurta}
-                    </p>
+
+                    {member.bioCurta && (
+                      <p className="text-xs text-[#111111]/70 leading-relaxed pt-1 border-t border-[#E6E6E6]/60">
+                        {member.bioCurta}
+                      </p>
+                    )}
                   </div>
                 ))}
               </div>
