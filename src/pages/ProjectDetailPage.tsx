@@ -56,11 +56,13 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
             ← Voltar para Obras
           </button>
 
-          <div className="flex items-center gap-3 text-xs font-mono text-[#F58220] mb-3">
-            <span className="font-semibold">WORK / OBRA</span>
-            <span>·</span>
-            <span>{project.categoria}</span>
-          </div>
+          {project.categoria && project.categoria !== '—' && (
+            <div className="flex items-center gap-3 text-xs font-mono text-[#F58220] mb-3">
+              <span className="font-semibold">WORK / OBRA</span>
+              <span>·</span>
+              <span>{project.categoria}</span>
+            </div>
+          )}
 
           <h1 className="font-editorial text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-normal leading-[1.02] tracking-tight text-white max-w-4xl balance">
             {project.nome}
@@ -73,8 +75,8 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
             {/* Descrição Principal e Serviços */}
-            <div className={`${hasAnyFichaTecnica ? 'lg:col-span-7' : 'lg:col-span-10'} space-y-8`}>
-              {project.descricao && (
+            <div className={`${hasAnyFichaTecnica ? 'lg:col-span-7' : 'lg:col-span-12'} space-y-8`}>
+              {project.descricao && project.descricao !== '—' && (
                 <div>
                   <span className="text-xs font-mono uppercase tracking-widest text-[#F58220] block mb-2 font-semibold">
                     MEMORIAL DESCRITIVO
@@ -300,10 +302,14 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
             <h3 className="font-editorial text-4xl sm:text-5xl font-normal text-white">
               {nextProject.nome}
             </h3>
-            <p className="text-xs text-[#E6E6E6]/60 mt-1 uppercase tracking-wider font-mono">
-              {nextProject.categoria}
-              {nextProject.localizacao && ` · ${nextProject.localizacao}`}
-            </p>
+            {Boolean((nextProject.categoria && nextProject.categoria !== '—') || (nextProject.localizacao && nextProject.localizacao !== '—')) && (
+              <p className="text-xs text-[#E6E6E6]/60 mt-1 uppercase tracking-wider font-mono">
+                {nextProject.categoria && nextProject.categoria !== '—' ? nextProject.categoria : ''}
+                {nextProject.localizacao && nextProject.localizacao !== '—' && (
+                  <span>{nextProject.categoria && nextProject.categoria !== '—' ? ` · ${nextProject.localizacao}` : nextProject.localizacao}</span>
+                )}
+              </p>
+            )}
           </div>
 
           <button

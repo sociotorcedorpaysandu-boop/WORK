@@ -51,20 +51,12 @@ export const CompanyPage: React.FC<CompanyPageProps> = ({ onNavigate }) => {
               </h2>
               <div className="space-y-4 text-base text-[#111111]/80 leading-relaxed">
                 <p>
-                  Fundada em 2022 na capital paraense, a Work Construtora nasceu da convicção
-                  de que a construção civil contemporânea exige uma convergência direta entre
-                  rigor gerencial e capacidade técnica in loco.
+                  Criada em 2022, a Work Construtora atua no setor da construção civil com o
+                  propósito de oferecer soluções eficientes e de qualidade para obras e reformas.
                 </p>
                 <p>
-                  Comandada por profissionais de sólida formação administrativa e técnica, a
-                  empresa opera com metodologias que transformam projetos desafiadores em
-                  empreendimentos perfeitamente orçados, com cronogramas cumpridos e
-                  acabamento impecável.
-                </p>
-                <p>
-                  Atuamos nos segmentos comercial, corporativo, residencial de alto padrão e
-                  institucional, além do modelo de Built to Suit para operações empresariais
-                  estratégicas em Belém e região metropolitana.
+                  Sua atuação combina planejamento, responsabilidade, organização, qualidade
+                  técnica, segurança e transparência em todas as etapas.
                 </p>
               </div>
             </div>
@@ -133,7 +125,7 @@ export const CompanyPage: React.FC<CompanyPageProps> = ({ onNavigate }) => {
               </h2>
             </div>
             <p className="text-xs font-mono text-[#E6E6E6]/60 uppercase tracking-widest max-w-xs">
-              Fluxo integrado de governança e controle do canteiro. Sem atalhos, sem improvisos.
+              Fluxo integrado de governança e controle no canteiro de obras.
             </p>
           </div>
 
@@ -201,9 +193,8 @@ export const CompanyPage: React.FC<CompanyPageProps> = ({ onNavigate }) => {
                 Integração direta entre diretoria e engenharia.
               </h3>
               <p className="text-sm text-[#111111]/75 leading-relaxed pt-2">
-                A liderança da Work Construtora atua diretamente na compatibilização e
-                fiscalização de cada contrato, assegurando que as metas orçamentárias e as
-                especificações técnicas sejam cumpridas rigorosamente.
+                Na Work, gestão, planejamento e engenharia atuam de forma integrada em
+                todas as etapas da obra.
               </p>
             </div>
           </div>

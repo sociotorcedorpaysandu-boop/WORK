@@ -33,7 +33,7 @@ export const SERVICES: ServiceItem[] = [
     id: 'built-to-suit',
     numero: '02',
     titulo: 'Built to Suit — BTS',
-    subtitulo: 'Empreendimentos desenvolvidos sob medida',
+    subtitulo: 'Empreendimentos sob medida',
     descricao:
       'Empreendimentos desenvolvidos sob medida para atender às necessidades específicas da operação de cada empresa.',
     fluxo: [
@@ -47,25 +47,25 @@ export const SERVICES: ServiceItem[] = [
     id: 'projetos-engenharia',
     numero: '03',
     titulo: 'Projetos de Engenharia',
-    subtitulo: 'Disciplinas complementares de engenharia',
+    subtitulo: 'Disciplinas complementares',
     descricao:
-      'Desenvolvimento de projetos complementares para compatibilização e conformidade técnica no canteiro.',
+      'Desenvolvimento de projetos complementares para compatibilização técnica no canteiro.',
     escopos: [
       {
         nome: 'Hidráulico',
-        descricao: 'Instalações prediais de água potável, esgoto e drenagem.'
+        descricao: 'Instalações hidráulicas prediais.'
       },
       {
         nome: 'Elétrico',
-        descricao: 'Sistemas elétricos prediais, iluminação e quadros de distribuição.'
+        descricao: 'Instalações elétricas prediais.'
       },
       {
         nome: 'Estrutural',
-        descricao: 'Cálculo e dimensionamento estrutural e fundações.'
+        descricao: 'Projetos estruturais e fundações.'
       },
       {
         nome: 'Incêndio',
-        descricao: 'Instalações de proteção e combate a incêndio.'
+        descricao: 'Projetos de combate a incêndio e pânico.'
       }
     ]
   }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { SERVICES } from '@/src/data/services';
 import heroWorkSite from '@/src/assets/images/hero_work_construction_1790334457107.jpg';
-import edsonCorporateImg from '@/src/assets/images/edson_corporate_building_1790334474133.jpg';
+import motionEngineeringImg from '@/src/assets/images/engineering_in_motion_site_1790334507218.jpg';
 import municipalidadeConstruir from '@/src/assets/images/municipalidade_construir_1790334539473.jpg';
 
 interface ServicesPageProps {
@@ -33,8 +33,8 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate }) => {
           </h1>
 
           <p className="mt-8 text-lg sm:text-xl text-[#111111]/80 font-light max-w-2xl leading-relaxed">
-            Atuamos da viabilidade técnica e orçamentária até a entrega formal das chaves,
-            oferecendo soluções completas em construção civil, Built to Suit e projetos
+            Atuamos no planejamento, gestão e execução de obras e projetos de engenharia,
+            oferecendo soluções em construção civil, Built to Suit e projetos
             complementares.
           </p>
         </div>
@@ -143,7 +143,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate }) => {
                   onClick={() => handleNav('/contato')}
                   className="px-6 py-3.5 bg-[#F58220] hover:bg-[#F58220]/90 text-[#111111] text-xs font-semibold uppercase tracking-[0.16em] transition-colors cursor-pointer"
                 >
-                  Consultar viabilidade BTS ↗
+                  Consultar sobre Built to Suit ↗
                 </button>
               </div>
             </div>
@@ -151,17 +151,17 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate }) => {
             <div className="lg:col-span-6">
               <div className="relative aspect-[4/3] bg-[#181818] overflow-hidden border border-[#2A2A2A]">
                 <img
-                  src={edsonCorporateImg}
-                  alt="Edson Corporate - Empreendimento BTS"
+                  src={motionEngineeringImg}
+                  alt="Empreendimento sob medida"
                   className="w-full h-full object-cover img-editorial"
                   loading="lazy"
                 />
                 <div className="absolute bottom-4 left-4 right-4 bg-[#111111]/90 backdrop-blur-sm p-4 border border-[#2A2A2A] flex justify-between items-center text-xs">
                   <div>
-                    <span className="font-mono text-[#F58220] block font-semibold">EDSON CORPORATE</span>
-                    <span className="text-white/70">Modelo BTS para empresa consolidada</span>
+                    <span className="font-mono text-[#F58220] block font-semibold">BUILT TO SUIT</span>
+                    <span className="text-white/70">Empreendimentos sob medida</span>
                   </div>
-                  <span className="font-mono text-white/50">BELÉM / PA</span>
+                  <span className="font-mono text-white/50">WORK CONSTRUTORA</span>
                 </div>
               </div>
             </div>
@@ -183,8 +183,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate }) => {
               Projetos de Engenharia
             </h2>
             <p className="mt-4 text-base sm:text-lg text-[#111111]/80 max-w-2xl font-light">
-              Compatibilização detalhada de engenharia complementar para assegurar segurança,
-              aprovação célere nos órgãos competentes e ausência de retrabalho na obra.
+              Desenvolvimento de projetos complementares para compatibilização técnica no canteiro.
             </p>
           </div>
 

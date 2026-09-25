@@ -18,7 +18,7 @@ export const TEAM: TeamMember[] = [
     nome: 'Tarek Abdulmassih',
     cargo: 'Diretor e Administrativo',
     departamento: 'Diretoria',
-    bioCurta: 'Gestão executiva e administrativa da Work Construtora.',
+    bioCurta: 'Diretoria e Administrativo',
     iniciais: 'TA'
   },
   {
@@ -26,7 +26,7 @@ export const TEAM: TeamMember[] = [
     nome: 'Gabriel Costa',
     cargo: 'Administrativo',
     departamento: 'Administrativo',
-    bioCurta: 'Atuação na gestão administrativa e de suprimentos.',
+    bioCurta: 'Administrativo',
     iniciais: 'GC'
   },
   {
@@ -34,7 +34,7 @@ export const TEAM: TeamMember[] = [
     nome: 'Claudio Porpino',
     cargo: 'Engenharia',
     departamento: 'Engenharia',
-    bioCurta: 'Engenharia e acompanhamento de obras.',
+    bioCurta: 'Acompanhamento técnico de projetos e obras',
     iniciais: 'CP'
   },
   {
@@ -42,7 +42,7 @@ export const TEAM: TeamMember[] = [
     nome: 'Ailton Vale',
     cargo: 'Engenharia',
     departamento: 'Engenharia',
-    bioCurta: 'Engenharia e compatibilização técnica de projetos.',
+    bioCurta: 'Acompanhamento técnico de projetos e obras',
     iniciais: 'AV'
   },
   {
@@ -50,7 +50,7 @@ export const TEAM: TeamMember[] = [
     nome: 'Carlos Rocha',
     cargo: 'Engenharia',
     departamento: 'Engenharia',
-    bioCurta: 'Engenharia e gestão de canteiro.',
+    bioCurta: 'Acompanhamento técnico de projetos e obras',
     iniciais: 'CR'
   }
 ];

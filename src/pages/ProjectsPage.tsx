@@ -14,17 +14,11 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate }) => {
   };
 
   const categories = [
-    { id: 'todos', label: 'Todos os Projetos' },
-    { id: 'comercial', label: 'Comercial & BTS' },
-    { id: 'residencial', label: 'Residencial' },
-    { id: 'institucional', label: 'Institucional' }
+    { id: 'todos', label: 'Todos os Projetos' }
   ];
 
   const filteredProjects = PROJECTS.filter((proj) => {
     if (filter === 'todos') return true;
-    if (filter === 'comercial') return proj.categoria.toLowerCase().includes('comercial') || proj.categoria.toLowerCase().includes('bts');
-    if (filter === 'residencial') return proj.categoria.toLowerCase().includes('residencial');
-    if (filter === 'institucional') return proj.categoria.toLowerCase().includes('institucional') || proj.categoria.toLowerCase().includes('educacional');
     return true;
   });
 
@@ -47,8 +41,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate }) => {
           </h1>
 
           <p className="mt-8 text-lg sm:text-xl text-[#111111]/80 font-light max-w-2xl leading-relaxed">
-            Conheça as obras residenciais, corporativas, institucionais e Built to Suit
-            desenvolvidas pela Work Construtora em Belém e no Pará.
+            Conheça as obras e projetos desenvolvidos pela Work Construtora.
           </p>
 
           {/* Interactive Filter (Functional Buttons with Zero-Pill Discipline) */}
@@ -109,7 +102,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate }) => {
                               <span>{project.categoria}</span>
                             </>
                           )}
-                          {project.localizacao && (
+                          {project.localizacao && project.localizacao !== '—' && (
                             <>
                               <span>·</span>
                               <span>{project.localizacao}</span>
@@ -119,9 +112,11 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate }) => {
                         <h2 className="font-editorial text-4xl text-[#111111] font-normal leading-tight group-hover:text-[#F58220] transition-colors">
                           {project.nome}
                         </h2>
-                        <p className="mt-4 text-sm text-[#111111]/75 leading-relaxed">
-                          {project.descricao}
-                        </p>
+                        {project.descricao && project.descricao !== '—' && (
+                          <p className="mt-4 text-sm text-[#111111]/75 leading-relaxed">
+                            {project.descricao}
+                          </p>
+                        )}
                       </div>
 
                       <div className="pt-4 border-t border-[#E6E6E6] flex items-center justify-between">
@@ -177,7 +172,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate }) => {
                           <span>{project.categoria}</span>
                         </>
                       )}
-                      {project.localizacao && (
+                      {project.localizacao && project.localizacao !== '—' && (
                         <>
                           <span>·</span>
                           <span>{project.localizacao}</span>
@@ -187,9 +182,11 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate }) => {
                     <h2 className="font-editorial text-4xl sm:text-5xl text-[#111111] font-normal leading-tight group-hover:text-[#F58220] transition-colors">
                       {project.nome}
                     </h2>
-                    <p className="text-base text-[#111111]/75 leading-relaxed">
-                      {project.descricao}
-                    </p>
+                    {project.descricao && project.descricao !== '—' && (
+                      <p className="text-base text-[#111111]/75 leading-relaxed">
+                        {project.descricao}
+                      </p>
+                    )}
 
                     <div className="pt-6 border-t border-[#E6E6E6] flex items-center justify-between">
                       <span className="text-xs uppercase tracking-widest font-semibold text-[#111111] group-hover:text-[#F58220] transition-colors inline-flex items-center gap-1.5">

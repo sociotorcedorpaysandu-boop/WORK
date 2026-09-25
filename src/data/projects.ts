@@ -1,7 +1,7 @@
 /**
  * WORK CONSTRUTORA - Catálogo Oficial de Obras e Projetos
  * 
- * Regra estrita: Somente nomes e dados confirmados pelo cliente no briefing.
+ * Regra estrita: Somente nomes e dados confirmados no briefing original.
  * Dados não confirmados são definidos como null ou "—".
  * Imagens de demonstração de layout marcadas como PLACEHOLDER_IMAGE.
  */
@@ -17,13 +17,13 @@ export interface Project {
   id: string;
   slug: string;
   nome: string;
-  categoria: string;
+  categoria: string | null;
   ano: string | null;
   periodo: string | null;
   metragem: string | null;
   localizacao: string | null;
   acabamento: string | null;
-  descricao: string;
+  descricao: string | null;
   detalhesTecnicos?: string[];
   imagemCapa: string;
   galeria: string[];
@@ -37,7 +37,7 @@ export interface Project {
   destaqueHome?: boolean;
 }
 
-// Marcação oficial de imagem de demonstração conforme instrução
+// Marcação de imagem de demonstração conforme instrução do projeto
 export const PLACEHOLDER_IMAGE = true;
 
 export const PROJECTS: Project[] = [
@@ -45,13 +45,13 @@ export const PROJECTS: Project[] = [
     id: 'edson-corporate',
     slug: 'edson-corporate',
     nome: 'Edson Corporate',
-    categoria: '—',
+    categoria: null,
     ano: null,
-    periodo: '—',
-    metragem: '—',
-    localizacao: 'Belém — PA',
-    acabamento: '—',
-    descricao: 'Empreendimento comercial e corporativo em Belém, Pará.',
+    periodo: null,
+    metragem: null,
+    localizacao: null,
+    acabamento: null,
+    descricao: null,
     detalhesTecnicos: [],
     imagemCapa: edsonCorporateImg, // PLACEHOLDER_IMAGE
     galeria: [edsonCorporateImg],
@@ -64,13 +64,13 @@ export const PROJECTS: Project[] = [
     id: 'vila-nova-corporate',
     slug: 'vila-nova-corporate',
     nome: 'Vila Nova Corporate',
-    categoria: '—',
+    categoria: null,
     ano: null,
-    periodo: '—',
-    metragem: '—',
-    localizacao: 'Belém — PA',
-    acabamento: '—',
-    descricao: 'Edifício corporativo em Belém, Pará.',
+    periodo: null,
+    metragem: null,
+    localizacao: null,
+    acabamento: null,
+    descricao: null,
     detalhesTecnicos: [],
     imagemCapa: vilaNovaCorporateImg, // PLACEHOLDER_IMAGE
     galeria: [vilaNovaCorporateImg],
@@ -83,18 +83,18 @@ export const PROJECTS: Project[] = [
     id: 'reforma-residencial-salinas',
     slug: 'reforma-residencial-salinas',
     nome: 'Reforma Residencial — Salinas / Andrea Borges',
-    categoria: 'Residencial',
+    categoria: null,
     ano: null,
-    periodo: '—',
-    metragem: '—',
-    localizacao: 'Salinas — PA',
-    acabamento: '—',
-    descricao: 'Reforma residencial em Salinas.',
+    periodo: null,
+    metragem: null,
+    localizacao: null,
+    acabamento: null,
+    descricao: null,
     detalhesTecnicos: [],
     imagemCapa: salinasResidenceImg, // PLACEHOLDER_IMAGE
     galeria: [salinasResidenceImg],
     servicos: [],
-    cliente: 'Andrea Borges',
+    cliente: null,
     depoimento: null,
     destaqueHome: true
   },
@@ -102,13 +102,13 @@ export const PROJECTS: Project[] = [
     id: 'colegio-ananindeua',
     slug: 'colegio-ananindeua',
     nome: 'Colégio Ananindeua',
-    categoria: '—',
+    categoria: null,
     ano: null,
-    periodo: '—',
-    metragem: '—',
-    localizacao: 'Ananindeua — PA',
-    acabamento: '—',
-    descricao: 'Obra institucional em Ananindeua, Pará.',
+    periodo: null,
+    metragem: null,
+    localizacao: null,
+    acabamento: null,
+    descricao: null,
     detalhesTecnicos: [],
     imagemCapa: colegioAnanindeuaImg, // PLACEHOLDER_IMAGE
     galeria: [colegioAnanindeuaImg],
@@ -121,13 +121,13 @@ export const PROJECTS: Project[] = [
     id: 'frota-martins',
     slug: 'frota-martins',
     nome: 'Frota Martins',
-    categoria: '—',
+    categoria: null,
     ano: null,
-    periodo: '—',
-    metragem: '—',
-    localizacao: 'Belém — PA',
-    acabamento: '—',
-    descricao: 'Obra comercial em Belém, Pará.',
+    periodo: null,
+    metragem: null,
+    localizacao: null,
+    acabamento: null,
+    descricao: null,
     detalhesTecnicos: [],
     imagemCapa: heroWorkSite, // PLACEHOLDER_IMAGE
     galeria: [heroWorkSite],

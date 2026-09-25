@@ -97,7 +97,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           <div className="flex items-center gap-6">
             <span>SEDE BELÉM / PA</span>
             <span aria-hidden="true">·</span>
-            <span>OBRAS RESIDENCIAIS & CORPORATIVAS</span>
+            <span>OBRAS E PROJETOS</span>
           </div>
           <div className="font-mono text-[#F58220]">
             EST. 2022
@@ -127,9 +127,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               <div className="pt-4 border-t border-[#E6E6E6] max-w-2xl">
                 <p className="text-lg text-[#111111]/80 leading-relaxed font-interface font-normal">
                   A Work integra gestão, engenharia e execução para transformar projetos em
-                  resultados concretos. Cada estrutura que erguemos é fundamentada na
-                  antecipação de variáveis, na transparência dos custos e no controle rigoroso
-                  de qualidade.
+                  resultados concretos.
                 </p>
               </div>
             </div>
@@ -330,7 +328,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                 <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 border-b border-[#E6E6E6] pb-6">
                   <div>
                     <span className="font-mono text-xs text-[#F58220] block mb-1">
-                      01{FEATURED_PROJECTS[0].categoria && FEATURED_PROJECTS[0].categoria !== '—' ? ` · ${FEATURED_PROJECTS[0].categoria}` : ''} · {FEATURED_PROJECTS[0].localizacao}
+                      01{FEATURED_PROJECTS[0].categoria && FEATURED_PROJECTS[0].categoria !== '—' ? ` · ${FEATURED_PROJECTS[0].categoria}` : ''}{FEATURED_PROJECTS[0].localizacao && FEATURED_PROJECTS[0].localizacao !== '—' ? ` · ${FEATURED_PROJECTS[0].localizacao}` : ''}
                     </span>
                     <h3 className="font-editorial text-3xl sm:text-5xl text-[#111111] font-normal group-hover:text-[#F58220] transition-colors">
                       {FEATURED_PROJECTS[0].nome}
@@ -362,7 +360,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                   </div>
                   <div className="border-b border-[#E6E6E6] pb-4">
                     <span className="font-mono text-xs text-[#F58220] block mb-1">
-                      02{FEATURED_PROJECTS[1].categoria && FEATURED_PROJECTS[1].categoria !== '—' ? ` · ${FEATURED_PROJECTS[1].categoria}` : ''} · {FEATURED_PROJECTS[1].localizacao}
+                      02{FEATURED_PROJECTS[1].categoria && FEATURED_PROJECTS[1].categoria !== '—' ? ` · ${FEATURED_PROJECTS[1].categoria}` : ''}{FEATURED_PROJECTS[1].localizacao && FEATURED_PROJECTS[1].localizacao !== '—' ? ` · ${FEATURED_PROJECTS[1].localizacao}` : ''}
                     </span>
                     <h3 className="font-editorial text-3xl sm:text-4xl text-[#111111] font-normal group-hover:text-[#F58220] transition-colors">
                       {FEATURED_PROJECTS[1].nome}
@@ -390,7 +388,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                   </div>
                   <div className="border-b border-[#E6E6E6] pb-4">
                     <span className="font-mono text-xs text-[#F58220] block mb-1">
-                      03{FEATURED_PROJECTS[2].categoria && FEATURED_PROJECTS[2].categoria !== '—' ? ` · ${FEATURED_PROJECTS[2].categoria}` : ''} · {FEATURED_PROJECTS[2].localizacao}
+                      03{FEATURED_PROJECTS[2].categoria && FEATURED_PROJECTS[2].categoria !== '—' ? ` · ${FEATURED_PROJECTS[2].categoria}` : ''}{FEATURED_PROJECTS[2].localizacao && FEATURED_PROJECTS[2].localizacao !== '—' ? ` · ${FEATURED_PROJECTS[2].localizacao}` : ''}
                     </span>
                     <h3 className="font-editorial text-3xl sm:text-4xl text-[#111111] font-normal group-hover:text-[#F58220] transition-colors">
                       {FEATURED_PROJECTS[2].nome}
@@ -497,8 +495,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
               <p className="text-base sm:text-lg text-[#111111]/80 leading-relaxed font-interface font-normal max-w-xl">
                 Na Work, gestão, planejamento e engenharia atuam de forma integrada em
-                todas as etapas da obra. Nossa equipe reúne experiência administrativa
-                sólida e responsabilidade técnica de engenharia no canteiro.
+                todas as etapas da obra.
               </p>
 
               <div className="pt-4 flex items-center gap-6">
@@ -529,8 +526,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               o próximo projeto?
             </h2>
             <p className="mt-6 text-base sm:text-lg text-[#111111]/85 font-interface max-w-xl">
-              Entre em contato para avaliar a viabilidade técnica, orçamento ou
-              desenvolvimento de sua obra em Belém e região.
+              Entre em contato com a equipe da Work Construtora para apresentar seu projeto ou solicitação de obra.
             </p>
           </div>
 
