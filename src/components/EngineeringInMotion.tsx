@@ -20,7 +20,7 @@ const STEPS: StepData[] = [
     titulo: 'PLANEJAR',
     lead: 'Toda obra começa antes da execução.',
     descricao:
-      'Planejamento prévio, compatibilização de projetos e cronograma para iniciar cada obra com precisão.',
+      'Planejamento de etapas, cronograma e diretrizes para o início dos trabalhos.',
     image: municipalidadePlanejar,
     labelEtapa: 'PLANEJAMENTO'
   },
@@ -30,7 +30,7 @@ const STEPS: StepData[] = [
     titulo: 'CONSTRUIR',
     lead: 'Gestão, engenharia e execução trabalhando de forma integrada.',
     descricao:
-      'Gestão, engenharia e execução atuando em conjunto no canteiro, com controle de materiais e mão de obra.',
+      'Execução das etapas da obra com acompanhamento no canteiro e controle de materiais.',
     image: municipalidadeConstruir,
     labelEtapa: 'EXECUÇÃO'
   },
@@ -40,7 +40,7 @@ const STEPS: StepData[] = [
     titulo: 'ENTREGAR',
     lead: 'Do planejamento à entrega.',
     descricao:
-      'Finalização com rigor em cada detalhe, assegurando a entrega da obra com qualidade e conformidade.',
+      'Finalização dos acabamentos e entrega da obra concluída.',
     image: municipalidadeEntregar,
     labelEtapa: 'ENTREGA'
   }
@@ -79,7 +79,7 @@ export const EngineeringInMotion: React.FC = () => {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-16 border-b border-[#2A2A2A]">
           <div>
             <span className="text-[#F58220] font-sans text-xs uppercase tracking-[0.25em] font-semibold block mb-3">
-              MÉTODO & RIGOR
+              ETAPAS DA OBRA
             </span>
             <h2 className="font-editorial text-4xl sm:text-5xl lg:text-6xl text-white font-normal leading-[1.05] tracking-tight">
               Engineering in Motion
@@ -90,7 +90,7 @@ export const EngineeringInMotion: React.FC = () => {
               {STEPS[activeStep].fraction}
             </span>
             <p className="text-xs text-[#E6E6E6]/60 mt-1 uppercase tracking-widest">
-              Prédio Municipalidade — Estudo de Caso
+              Prédio Municipalidade — Evolução da Obra
             </p>
           </div>
         </div>
@@ -150,7 +150,7 @@ export const EngineeringInMotion: React.FC = () => {
               {/* Progress Indicator */}
               <div className="pt-6 border-t border-[#2A2A2A]">
                 <div className="flex justify-between items-center text-xs text-[#E6E6E6]/60 mb-2 font-mono">
-                  <span>PROGRESSO METODOLÓGICO</span>
+                  <span>ETAPAS DA OBRA</span>
                   <span className="text-[#F58220] font-semibold">{STEPS[activeStep].fraction}</span>
                 </div>
                 <div className="w-full h-1 bg-[#2A2A2A] overflow-hidden">
@@ -185,7 +185,7 @@ export const EngineeringInMotion: React.FC = () => {
                     <div className="absolute bottom-6 left-6 right-6 flex justify-between items-end">
                       <div>
                         <span className="text-[#F58220] text-[10px] font-mono tracking-widest uppercase block mb-1">
-                          REGISTRO TÉCNICO // {step.labelEtapa}
+                          {step.labelEtapa}
                         </span>
                         <p className="text-white text-lg font-editorial">
                           Prédio Municipalidade — {step.titulo}

@@ -92,7 +92,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate }) => {
                   loading="lazy"
                 />
                 <div className="absolute bottom-4 left-4 bg-white/95 px-4 py-2 border border-[#E6E6E6] text-xs font-mono text-[#111111]">
-                  CANTEIRO ATIVO // RIGOR EXECUTIVO
+                  CANTEIRO DE OBRAS // EXECUÇÃO
                 </div>
               </div>
             </div>
@@ -108,7 +108,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate }) => {
               <div className="flex items-baseline gap-4">
                 <span className="font-mono text-3xl text-[#F58220] font-semibold">02</span>
                 <span className="text-xs font-mono uppercase tracking-widest text-[#E6E6E6]/60">
-                  MODELO CORPORATIVO BTS
+                  BUILT TO SUIT
                 </span>
               </div>
               <h2 className="font-editorial text-4xl sm:text-5xl lg:text-6xl text-white font-normal leading-tight">
@@ -183,11 +183,11 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate }) => {
               Projetos de Engenharia
             </h2>
             <p className="mt-4 text-base sm:text-lg text-[#111111]/80 max-w-2xl font-light">
-              Desenvolvimento de projetos complementares para compatibilização técnica no canteiro.
+              Desenvolvimento de projetos complementares para apoiar o planejamento e a execução da obra.
             </p>
           </div>
 
-          {/* Grid de 4 Projetos Separados por Linhas Rigorosas (Sem Ícones) */}
+          {/* Grid de 4 Projetos de Engenharia (Sem Ícones) */}
           <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
             {SERVICES[2].escopos?.map((escopo, idx) => (
               <div key={escopo.nome} className="pb-8 border-b border-[#E6E6E6] space-y-3">
@@ -196,9 +196,6 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate }) => {
                     03.{idx + 1}
                   </span>
                   <div className="h-[1px] w-6 bg-[#F58220]" />
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-[#111111]/40">
-                    DISCIPLINA
-                  </span>
                 </div>
                 <h3 className="font-editorial text-3xl text-[#111111] font-normal">
                   Projeto {escopo.nome}
@@ -214,17 +211,17 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate }) => {
           <div className="mt-16 relative aspect-[21/9] bg-[#F2F2EF] overflow-hidden border border-[#E6E6E6]">
             <img
               src={municipalidadeConstruir}
-              alt="Engenharia e compatibilização estrutural"
+              alt="Desenvolvimento de projetos de engenharia"
               className="w-full h-full object-cover img-editorial"
               loading="lazy"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-transparent flex items-center p-8 md:p-16">
               <div className="max-w-md text-white">
                 <span className="text-xs font-mono text-[#F58220] uppercase tracking-widest block mb-2 font-semibold">
-                  COMPATIBILIZAÇÃO TÉCNICA
+                  PROJETOS DE ENGENHARIA
                 </span>
                 <p className="font-editorial text-2xl sm:text-3xl font-light">
-                  Todos os projetos compatibilizados antes do início no canteiro.
+                  Projetos desenvolvidos para apoiar o planejamento e a execução da obra.
                 </p>
               </div>
             </div>

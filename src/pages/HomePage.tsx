@@ -113,9 +113,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               <span className="text-[#F58220] font-sans text-xs uppercase tracking-[0.25em] font-semibold block mb-2">
                 02 / FILOSOFIA
               </span>
-              <p className="text-xs uppercase tracking-widest text-[#111111]/50 font-mono">
-                MÉTODO WORK
-              </p>
             </div>
 
             <div className="lg:col-span-9 space-y-8">
@@ -437,12 +434,12 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                 {
                   num: '03',
                   etapa: 'Engenharia',
-                  foco: 'Compatibilização de projetos e suporte técnico'
+                  foco: 'Desenvolvimento e suporte técnico aos projetos'
                 },
                 {
                   num: '04',
                   etapa: 'Execução',
-                  foco: 'Atuação direta no canteiro com rigor e qualidade'
+                  foco: 'Atuação direta no canteiro e acompanhamento das etapas'
                 },
                 {
                   num: '05',

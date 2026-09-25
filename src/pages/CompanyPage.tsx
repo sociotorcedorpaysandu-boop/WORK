@@ -125,7 +125,7 @@ export const CompanyPage: React.FC<CompanyPageProps> = ({ onNavigate }) => {
               </h2>
             </div>
             <p className="text-xs font-mono text-[#E6E6E6]/60 uppercase tracking-widest max-w-xs">
-              Fluxo integrado de governança e controle no canteiro de obras.
+              Fluxo integrado de gestão e acompanhamento no canteiro de obras.
             </p>
           </div>
 
@@ -187,7 +187,7 @@ export const CompanyPage: React.FC<CompanyPageProps> = ({ onNavigate }) => {
             </div>
             <div className="lg:col-span-5 p-8 lg:p-12 space-y-4">
               <span className="text-xs font-mono text-[#F58220] uppercase tracking-widest block font-semibold">
-                GOVERNANÇA & CANTEIRO
+                GESTÃO & CANTEIRO
               </span>
               <h3 className="font-editorial text-3xl sm:text-4xl text-[#111111] font-normal leading-tight">
                 Integração direta entre diretoria e engenharia.

@@ -134,7 +134,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
               )}
             </div>
 
-            {/* Ficha Técnica Rigorosa - Renderiza SOMENTE campos com dados reais confirmados */}
+            {/* Ficha Técnica - Renderiza SOMENTE campos com dados reais confirmados */}
             {hasAnyFichaTecnica && (
               <div className="lg:col-span-5">
                 <div className="bg-[#F7F7F5] border border-[#E6E6E6] p-8 space-y-6">

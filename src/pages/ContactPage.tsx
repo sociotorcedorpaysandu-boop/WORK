@@ -81,7 +81,7 @@ export const ContactPage: React.FC = () => {
 
           <p className="mt-8 text-lg sm:text-xl text-[#111111]/80 font-light max-w-2xl leading-relaxed">
             Estamos prontos para atender incorporadoras, investidores, arquitetos e
-            empresas que buscam solidez técnica e gestão transparente.
+            empresas em suas demandas de construção e reforma.
           </p>
         </div>
       </section>

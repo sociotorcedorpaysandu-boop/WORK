@@ -45,7 +45,7 @@ export const COMPANY_INFO = {
     {
       numero: '04',
       titulo: 'Qualidade Técnica',
-      descricao: 'Engenharia aplicada com rigor em materiais, métodos e acabamentos.'
+      descricao: 'Engenharia aplicada com foco em materiais, métodos e acabamentos.'
     },
     {
       numero: '05',
@@ -64,8 +64,8 @@ export const COMPANY_INFO = {
     { numero: '01', nome: 'Planejamento', foco: 'Estruturação de cronograma e diretrizes da obra' },
     { numero: '02', nome: 'Administração', foco: 'Gestão de contratos e acompanhamento geral' },
     { numero: '03', nome: 'Suprimentos', foco: 'Gestão de materiais e logística de entrega' },
-    { numero: '04', nome: 'Engenharia', foco: 'Acompanhamento técnico e compatibilização de projetos' },
-    { numero: '05', nome: 'Execução', foco: 'Atuação direta no canteiro com rigor e alinhamento' },
+    { numero: '04', nome: 'Engenharia', foco: 'Acompanhamento técnico e suporte aos projetos' },
+    { numero: '05', nome: 'Execução', foco: 'Atuação direta no canteiro e acompanhamento das etapas' },
     { numero: '06', nome: 'Acabamento', foco: 'Atenção aos detalhes finais de cada ambiente' },
     { numero: '07', nome: 'Entrega', foco: 'Conclusão dos serviços e entrega formal da obra' }
   ] as ExecutionStep[]

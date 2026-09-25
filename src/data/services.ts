@@ -49,7 +49,7 @@ export const SERVICES: ServiceItem[] = [
     titulo: 'Projetos de Engenharia',
     subtitulo: 'Disciplinas complementares',
     descricao:
-      'Desenvolvimento de projetos complementares para compatibilização técnica no canteiro.',
+      'Desenvolvimento de projetos complementares para apoiar o planejamento e a execução da obra.',
     escopos: [
       {
         nome: 'Hidráulico',
