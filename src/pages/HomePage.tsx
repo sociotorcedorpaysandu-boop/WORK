@@ -340,7 +340,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                 Gestão e engenharia trabalhando de forma integrada
               </h3>
               <p className="text-base text-[#111111]/80 leading-relaxed">
-                Na Work, a liderança atua diretamente no planejamento das etapas, administração de contratos e suporte contínuo ao canteiro de obras.
+                Na Work, a liderança atua com foco em planejamento, organização dos processos e relacionamento com clientes e parceiros.
               </p>
               <p className="text-sm text-[#111111]/70 leading-relaxed">
                 Sua atuação combina planejamento, responsabilidade, organização, qualidade técnica, segurança e transparência em todas as etapas da construção.
@@ -433,7 +433,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                   (91) 99144-7742
                 </h4>
                 <p className="text-xs text-[#111111]/70 leading-relaxed">
-                  Conversa direta com a equipe técnica e administrativa da Work.
+                  Canal direto para falar com a equipe da Work.
                 </p>
               </div>
               <span className="text-xs font-semibold uppercase tracking-wider text-[#111111] group-hover:text-[#F58220] transition-colors inline-flex items-center gap-1">
@@ -454,7 +454,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                   abdulmassih.tarek@gmail.com
                 </h4>
                 <p className="text-xs text-[#111111]/70 leading-relaxed">
-                  Envie projetos arquitetônicos e solicitações de proposta.
+                  Entre em contato para informações, solicitações e orçamentos.
                 </p>
               </div>
               <span className="text-xs font-semibold uppercase tracking-wider text-[#111111] group-hover:text-[#F58220] transition-colors inline-flex items-center gap-1">
@@ -462,7 +462,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               </span>
             </a>
 
-            {/* Instagram - Sem inventar handle não confirmado */}
+            {/* Instagram - Ação temporariamente oculta */}
             <div className="p-6 bg-[#F7F7F5] border border-[#E6E6E6] flex flex-col justify-between space-y-4">
               <div className="space-y-1">
                 <span className="text-xs uppercase font-semibold text-[#F58220] tracking-wider block">
@@ -475,14 +475,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                   Acompanhe fotos e registros das nossas obras e projetos em Belém.
                 </p>
               </div>
-              <a
-                href="https://wa.me/5591991447742?text=Olá,%20gostaria%20de%20receber%20o%20link%20do%20Instagram%20oficial%20da%20Work%20Construtora."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xs font-semibold uppercase tracking-wider text-[#111111] hover:text-[#F58220] transition-colors inline-flex items-center gap-1"
-              >
-                Solicitar via WhatsApp ↗
-              </a>
             </div>
 
             {/* Endereço & Mapa */}

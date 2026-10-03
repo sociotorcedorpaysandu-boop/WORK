@@ -78,7 +78,7 @@ export const CompanyPage: React.FC<CompanyPageProps> = ({ onNavigate }) => {
                 Engenharia presente do escritório ao canteiro
               </h2>
               <p className="text-base text-[#111111]/80 leading-relaxed">
-                Na Work, a gestão atua diretamente no planejamento das etapas, administração de contratos e suporte contínuo ao canteiro de obras.
+                Na Work, a gestão atua com foco em planejamento, organização dos processos e relacionamento com clientes e parceiros.
               </p>
               <p className="text-sm text-[#111111]/70 leading-relaxed">
                 A proximidade entre engenharia e administração garante acompanhamento direto dos trabalhos, alinhamento técnico e cumprimento dos prazos estabelecidos.

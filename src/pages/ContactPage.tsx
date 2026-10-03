@@ -39,7 +39,7 @@ export const ContactPage: React.FC = () => {
                   (91) 99144-7742
                 </h2>
                 <p className="text-sm text-[#111111]/75 leading-relaxed">
-                  Canal mais ágil para alinhamento direto com nossos diretores e engenheiros.
+                  Canal direto para falar com a equipe da Work.
                 </p>
               </div>
               <a
@@ -62,7 +62,7 @@ export const ContactPage: React.FC = () => {
                   abdulmassih.tarek@gmail.com
                 </h2>
                 <p className="text-sm text-[#111111]/75 leading-relaxed">
-                  Envio de projetos arquitetônicos, memoriais descritivos e solicitações de orçamento.
+                  Entre em contato para informações, solicitações e orçamentos.
                 </p>
               </div>
               <a
@@ -73,7 +73,7 @@ export const ContactPage: React.FC = () => {
               </a>
             </div>
 
-            {/* Instagram - Sem inventar handle ou link falso */}
+            {/* Instagram - Ação temporariamente oculta */}
             <div className="p-8 bg-[#F7F7F5] border border-[#E6E6E6] flex flex-col justify-between space-y-6">
               <div className="space-y-3">
                 <span className="text-xs uppercase font-semibold text-[#F58220] tracking-wider block">
@@ -86,14 +86,6 @@ export const ContactPage: React.FC = () => {
                   Acompanhe fotos de canteiro, etapas de obras e projetos em andamento em Belém.
                 </p>
               </div>
-              <a
-                href="https://wa.me/5591991447742?text=Olá,%20gostaria%20de%20receber%20o%20link%20do%20Instagram%20oficial%20da%20Work%20Construtora."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full py-3.5 bg-[#111111] hover:bg-[#F58220] text-white hover:text-[#111111] text-xs font-semibold uppercase tracking-wider transition-colors text-center inline-block"
-              >
-                Acessar via WhatsApp ↗
-              </a>
             </div>
           </div>
 

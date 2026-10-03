@@ -8,11 +8,6 @@
  * sem associar fotos de outras obras nem imagens geradas por IA.
  */
 
-import finalImg from '@/src/assets/images/municipalidade_final_1790992266785.jpg';
-import execucaoImg from '@/src/assets/images/municipalidade_execucao_1790992253931.jpg';
-import estruturaImg from '@/src/assets/images/municipalidade_estrutura_1790992243499.jpg';
-import fundacaoImg from '@/src/assets/images/municipalidade_fundacao_1790992233978.jpg';
-
 export interface Project {
   id: string;
   slug: string;
@@ -135,26 +130,6 @@ export const PROJECTS: Project[] = [
     galeria: [],
     temFotoReal: false,
     servicos: [],
-    cliente: null,
-    depoimento: null,
-    destaqueHome: false
-  },
-  {
-    id: 'predio-municipalidade',
-    slug: 'predio-municipalidade',
-    nome: 'Prédio Municipalidade',
-    categoria: 'Corporativo',
-    ano: null,
-    periodo: null,
-    metragem: null,
-    localizacao: 'Belém — PA',
-    acabamento: null,
-    descricao: 'Empreendimento corporativo executado pela Work Construtora em Belém.',
-    detalhesTecnicos: [],
-    imagemCapa: finalImg,
-    galeria: [finalImg, execucaoImg, estruturaImg, fundacaoImg],
-    temFotoReal: true,
-    servicos: ['Construção Civil', 'Execução de Estrutura', 'Fachada'],
     cliente: null,
     depoimento: null,
     destaqueHome: false

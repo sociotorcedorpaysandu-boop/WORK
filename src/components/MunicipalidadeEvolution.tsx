@@ -16,33 +16,29 @@ const STAGES: Stage[] = [
   {
     id: 'fundacao',
     nome: 'Fundação',
-    subtitulo: 'Início da obra e base do edifício',
-    descricao:
-      'Etapa inicial da obra com escavação do terreno, montagem das armações de aço e concretagem da base e dos blocos de fundação.',
+    subtitulo: 'Etapa inicial da obra',
+    descricao: 'Etapas iniciais da execução e preparação da base da edificação.',
     imagem: fundacaoImg
   },
   {
     id: 'estrutura',
     nome: 'Estrutura',
-    subtitulo: 'Elevação dos pavimentos',
-    descricao:
-      'Execução da estrutura em concreto armado, com elevação dos pilares, concretagem das lajes e fechamento das alvenarias.',
+    subtitulo: 'Desenvolvimento dos pavimentos',
+    descricao: 'Evolução da estrutura e desenvolvimento dos pavimentos.',
     imagem: estruturaImg
   },
   {
     id: 'execucao',
     nome: 'Execução',
-    subtitulo: 'Instalação da fachada e vedações',
-    descricao:
-      'Montagem da caixilharia e dos painéis da pele de vidro na fachada, além do avanço dos acabamentos externos do edifício.',
+    subtitulo: 'Avanço construtivo',
+    descricao: 'Continuidade dos serviços e avanço das etapas construtivas.',
     imagem: execucaoImg
   },
   {
     id: 'resultado',
     nome: 'Projeto final',
-    subtitulo: 'Edifício corporativo concluído',
-    descricao:
-      'Conclusão da obra do edifício corporativo na Municipalidade, com fachada envidraçada, brises metálicos e área de recepção finalizadas.',
+    subtitulo: 'Edifício concluído',
+    descricao: 'Visualização do resultado final do empreendimento.',
     imagem: finalImg
   }
 ];

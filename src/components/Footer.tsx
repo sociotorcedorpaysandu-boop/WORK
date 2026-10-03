@@ -118,34 +118,21 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             <ul className="space-y-3.5 text-sm text-[#E6E6E6]/80">
               <li>
                 <a
-                  href="https://wa.me/5591991447742?text=Olá,%20gostaria%20de%20receber%20o%20link%20do%20Instagram%20oficial%20da%20Work%20Construtora."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-white inline-flex items-center gap-1.5 transition-colors"
-                >
-                  Instagram Oficial
-                  <span className="text-[#F58220] text-xs">↗</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://linkedin.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-white inline-flex items-center gap-1.5 transition-colors"
-                >
-                  LinkedIn
-                  <span className="text-[#F58220] text-xs">↗</span>
-                </a>
-              </li>
-              <li>
-                <a
                   href="https://wa.me/5591991447742"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-white inline-flex items-center gap-1.5 transition-colors"
                 >
                   WhatsApp
+                  <span className="text-[#F58220] text-xs">↗</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="mailto:abdulmassih.tarek@gmail.com"
+                  className="hover:text-white inline-flex items-center gap-1.5 transition-colors"
+                >
+                  E-mail Direto
                   <span className="text-[#F58220] text-xs">↗</span>
                 </a>
               </li>
