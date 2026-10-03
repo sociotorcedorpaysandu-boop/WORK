@@ -118,12 +118,12 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             <ul className="space-y-3.5 text-sm text-[#E6E6E6]/80">
               <li>
                 <a
-                  href="https://instagram.com"
+                  href="https://wa.me/5591991447742?text=Olá,%20gostaria%20de%20receber%20o%20link%20do%20Instagram%20oficial%20da%20Work%20Construtora."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-white inline-flex items-center gap-1.5 transition-colors"
                 >
-                  Instagram
+                  Instagram Oficial
                   <span className="text-[#F58220] text-xs">↗</span>
                 </a>
               </li>

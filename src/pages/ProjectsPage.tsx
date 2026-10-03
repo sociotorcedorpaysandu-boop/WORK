@@ -1,21 +1,18 @@
 import React, { useState } from 'react';
 import { PROJECTS } from '@/src/data/projects';
+import { ProjectPlaceholder } from '@/src/components/ProjectPlaceholder';
 
 interface ProjectsPageProps {
   onNavigate: (path: string) => void;
 }
 
 export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate }) => {
-  const [filter, setFilter] = useState<string>('todos');
+  const [filter] = useState<string>('todos');
 
   const handleNav = (path: string) => {
     onNavigate(path);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
-
-  const categories = [
-    { id: 'todos', label: 'Todos os Projetos' }
-  ];
 
   const filteredProjects = PROJECTS.filter((proj) => {
     if (filter === 'todos') return true;
@@ -56,12 +53,20 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate }) => {
                   className="group cursor-pointer pb-20 border-b border-[#E6E6E6] space-y-8"
                 >
                   <div className="overflow-hidden aspect-[16/9] sm:aspect-[21/9] bg-[#F7F7F5] border border-[#E6E6E6]">
-                    <img
-                      src={project.imagemCapa}
-                      alt={project.nome}
-                      className="w-full h-full object-cover img-editorial"
-                      loading="lazy"
-                    />
+                    {project.temFotoReal && project.imagemCapa ? (
+                      <img
+                        src={project.imagemCapa}
+                        alt={project.nome}
+                        className="w-full h-full object-cover img-editorial"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <ProjectPlaceholder
+                        nome={project.nome}
+                        categoria={project.categoria}
+                        aspect="h-full min-h-[300px]"
+                      />
+                    )}
                   </div>
 
                   <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
@@ -114,12 +119,20 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate }) => {
 
                     {/* Imagem à Direita */}
                     <div className="lg:col-span-7 overflow-hidden aspect-[16/10] bg-[#F7F7F5] border border-[#E6E6E6] lg:order-2">
-                      <img
-                        src={project.imagemCapa}
-                        alt={project.nome}
-                        className="w-full h-full object-cover img-editorial"
-                        loading="lazy"
-                      />
+                      {project.temFotoReal && project.imagemCapa ? (
+                        <img
+                          src={project.imagemCapa}
+                          alt={project.nome}
+                          className="w-full h-full object-cover img-editorial"
+                          loading="lazy"
+                        />
+                      ) : (
+                        <ProjectPlaceholder
+                          nome={project.nome}
+                          categoria={project.categoria}
+                          aspect="h-full min-h-[280px]"
+                        />
+                      )}
                     </div>
                   </div>
                 </div>
@@ -136,12 +149,20 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate }) => {
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
                   {/* Imagem à Esquerda */}
                   <div className="lg:col-span-7 overflow-hidden aspect-[16/10] bg-[#F7F7F5] border border-[#E6E6E6]">
-                    <img
-                      src={project.imagemCapa}
-                      alt={project.nome}
-                      className="w-full h-full object-cover img-editorial"
-                      loading="lazy"
-                    />
+                    {project.temFotoReal && project.imagemCapa ? (
+                      <img
+                        src={project.imagemCapa}
+                        alt={project.nome}
+                        className="w-full h-full object-cover img-editorial"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <ProjectPlaceholder
+                        nome={project.nome}
+                        categoria={project.categoria}
+                        aspect="h-full min-h-[280px]"
+                      />
+                    )}
                   </div>
 
                   {/* Texto à Direita */}

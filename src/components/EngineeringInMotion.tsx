@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
-import municipalidadePlanejar from '@/src/assets/images/municipalidade_planejar_1790334529178.jpg';
-import municipalidadeConstruir from '@/src/assets/images/municipalidade_construir_1790334539473.jpg';
-import municipalidadeEntregar from '@/src/assets/images/municipalidade_entregar_1790334549340.jpg';
+import React, { useState } from 'react';
+import fundacaoImg from '@/src/assets/images/municipalidade_fundacao_1790992233978.jpg';
+import estruturaImg from '@/src/assets/images/municipalidade_estrutura_1790992243499.jpg';
+import finalImg from '@/src/assets/images/municipalidade_final_1790992266785.jpg';
 
 interface StepData {
   num: string;
@@ -9,8 +9,11 @@ interface StepData {
   titulo: string;
   lead: string;
   descricao: string;
-  image: string;
-  labelEtapa: string;
+  imagem: string;
+  statusTag: string;
+  metricLabel: string;
+  metricValue: string;
+  indicador: string;
 }
 
 const STEPS: StepData[] = [
@@ -21,228 +24,124 @@ const STEPS: StepData[] = [
     lead: 'Toda obra começa antes da execução.',
     descricao:
       'Planejamento de etapas, cronograma e diretrizes para o início dos trabalhos.',
-    image: municipalidadePlanejar,
-    labelEtapa: 'PLANEJAMENTO'
+    imagem: fundacaoImg,
+    statusTag: 'PROJETO E DIRETRIZES',
+    metricLabel: 'CRONOGRAMA INICIAL',
+    metricValue: 'Definição de fases e suprimentos',
+    indicador: 'Início da Mobilização'
   },
   {
     num: '02',
     fraction: '02 / 03',
     titulo: 'CONSTRUIR',
-    lead: 'Gestão, engenharia e execução trabalhando de forma integrada.',
+    lead: 'Estruturação e execução no canteiro.',
     descricao:
-      'Execução das etapas da obra com acompanhamento no canteiro e controle de materiais.',
-    image: municipalidadeConstruir,
-    labelEtapa: 'EXECUÇÃO'
+      'Acompanhamento direto no canteiro de obras e controle de materiais.',
+    imagem: estruturaImg,
+    statusTag: 'CANTEIRO ATIVO',
+    metricLabel: 'ACOMPANHAMENTO TÉCNICO',
+    metricValue: 'Gestão contínua das etapas',
+    indicador: 'Execução Estrutural'
   },
   {
     num: '03',
     fraction: '03 / 03',
     titulo: 'ENTREGAR',
-    lead: 'Do planejamento à entrega.',
+    lead: 'Acabamentos e finalização.',
     descricao:
-      'Finalização dos acabamentos e entrega da obra concluída.',
-    image: municipalidadeEntregar,
-    labelEtapa: 'ENTREGA'
+      'Atenção aos acabamentos finais e entrega formal da obra concluída.',
+    imagem: finalImg,
+    statusTag: 'OBRA FINALIZADA',
+    metricLabel: 'FINALIZAÇÃO',
+    metricValue: 'Acabamentos e entrega',
+    indicador: 'Conclusão'
   }
 ];
 
 export const EngineeringInMotion: React.FC = () => {
   const [activeStep, setActiveStep] = useState(0);
-  const containerRef = useRef<HTMLDivElement>(null);
 
-  // Monitor scroll progression through the section
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!containerRef.current) return;
-      const rect = containerRef.current.getBoundingClientRect();
-      const totalHeight = rect.height - window.innerHeight;
-      if (totalHeight <= 0) return;
-
-      const progress = -rect.top / totalHeight;
-      if (progress < 0.33) {
-        setActiveStep(0);
-      } else if (progress < 0.68) {
-        setActiveStep(1);
-      } else {
-        setActiveStep(2);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const step = STEPS[activeStep];
 
   return (
-    <section className="bg-[#111111] text-white py-24 lg:py-32 relative border-t border-[#2A2A2A]">
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
-        {/* Section Lead */}
+    <section className="py-24 sm:py-32 px-6 md:px-12 bg-[#1A1A1A] text-white border-t border-[#2A2A2A]">
+      <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-16 border-b border-[#2A2A2A]">
           <div>
             <span className="text-[#F58220] font-sans text-xs uppercase tracking-[0.25em] font-semibold block mb-3">
-              ETAPAS DA OBRA
+              MÉTODO WORK
             </span>
-            <h2 className="font-editorial text-4xl sm:text-5xl lg:text-6xl text-white font-normal leading-[1.05] tracking-tight">
-              Engineering in Motion
+            <h2 className="font-editorial text-4xl sm:text-5xl lg:text-6xl text-white font-normal leading-tight">
+              Prédio Municipalidade — Evolução da Obra
             </h2>
           </div>
-          <div className="text-right">
-            <span className="font-mono text-sm tracking-widest text-[#F58220] font-semibold">
-              {STEPS[activeStep].fraction}
-            </span>
-            <p className="text-xs text-[#E6E6E6]/60 mt-1 uppercase tracking-widest">
-              Prédio Municipalidade — Evolução da Obra
-            </p>
-          </div>
+          <p className="text-sm sm:text-base text-[#E6E6E6]/80 max-w-md font-sans leading-relaxed">
+            Acompanhamento das etapas construtivas no canteiro de obras.
+          </p>
         </div>
 
-        {/* Desktop Sticky Scroll Experience */}
-        <div ref={containerRef} className="hidden lg:block relative mt-16 min-h-[160vh]">
-          <div className="sticky top-28 grid grid-cols-12 gap-12 items-center">
-            {/* Left Narrative Stepper */}
-            <div className="col-span-5 flex flex-col justify-between h-[480px]">
-              {/* Stepper Selection */}
-              <div className="space-y-8">
-                {STEPS.map((step, idx) => {
-                  const isCurrent = activeStep === idx;
-                  return (
-                    <button
-                      key={step.num}
-                      onClick={() => setActiveStep(idx)}
-                      className={`w-full text-left transition-all duration-300 group cursor-pointer focus-visible:outline-none ${
-                        isCurrent ? 'opacity-100' : 'opacity-40 hover:opacity-75'
-                      }`}
-                    >
-                      <div className="flex items-center gap-4 mb-2">
-                        <span
-                          className={`font-mono text-xs font-semibold tracking-wider transition-colors ${
-                            isCurrent ? 'text-[#F58220]' : 'text-[#E6E6E6]/60'
-                          }`}
-                        >
-                          {step.num}
-                        </span>
-                        <div
-                          className={`h-[1px] transition-all duration-500 ${
-                            isCurrent ? 'w-12 bg-[#F58220]' : 'w-4 bg-white/20'
-                          }`}
-                        />
-                        <span className="text-[11px] uppercase tracking-[0.2em] text-[#E6E6E6]/60 font-sans">
-                          {step.labelEtapa}
-                        </span>
-                      </div>
-                      <h3 className="font-editorial text-3xl text-white font-normal tracking-tight">
-                        {step.titulo}
-                      </h3>
-                      {isCurrent && (
-                        <div className="mt-3 pl-8 border-l border-[#F58220]/40">
-                          <p className="text-[#F58220] text-sm font-medium mb-2">
-                            {step.lead}
-                          </p>
-                          <p className="text-xs text-[#E6E6E6]/80 leading-relaxed max-w-sm">
-                            {step.descricao}
-                          </p>
-                        </div>
-                      )}
-                    </button>
-                  );
-                })}
-              </div>
-
-              {/* Progress Indicator */}
-              <div className="pt-6 border-t border-[#2A2A2A]">
-                <div className="flex justify-between items-center text-xs text-[#E6E6E6]/60 mb-2 font-mono">
-                  <span>ETAPAS DA OBRA</span>
-                  <span className="text-[#F58220] font-semibold">{STEPS[activeStep].fraction}</span>
-                </div>
-                <div className="w-full h-1 bg-[#2A2A2A] overflow-hidden">
-                  <div
-                    className="h-full bg-[#F58220] transition-all duration-500 ease-out"
-                    style={{ width: `${((activeStep + 1) / STEPS.length) * 100}%` }}
-                  />
-                </div>
-              </div>
+        <div className="mt-16 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          <div className="lg:col-span-5 space-y-8">
+            <div className="space-y-3">
+              <span className="text-xs font-mono text-[#F58220] tracking-widest uppercase block">
+                {step.fraction} · {step.statusTag}
+              </span>
+              <h3 className="font-editorial text-3xl sm:text-4xl text-white">
+                {step.titulo}
+              </h3>
+              <p className="text-lg text-white/90 font-light">
+                {step.lead}
+              </p>
+              <p className="text-sm text-[#E6E6E6]/80 leading-relaxed font-sans pt-2">
+                {step.descricao}
+              </p>
             </div>
 
-            {/* Right Architectural Image Canvas */}
-            <div className="col-span-7">
-              <div className="relative aspect-[16/10] bg-[#181818] overflow-hidden border border-[#2A2A2A]">
-                {STEPS.map((step, idx) => (
-                  <div
-                    key={step.num}
-                    className={`absolute inset-0 transition-all duration-700 ease-out ${
-                      activeStep === idx
-                        ? 'opacity-100 scale-100 z-10'
-                        : 'opacity-0 scale-[1.03] z-0 pointer-events-none'
-                    }`}
-                  >
-                    <img
-                      src={step.image}
-                      alt={`Obra Municipalidade - ${step.titulo}`}
-                      className="w-full h-full object-cover"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                    
-                    <div className="absolute bottom-6 left-6 right-6 flex justify-between items-end">
-                      <div>
-                        <span className="text-[#F58220] text-[10px] font-mono tracking-widest uppercase block mb-1">
-                          {step.labelEtapa}
-                        </span>
-                        <p className="text-white text-lg font-editorial">
-                          Prédio Municipalidade — {step.titulo}
-                        </p>
-                      </div>
-                      <span className="text-xs font-mono text-[#E6E6E6]/70">
-                        WORK / {step.num}
-                      </span>
-                    </div>
-                  </div>
-                ))}
+            <div className="pt-6 border-t border-[#2A2A2A]">
+              <div className="flex justify-between items-center text-xs text-[#E6E6E6]/60 mb-2 font-mono">
+                <span>ETAPAS DA OBRA</span>
+                <span>{step.indicador}</span>
               </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Mobile Vertical Narrative */}
-        <div className="lg:hidden mt-12 space-y-16">
-          {STEPS.map((step) => (
-            <div key={step.num} className="space-y-5">
-              <div className="relative aspect-[16/10] bg-[#181818] overflow-hidden border border-[#2A2A2A]">
-                <img
-                  src={step.image}
-                  alt={`Obra Municipalidade - ${step.titulo}`}
-                  className="w-full h-full object-cover"
-                  loading="lazy"
+              <div className="h-1 bg-[#2A2A2A] w-full overflow-hidden">
+                <div
+                  className="h-full bg-[#F58220] transition-all duration-500 ease-out"
+                  style={{ width: `${((activeStep + 1) / STEPS.length) * 100}%` }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                <div className="absolute bottom-4 left-4 right-4 flex justify-between items-end">
-                  <span className="text-[#F58220] text-xs font-mono font-semibold">
-                    {step.fraction}
-                  </span>
-                  <span className="text-xs uppercase tracking-widest text-white/70">
-                    {step.labelEtapa}
-                  </span>
-                </div>
-              </div>
-
-              <div>
-                <div className="flex items-center gap-3 mb-2">
-                  <span className="text-[#F58220] font-mono text-xs font-semibold">
-                    {step.num}
-                  </span>
-                  <div className="h-[1px] w-8 bg-[#F58220]" />
-                  <h3 className="font-editorial text-2xl text-white font-normal">
-                    {step.titulo}
-                  </h3>
-                </div>
-                <p className="text-[#F58220] text-sm font-medium mb-2 pl-4 border-l border-[#F58220]/40">
-                  {step.lead}
-                </p>
-                <p className="text-xs text-[#E6E6E6]/80 leading-relaxed pl-4">
-                  {step.descricao}
-                </p>
               </div>
             </div>
-          ))}
+
+            <div className="flex items-center gap-3 pt-4">
+              {STEPS.map((s, idx) => (
+                <button
+                  key={s.num}
+                  onClick={() => setActiveStep(idx)}
+                  className={`flex-1 py-3 px-4 border text-left transition-all cursor-pointer ${
+                    activeStep === idx
+                      ? 'border-[#F58220] bg-white/5 text-white'
+                      : 'border-[#2A2A2A] text-[#E6E6E6]/60 hover:border-[#E6E6E6]/40 hover:text-white'
+                  }`}
+                >
+                  <span className="block text-[10px] font-mono text-[#F58220] mb-0.5">
+                    {s.num}
+                  </span>
+                  <span className="text-xs font-sans uppercase tracking-wider font-semibold">
+                    {s.titulo}
+                  </span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="lg:col-span-7">
+            <div className="relative aspect-[16/10] sm:aspect-[16/9] bg-[#111111] overflow-hidden border border-[#2A2A2A]">
+              <img
+                src={step.imagem}
+                alt={step.titulo}
+                className="w-full h-full object-cover img-editorial"
+                loading="lazy"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </section>

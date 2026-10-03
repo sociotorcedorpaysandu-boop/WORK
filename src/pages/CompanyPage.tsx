@@ -1,11 +1,8 @@
 import React from 'react';
 import { COMPANY_INFO } from '@/src/data/company';
 import { TEAM } from '@/src/data/team';
-import teamLeadershipImg from '@/src/assets/images/team_leadership_work_1790336814200.jpg';
-import heroWorkSite from '@/src/assets/images/hero_work_construction_1790334457107.jpg';
-import engineeringImg from '@/src/assets/images/engineering_in_motion_site_1790334507218.jpg';
-import fundacaoImg from '@/src/assets/images/municipalidade_fundacao_1790992233978.jpg';
-import finalImg from '@/src/assets/images/municipalidade_final_1790992266785.jpg';
+import execucaoImg from '@/src/assets/images/municipalidade_execucao_1790992253931.jpg';
+import estruturaImg from '@/src/assets/images/municipalidade_estrutura_1790992243499.jpg';
 
 interface CompanyPageProps {
   onNavigate: (path: string) => void;
@@ -36,7 +33,7 @@ export const CompanyPage: React.FC<CompanyPageProps> = ({ onNavigate }) => {
         </div>
       </section>
 
-      {/* 02. Bloco: História e Origem (Texto + Foto Real da Liderança) */}
+      {/* 02. Bloco: História e Origem (Texto + Foto Real da Obra) */}
       <section className="py-20 sm:py-24 px-6 md:px-12 bg-[#FFFFFF]">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
@@ -48,18 +45,18 @@ export const CompanyPage: React.FC<CompanyPageProps> = ({ onNavigate }) => {
                 Construção civil com seriedade e presença no Pará
               </h2>
               <p className="text-base text-[#111111]/80 leading-relaxed">
-                Criada em 2022 em Belém, a Work Construtora nasceu para atuar com solidez na realização de obras e reformas corporativas e residenciais.
+                Criada em 2022 em Belém, a Work Construtora atua no setor da construção civil com o propósito de oferecer soluções eficientes e de qualidade para obras e reformas.
               </p>
               <p className="text-base text-[#111111]/80 leading-relaxed">
-                Nossa atuação combina planejamento prévio, responsabilidade técnica, gestão eficiente de suprimentos e transparência em todas as fases da obra.
+                Nossa atuação combina planejamento, responsabilidade, organização, qualidade técnica, segurança e transparência em todas as etapas da construção.
               </p>
             </div>
 
             <div className="lg:col-span-6">
               <div className="overflow-hidden aspect-[4/3] bg-[#F7F7F5] border border-[#E6E6E6]">
                 <img
-                  src={teamLeadershipImg}
-                  alt="Liderança da Work Construtora em planejamento"
+                  src={execucaoImg}
+                  alt="Obra da Work Construtora em Belém"
                   className="w-full h-full object-cover img-editorial"
                   loading="lazy"
                 />
@@ -69,7 +66,7 @@ export const CompanyPage: React.FC<CompanyPageProps> = ({ onNavigate }) => {
         </div>
       </section>
 
-      {/* 03. Bloco: Planejamento & Gestão (Texto + Foto Real de Canteiro) */}
+      {/* 03. Bloco: Planejamento & Gestão (Texto + Foto Real de Estrutura) */}
       <section className="py-20 sm:py-24 px-6 md:px-12 bg-[#F7F7F5] border-t border-[#E6E6E6]">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
@@ -81,18 +78,18 @@ export const CompanyPage: React.FC<CompanyPageProps> = ({ onNavigate }) => {
                 Engenharia presente do escritório ao canteiro
               </h2>
               <p className="text-base text-[#111111]/80 leading-relaxed">
-                Cada empreendimento é acompanhado com rigor metodológico: análise detalhada de projetos, cronograma executivo de etapas e acompanhamento de materiais e mão de obra.
+                Na Work, a gestão atua diretamente no planejamento das etapas, administração de contratos e suporte contínuo ao canteiro de obras.
               </p>
               <p className="text-sm text-[#111111]/70 leading-relaxed">
-                A proximidade entre engenheiros e diretoria garante decisões ágeis, alinhamento técnico contínuo e compromisso permanente com a qualidade final da obra.
+                A proximidade entre engenharia e administração garante acompanhamento direto dos trabalhos, alinhamento técnico e cumprimento dos prazos estabelecidos.
               </p>
             </div>
 
             <div className="lg:col-span-6 lg:order-1">
               <div className="overflow-hidden aspect-[4/3] bg-[#E6E6E6] border border-[#E6E6E6]">
                 <img
-                  src={engineeringImg}
-                  alt="Acompanhamento técnico no canteiro"
+                  src={estruturaImg}
+                  alt="Acompanhamento de estrutura no canteiro"
                   className="w-full h-full object-cover img-editorial"
                   loading="lazy"
                 />
@@ -129,7 +126,7 @@ export const CompanyPage: React.FC<CompanyPageProps> = ({ onNavigate }) => {
         </div>
       </section>
 
-      {/* 05. Bloco: Da Gestão à Execução (Fundo Claro em vez de preto) */}
+      {/* 05. Bloco: Da Gestão à Execução */}
       <section className="py-20 sm:py-24 px-6 md:px-12 bg-[#F7F7F5] border-t border-[#E6E6E6]">
         <div className="max-w-7xl mx-auto space-y-12">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-[#E6E6E6]">
@@ -142,7 +139,7 @@ export const CompanyPage: React.FC<CompanyPageProps> = ({ onNavigate }) => {
               </h2>
             </div>
             <p className="text-sm text-[#111111]/70 max-w-sm">
-              Fluxo integrado de gestão e acompanhamento técnico em todas as etapas da obra.
+              Fluxo integrado de gestão e acompanhamento no canteiro de obras.
             </p>
           </div>
 
@@ -168,7 +165,7 @@ export const CompanyPage: React.FC<CompanyPageProps> = ({ onNavigate }) => {
         </div>
       </section>
 
-      {/* 06. Seção Equipe (Composição simples e limpa: foto/monograma + nome + cargo) */}
+      {/* 06. Seção Equipe (Composição simples e limpa: monograma + nome + cargo) */}
       <section className="py-20 sm:py-28 px-6 md:px-12 bg-[#FFFFFF] border-t border-[#E6E6E6]">
         <div className="max-w-7xl mx-auto space-y-12">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-[#E6E6E6]">
@@ -181,7 +178,7 @@ export const CompanyPage: React.FC<CompanyPageProps> = ({ onNavigate }) => {
               </h2>
             </div>
             <p className="text-sm text-[#111111]/70 max-w-sm">
-              Profissionais dedicados ao planejamento estratégico, engenharia e responsabilidade em cada obra.
+              Profissionais dedicados ao planejamento, gestão administrativa e acompanhamento de obras.
             </p>
           </div>
 
@@ -248,7 +245,7 @@ export const CompanyPage: React.FC<CompanyPageProps> = ({ onNavigate }) => {
         </div>
       </section>
 
-      {/* 07. CTA Final (Conforme solicitado explicitamente) */}
+      {/* 07. CTA Final */}
       <section className="py-20 px-6 md:px-12 bg-[#F58220] text-[#111111]">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
           <div>

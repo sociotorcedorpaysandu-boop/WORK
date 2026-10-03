@@ -4,8 +4,6 @@ import fundacaoImg from '@/src/assets/images/municipalidade_fundacao_17909922339
 import estruturaImg from '@/src/assets/images/municipalidade_estrutura_1790992243499.jpg';
 import execucaoImg from '@/src/assets/images/municipalidade_execucao_1790992253931.jpg';
 import finalImg from '@/src/assets/images/municipalidade_final_1790992266785.jpg';
-import heroWorkSite from '@/src/assets/images/hero_work_construction_1790334457107.jpg';
-import engineeringImg from '@/src/assets/images/engineering_in_motion_site_1790334507218.jpg';
 
 export const ContactPage: React.FC = () => {
   return (
@@ -75,26 +73,26 @@ export const ContactPage: React.FC = () => {
               </a>
             </div>
 
-            {/* Instagram */}
+            {/* Instagram - Sem inventar handle ou link falso */}
             <div className="p-8 bg-[#F7F7F5] border border-[#E6E6E6] flex flex-col justify-between space-y-6">
               <div className="space-y-3">
                 <span className="text-xs uppercase font-semibold text-[#F58220] tracking-wider block">
                   Instagram Oficial
                 </span>
                 <h2 className="text-2xl sm:text-3xl font-heading font-semibold text-[#111111]">
-                  @workconstrutora
+                  Work Construtora
                 </h2>
                 <p className="text-sm text-[#111111]/75 leading-relaxed">
-                  Acompanhe em tempo real fotos de canteiro, etapas de obras e projetos em andamento.
+                  Acompanhe fotos de canteiro, etapas de obras e projetos em andamento em Belém.
                 </p>
               </div>
               <a
-                href="https://instagram.com"
+                href="https://wa.me/5591991447742?text=Olá,%20gostaria%20de%20receber%20o%20link%20do%20Instagram%20oficial%20da%20Work%20Construtora."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full py-3.5 bg-[#111111] hover:bg-[#F58220] text-white hover:text-[#111111] text-xs font-semibold uppercase tracking-wider transition-colors text-center inline-block"
               >
-                Acessar Instagram ↗
+                Acessar via WhatsApp ↗
               </a>
             </div>
           </div>
@@ -127,22 +125,22 @@ export const ContactPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Faixa Fotográfica de Registros Reais */}
+          {/* Faixa Fotográfica de Registros Reais (4 Fases Reais da Obra) */}
           <div className="space-y-4 pt-4 border-t border-[#E6E6E6]">
             <div className="flex justify-between items-baseline">
               <span className="text-xs font-semibold uppercase tracking-wider text-[#111111]/60">
                 Dia a Dia no Canteiro
               </span>
               <span className="text-xs text-[#111111]/50">
-                Belém — Pará
+                Fotos reais da obra — Belém — Pará
               </span>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <div className="aspect-square bg-[#E6E6E6] overflow-hidden border border-[#E6E6E6]">
                 <img
                   src={fundacaoImg}
-                  alt="Fundação"
+                  alt="Fundação de obra Work"
                   className="w-full h-full object-cover img-editorial"
                   loading="lazy"
                 />
@@ -150,7 +148,7 @@ export const ContactPage: React.FC = () => {
               <div className="aspect-square bg-[#E6E6E6] overflow-hidden border border-[#E6E6E6]">
                 <img
                   src={estruturaImg}
-                  alt="Estrutura"
+                  alt="Estrutura de edifício Work"
                   className="w-full h-full object-cover img-editorial"
                   loading="lazy"
                 />
@@ -158,7 +156,7 @@ export const ContactPage: React.FC = () => {
               <div className="aspect-square bg-[#E6E6E6] overflow-hidden border border-[#E6E6E6]">
                 <img
                   src={execucaoImg}
-                  alt="Execução"
+                  alt="Execução de fachada Work"
                   className="w-full h-full object-cover img-editorial"
                   loading="lazy"
                 />
@@ -166,23 +164,7 @@ export const ContactPage: React.FC = () => {
               <div className="aspect-square bg-[#E6E6E6] overflow-hidden border border-[#E6E6E6]">
                 <img
                   src={finalImg}
-                  alt="Projeto Final"
-                  className="w-full h-full object-cover img-editorial"
-                  loading="lazy"
-                />
-              </div>
-              <div className="aspect-square bg-[#E6E6E6] overflow-hidden border border-[#E6E6E6]">
-                <img
-                  src={heroWorkSite}
-                  alt="Canteiro Ativo"
-                  className="w-full h-full object-cover img-editorial"
-                  loading="lazy"
-                />
-              </div>
-              <div className="aspect-square bg-[#E6E6E6] overflow-hidden border border-[#E6E6E6]">
-                <img
-                  src={engineeringImg}
-                  alt="Engenharia"
+                  alt="Projeto Final concluído Work"
                   className="w-full h-full object-cover img-editorial"
                   loading="lazy"
                 />

@@ -16,33 +16,33 @@ const STAGES: Stage[] = [
   {
     id: 'fundacao',
     nome: 'Fundação',
-    subtitulo: 'Infraestrutura e fundações profundas',
+    subtitulo: 'Início da obra e base do edifício',
     descricao:
-      'Escavação do solo, cravação de estacas, armação de aço das sapatas e concretagem dos blocos de fundação com acompanhamento técnico direto no canteiro.',
+      'Etapa inicial da obra com escavação do terreno, montagem das armações de aço e concretagem da base e dos blocos de fundação.',
     imagem: fundacaoImg
   },
   {
     id: 'estrutura',
     nome: 'Estrutura',
-    subtitulo: 'Pilares, lajes e alvenaria',
+    subtitulo: 'Elevação dos pavimentos',
     descricao:
-      'Elevação da estrutura em concreto armado, montagem de fôrmas, concretagem dos pavimentos tipo e execução das vedações em alvenaria com proteção periférica.',
+      'Execução da estrutura em concreto armado, com elevação dos pilares, concretagem das lajes e fechamento das alvenarias.',
     imagem: estruturaImg
   },
   {
     id: 'execucao',
     nome: 'Execução',
-    subtitulo: 'Fachada e vedações externas',
+    subtitulo: 'Instalação da fachada e vedações',
     descricao:
-      'Instalação da pele de vidro, caixilharia de alto padrão e fechamentos externos com telas de proteção e controle de suprimentos na obra.',
+      'Montagem da caixilharia e dos painéis da pele de vidro na fachada, além do avanço dos acabamentos externos do edifício.',
     imagem: execucaoImg
   },
   {
     id: 'resultado',
-    nome: 'Resultado / Projeto final',
+    nome: 'Projeto final',
     subtitulo: 'Edifício corporativo concluído',
     descricao:
-      'Torre corporativa finalizada, com fachada em vidro reflexivo, brises metálicos horizontais, acabamentos modernos e recepção integrada ao nível da rua.',
+      'Conclusão da obra do edifício corporativo na Municipalidade, com fachada envidraçada, brises metálicos e área de recepção finalizadas.',
     imagem: finalImg
   }
 ];
@@ -66,7 +66,7 @@ export const MunicipalidadeEvolution: React.FC = () => {
             </h2>
           </div>
           <p className="text-sm sm:text-base text-[#111111]/75 max-w-md leading-relaxed">
-            Registro fotográfico das principais etapas construtivas do empreendimento corporativo executado em Belém.
+            Registro fotográfico das etapas construtivas da obra realizada pela Work Construtora em Belém.
           </p>
         </div>
 

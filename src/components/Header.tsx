@@ -53,18 +53,18 @@ export const Header: React.FC<HeaderProps> = ({
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? 'bg-white/98 backdrop-blur-md border-b border-[#E6E6E6] py-4 shadow-sm'
-            : 'bg-transparent py-5 sm:py-6'
+            ? 'bg-white/98 backdrop-blur-md border-b border-[#E6E6E6] py-3 shadow-xs'
+            : 'bg-transparent py-4 sm:py-5'
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
           {/* Brand Zone */}
           <button
             onClick={() => handleNavClick('/')}
-            className="group text-left cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F58220] py-1"
+            className="group text-left cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F58220] py-0.5"
             aria-label="Work Construtora - Ir para página inicial"
           >
-            <Logo variant={isLightText ? 'light' : 'dark'} size="md" />
+            <Logo variant={isLightText ? 'light' : 'dark'} size="lg" />
           </button>
 
           {/* Desktop Nav Links (Maior legibilidade e espaçamento refinado) */}

@@ -1,12 +1,11 @@
 import React from 'react';
-import heroWorkSite from '@/src/assets/images/hero_work_construction_1790334457107.jpg';
-import teamLeadershipImg from '@/src/assets/images/team_leadership_work_1790336814200.jpg';
-import edsonCorporateImg from '@/src/assets/images/edson_corporate_building_1790334474133.jpg';
-import engineeringImg from '@/src/assets/images/engineering_in_motion_site_1790334507218.jpg';
 import fundacaoImg from '@/src/assets/images/municipalidade_fundacao_1790992233978.jpg';
 import estruturaImg from '@/src/assets/images/municipalidade_estrutura_1790992243499.jpg';
+import execucaoImg from '@/src/assets/images/municipalidade_execucao_1790992253931.jpg';
 import finalImg from '@/src/assets/images/municipalidade_final_1790992266785.jpg';
+import symbolWork from '@/src/assets/images/Design_sem_nome__85_-removebg-preview.svg';
 import { MunicipalidadeEvolution } from '@/src/components/MunicipalidadeEvolution';
+import { ProjectPlaceholder } from '@/src/components/ProjectPlaceholder';
 import { FEATURED_PROJECTS } from '@/src/data/projects';
 import { TEAM } from '@/src/data/team';
 
@@ -36,7 +35,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         {/* Foto real da Work como pano de fundo com contraste calibrado */}
         <div className="absolute inset-0 z-0">
           <img
-            src={heroWorkSite}
+            src={execucaoImg}
             alt="Canteiro de obras Work Construtora"
             className="w-full h-full object-cover object-center opacity-40 filter brightness-95"
             loading="eager"
@@ -117,18 +116,26 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                       isEven ? 'lg:flex-row-reverse' : ''
                     }`}
                   >
-                    {/* Imagem Grande */}
+                    {/* Imagem Real ou Placeholder Neutro Sem IA */}
                     <div
                       className={`lg:col-span-7 overflow-hidden aspect-[16/10] bg-[#F7F7F5] border border-[#E6E6E6] ${
                         isEven ? 'lg:order-2' : 'lg:order-1'
                       }`}
                     >
-                      <img
-                        src={project.imagemCapa}
-                        alt={project.nome}
-                        className="w-full h-full object-cover img-editorial"
-                        loading="lazy"
-                      />
+                      {project.temFotoReal && project.imagemCapa ? (
+                        <img
+                          src={project.imagemCapa}
+                          alt={project.nome}
+                          className="w-full h-full object-cover img-editorial"
+                          loading="lazy"
+                        />
+                      ) : (
+                        <ProjectPlaceholder
+                          nome={project.nome}
+                          categoria={project.categoria}
+                          aspect="h-full min-h-[280px]"
+                        />
+                      )}
                     </div>
 
                     {/* Conteúdo Institucional Objetivo */}
@@ -200,7 +207,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             </button>
           </div>
 
-          {/* Blocos Objetivos de Serviços (Imagem + Título + Resumo + Link) */}
+          {/* Blocos Objetivos de Serviços (Fotos Reais + Título + Resumo Literal + Link) */}
           <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
             {/* Serviço 01 */}
             <div
@@ -209,7 +216,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             >
               <div className="aspect-[16/10] overflow-hidden bg-[#E6E6E6]">
                 <img
-                  src={heroWorkSite}
+                  src={estruturaImg}
                   alt="Construção e Administração de Obras"
                   className="w-full h-full object-cover img-editorial"
                   loading="lazy"
@@ -221,7 +228,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                     Construção e Administração de Obras
                   </h3>
                   <p className="text-sm text-[#111111]/75 leading-relaxed">
-                    Execução e administração de obras e reformas residenciais, comerciais e industriais, com planejamento prévio, controle de suprimentos e mão de obra no canteiro.
+                    Execução de obras e reformas residenciais, comerciais e industriais, envolvendo planejamento, cronograma, materiais, mão de obra e controle de qualidade.
                   </p>
                 </div>
                 <div className="pt-4 border-t border-[#E6E6E6]">
@@ -239,7 +246,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             >
               <div className="aspect-[16/10] overflow-hidden bg-[#E6E6E6]">
                 <img
-                  src={edsonCorporateImg}
+                  src={finalImg}
                   alt="Built to Suit — BTS"
                   className="w-full h-full object-cover img-editorial"
                   loading="lazy"
@@ -251,7 +258,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                     Built to Suit — BTS
                   </h3>
                   <p className="text-sm text-[#111111]/75 leading-relaxed">
-                    Empreendimentos sob medida desenvolvidos para atender às necessidades operacionais e logísticas de cada empresa, da concepção do projeto à entrega da chave.
+                    Empreendimentos desenvolvidos sob medida para atender às necessidades específicas da operação de cada empresa.
                   </p>
                 </div>
                 <div className="pt-4 border-t border-[#E6E6E6]">
@@ -269,7 +276,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             >
               <div className="aspect-[16/10] overflow-hidden bg-[#E6E6E6]">
                 <img
-                  src={engineeringImg}
+                  src={fundacaoImg}
                   alt="Projetos de Engenharia"
                   className="w-full h-full object-cover img-editorial"
                   loading="lazy"
@@ -315,12 +322,12 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             </p>
           </div>
 
-          {/* Bloco 1: História & Atuação Integrada */}
+          {/* Bloco 1: História & Atuação Integrada (Com foto real da obra, sem fotos geradas por IA) */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             <div className="lg:col-span-6 overflow-hidden aspect-[4/3] bg-[#E6E6E6] border border-[#E6E6E6]">
               <img
-                src={teamLeadershipImg}
-                alt="Liderança da Work Construtora"
+                src={execucaoImg}
+                alt="Execução da obra da Work Construtora"
                 className="w-full h-full object-cover img-editorial"
                 loading="lazy"
               />
@@ -341,7 +348,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             </div>
           </div>
 
-          {/* Bloco 2: Equipe Técnica Confirmada (Composição simples: foto/monograma + nome + cargo) */}
+          {/* Bloco 2: Equipe Técnica Confirmada (Composição simples: monograma + nome + cargo) */}
           <div className="pt-8 border-t border-[#E6E6E6] space-y-8">
             <div>
               <span className="text-xs uppercase tracking-wider text-[#F58220] font-semibold block mb-2">
@@ -455,28 +462,28 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               </span>
             </a>
 
-            {/* Instagram */}
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-6 bg-[#F7F7F5] hover:bg-white border border-[#E6E6E6] hover:border-[#F58220] transition-all flex flex-col justify-between space-y-4 group"
-            >
+            {/* Instagram - Sem inventar handle não confirmado */}
+            <div className="p-6 bg-[#F7F7F5] border border-[#E6E6E6] flex flex-col justify-between space-y-4">
               <div className="space-y-1">
                 <span className="text-xs uppercase font-semibold text-[#F58220] tracking-wider block">
                   Instagram Oficial
                 </span>
                 <h4 className="text-xl font-heading font-semibold text-[#111111]">
-                  @workconstrutora
+                  Work Construtora
                 </h4>
                 <p className="text-xs text-[#111111]/70 leading-relaxed">
-                  Acompanhe fotos e vídeos do dia a dia das nossas obras em Belém.
+                  Acompanhe fotos e registros das nossas obras e projetos em Belém.
                 </p>
               </div>
-              <span className="text-xs font-semibold uppercase tracking-wider text-[#111111] group-hover:text-[#F58220] transition-colors inline-flex items-center gap-1">
-                Seguir no Instagram ↗
-              </span>
-            </a>
+              <a
+                href="https://wa.me/5591991447742?text=Olá,%20gostaria%20de%20receber%20o%20link%20do%20Instagram%20oficial%20da%20Work%20Construtora."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs font-semibold uppercase tracking-wider text-[#111111] hover:text-[#F58220] transition-colors inline-flex items-center gap-1"
+              >
+                Solicitar via WhatsApp ↗
+              </a>
+            </div>
 
             {/* Endereço & Mapa */}
             <a
@@ -502,20 +509,15 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             </a>
           </div>
 
-          {/* Faixa Visual com Registros Reais de Canteiro / Instagram */}
+          {/* Faixa Visual com Registros Reais de Canteiro */}
           <div className="space-y-4">
             <div className="flex justify-between items-baseline">
               <span className="text-xs font-semibold uppercase tracking-wider text-[#111111]/60">
                 Registros do Canteiro de Obras
               </span>
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xs font-semibold text-[#F58220] hover:underline"
-              >
-                Ver mais fotos no Instagram ↗
-              </a>
+              <span className="text-xs font-medium text-[#111111]/50">
+                Fotos reais da obra — Belém / PA
+              </span>
             </div>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -537,8 +539,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               </div>
               <div className="aspect-square bg-[#F7F7F5] overflow-hidden border border-[#E6E6E6]">
                 <img
-                  src={engineeringImg}
-                  alt="Acompanhamento técnico"
+                  src={execucaoImg}
+                  alt="Execução de fachada Work"
                   className="w-full h-full object-cover img-editorial"
                   loading="lazy"
                 />
@@ -546,7 +548,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               <div className="aspect-square bg-[#F7F7F5] overflow-hidden border border-[#E6E6E6]">
                 <img
                   src={finalImg}
-                  alt="Edifício finalizado"
+                  alt="Edifício finalizado Work"
                   className="w-full h-full object-cover img-editorial"
                   loading="lazy"
                 />

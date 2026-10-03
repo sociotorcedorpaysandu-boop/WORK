@@ -1,8 +1,8 @@
 import React from 'react';
 import { SERVICES } from '@/src/data/services';
-import heroWorkSite from '@/src/assets/images/hero_work_construction_1790334457107.jpg';
-import motionEngineeringImg from '@/src/assets/images/engineering_in_motion_site_1790334507218.jpg';
-import municipalidadeConstruir from '@/src/assets/images/municipalidade_construir_1790334539473.jpg';
+import estruturaImg from '@/src/assets/images/municipalidade_estrutura_1790992243499.jpg';
+import execucaoImg from '@/src/assets/images/municipalidade_execucao_1790992253931.jpg';
+import finalImg from '@/src/assets/images/municipalidade_final_1790992266785.jpg';
 
 interface ServicesPageProps {
   onNavigate: (path: string) => void;
@@ -79,7 +79,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate }) => {
             <div className="lg:col-span-7">
               <div className="relative aspect-[16/10] bg-[#F7F7F5] overflow-hidden border border-[#E6E6E6]">
                 <img
-                  src={heroWorkSite}
+                  src={estruturaImg}
                   alt="Execução de obra Work Construtora"
                   className="w-full h-full object-cover img-editorial"
                   loading="lazy"
@@ -90,7 +90,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate }) => {
         </div>
       </section>
 
-      {/* Serviço 02: Built to Suit (BTS) - Agora em fundo claro com harmonia */}
+      {/* Serviço 02: Built to Suit (BTS) */}
       <section className="py-20 sm:py-24 px-6 md:px-12 bg-[#F7F7F5] border-t border-[#E6E6E6]">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
@@ -140,8 +140,8 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate }) => {
             <div className="lg:col-span-6">
               <div className="relative aspect-[4/3] bg-white overflow-hidden border border-[#E6E6E6]">
                 <img
-                  src={motionEngineeringImg}
-                  alt="Empreendimento sob medida"
+                  src={finalImg}
+                  alt="Empreendimento corporativo Work"
                   className="w-full h-full object-cover img-editorial"
                   loading="lazy"
                 />
@@ -180,11 +180,11 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate }) => {
             ))}
           </div>
 
-          {/* Imagem Técnica Complementar */}
+          {/* Imagem Técnica Complementar - Foto Real da Obra */}
           <div className="relative aspect-[21/9] bg-[#F7F7F5] overflow-hidden border border-[#E6E6E6]">
             <img
-              src={municipalidadeConstruir}
-              alt="Desenvolvimento de projetos de engenharia"
+              src={execucaoImg}
+              alt="Execução e projetos de engenharia no canteiro"
               className="w-full h-full object-cover img-editorial"
               loading="lazy"
             />

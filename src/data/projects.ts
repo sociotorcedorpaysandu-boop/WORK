@@ -3,15 +3,15 @@
  * 
  * Regra estrita: Somente nomes e dados confirmados no briefing original.
  * Dados não confirmados são definidos como null ou "—".
- * Imagens de demonstração de layout marcadas como PLACEHOLDER_IMAGE.
+ * Fotos reais são usadas unicamente quando fornecidas oficialmente pela Work.
+ * Quando a foto real não estiver disponível, é utilizado placeholder neutro,
+ * sem associar fotos de outras obras nem imagens geradas por IA.
  */
 
-// Imagens de demonstração de layout para visualização
-import heroWorkSite from '@/src/assets/images/hero_work_construction_1790334457107.jpg';
-import edsonCorporateImg from '@/src/assets/images/edson_corporate_building_1790334474133.jpg';
-import vilaNovaCorporateImg from '@/src/assets/images/vila_nova_corporate_1790334484578.jpg';
-import salinasResidenceImg from '@/src/assets/images/salinas_beachfront_residence_1790334496290.jpg';
-import colegioAnanindeuaImg from '@/src/assets/images/colegio_ananindeua_1790334559907.jpg';
+import finalImg from '@/src/assets/images/municipalidade_final_1790992266785.jpg';
+import execucaoImg from '@/src/assets/images/municipalidade_execucao_1790992253931.jpg';
+import estruturaImg from '@/src/assets/images/municipalidade_estrutura_1790992243499.jpg';
+import fundacaoImg from '@/src/assets/images/municipalidade_fundacao_1790992233978.jpg';
 
 export interface Project {
   id: string;
@@ -25,8 +25,9 @@ export interface Project {
   acabamento: string | null;
   descricao: string | null;
   detalhesTecnicos?: string[];
-  imagemCapa: string;
+  imagemCapa: string | null;
   galeria: string[];
+  temFotoReal: boolean;
   servicos: string[];
   cliente: string | null;
   depoimento: {
@@ -36,9 +37,6 @@ export interface Project {
   } | null;
   destaqueHome?: boolean;
 }
-
-// Marcação de imagem de demonstração conforme instrução do projeto
-export const PLACEHOLDER_IMAGE = true;
 
 export const PROJECTS: Project[] = [
   {
@@ -53,8 +51,9 @@ export const PROJECTS: Project[] = [
     acabamento: null,
     descricao: null,
     detalhesTecnicos: [],
-    imagemCapa: edsonCorporateImg, // PLACEHOLDER_IMAGE
-    galeria: [edsonCorporateImg],
+    imagemCapa: null,
+    galeria: [],
+    temFotoReal: false,
     servicos: [],
     cliente: null,
     depoimento: null,
@@ -72,8 +71,9 @@ export const PROJECTS: Project[] = [
     acabamento: null,
     descricao: null,
     detalhesTecnicos: [],
-    imagemCapa: vilaNovaCorporateImg, // PLACEHOLDER_IMAGE
-    galeria: [vilaNovaCorporateImg],
+    imagemCapa: null,
+    galeria: [],
+    temFotoReal: false,
     servicos: [],
     cliente: null,
     depoimento: null,
@@ -91,8 +91,9 @@ export const PROJECTS: Project[] = [
     acabamento: null,
     descricao: null,
     detalhesTecnicos: [],
-    imagemCapa: salinasResidenceImg, // PLACEHOLDER_IMAGE
-    galeria: [salinasResidenceImg],
+    imagemCapa: null,
+    galeria: [],
+    temFotoReal: false,
     servicos: [],
     cliente: null,
     depoimento: null,
@@ -110,8 +111,9 @@ export const PROJECTS: Project[] = [
     acabamento: null,
     descricao: null,
     detalhesTecnicos: [],
-    imagemCapa: colegioAnanindeuaImg, // PLACEHOLDER_IMAGE
-    galeria: [colegioAnanindeuaImg],
+    imagemCapa: null,
+    galeria: [],
+    temFotoReal: false,
     servicos: [],
     cliente: null,
     depoimento: null,
@@ -129,9 +131,30 @@ export const PROJECTS: Project[] = [
     acabamento: null,
     descricao: null,
     detalhesTecnicos: [],
-    imagemCapa: heroWorkSite, // PLACEHOLDER_IMAGE
-    galeria: [heroWorkSite],
+    imagemCapa: null,
+    galeria: [],
+    temFotoReal: false,
     servicos: [],
+    cliente: null,
+    depoimento: null,
+    destaqueHome: false
+  },
+  {
+    id: 'predio-municipalidade',
+    slug: 'predio-municipalidade',
+    nome: 'Prédio Municipalidade',
+    categoria: 'Corporativo',
+    ano: null,
+    periodo: null,
+    metragem: null,
+    localizacao: 'Belém — PA',
+    acabamento: null,
+    descricao: 'Empreendimento corporativo executado pela Work Construtora em Belém.',
+    detalhesTecnicos: [],
+    imagemCapa: finalImg,
+    galeria: [finalImg, execucaoImg, estruturaImg, fundacaoImg],
+    temFotoReal: true,
+    servicos: ['Construção Civil', 'Execução de Estrutura', 'Fachada'],
     cliente: null,
     depoimento: null,
     destaqueHome: false

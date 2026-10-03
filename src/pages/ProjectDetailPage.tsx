@@ -35,17 +35,24 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
 
   return (
     <div className="w-full bg-[#FFFFFF]">
-      {/* 01. Hero Grande da Obra */}
+      {/* 01. Hero Grande da Obra (Com foto real quando existente, ou banner arquitetônico neutro sem IA) */}
       <section className="relative min-h-[75vh] flex flex-col justify-end pt-32 pb-16 px-6 md:px-12 bg-[#111111] text-white overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <img
-            src={project.imagemCapa}
-            alt={project.nome}
-            className="w-full h-full object-cover object-center opacity-45 filter brightness-90"
-            loading="eager"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-[#111111]/40 to-transparent" />
-        </div>
+        {project.temFotoReal && project.imagemCapa ? (
+          <div className="absolute inset-0 z-0">
+            <img
+              src={project.imagemCapa}
+              alt={project.nome}
+              className="w-full h-full object-cover object-center opacity-45 filter brightness-90"
+              loading="eager"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-[#111111]/40 to-transparent" />
+          </div>
+        ) : (
+          <div className="absolute inset-0 z-0 bg-[#161616]">
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#262626_1px,transparent_1px),linear-gradient(to_bottom,#262626_1px,transparent_1px)] bg-[size:40px_40px] opacity-40" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-[#111111]/60 to-transparent" />
+          </div>
+        )}
 
         <div className="relative z-10 max-w-7xl mx-auto w-full">
           {/* Breadcrumb / Back Link */}
@@ -230,8 +237,8 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
         </div>
       </section>
 
-      {/* 03. Galeria Editorial Assimétrica */}
-      {project.galeria && project.galeria.length > 0 && (
+      {/* 03. Galeria da Obra (Somente exibida se houver fotos reais confirmadas) */}
+      {project.temFotoReal && project.galeria && project.galeria.length > 0 ? (
         <section className="py-24 px-6 md:px-12 bg-[#F7F7F5]">
           <div className="max-w-7xl mx-auto space-y-12">
             <div className="pb-8 border-b border-[#E6E6E6]">
@@ -288,6 +295,20 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                 />
               </div>
             )}
+          </div>
+        </section>
+      ) : (
+        <section className="py-16 px-6 md:px-12 bg-[#F7F7F5] border-t border-[#E6E6E6]">
+          <div className="max-w-2xl mx-auto text-center p-8 bg-white border border-[#E6E6E6] space-y-3">
+            <span className="text-xs font-mono uppercase tracking-wider text-[#F58220] font-semibold block">
+              Registro Institucional
+            </span>
+            <h3 className="text-xl font-heading font-semibold text-[#111111]">
+              Acervo fotográfico em consolidação
+            </h3>
+            <p className="text-sm text-[#111111]/70 leading-relaxed max-w-md mx-auto">
+              Para consultar fotos e memoriais técnicos desta obra, entre em contato direto com a equipe de engenharia da Work.
+            </p>
           </div>
         </section>
       )}
