@@ -124,7 +124,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
               {/* Depoimento somente se existir (sem inventar) */}
               {project.depoimento && (
                 <div className="p-6 bg-[#F7F7F5] border-l-2 border-[#F58220] mt-8">
-                  <p className="font-editorial text-xl italic text-[#111111]">
+                  <p className="font-heading text-xl text-[#111111]">
                     "{project.depoimento.texto}"
                   </p>
                   <p className="mt-3 text-xs font-mono uppercase text-[#111111]/60">

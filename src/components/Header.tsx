@@ -42,10 +42,10 @@ export const Header: React.FC<HeaderProps> = ({
   const isLightText = isTransparent && isHeroDark;
 
   const navLinks = [
-    { label: 'Empresa', path: '/empresa', num: '01' },
-    { label: 'Serviços', path: '/servicos', num: '02' },
-    { label: 'Obras', path: '/obras', num: '03' },
-    { label: 'Contato', path: '/contato', num: '04' }
+    { label: 'Empresa', path: '/empresa' },
+    { label: 'Serviços', path: '/servicos' },
+    { label: 'Obras', path: '/obras' },
+    { label: 'Contato', path: '/contato' }
   ];
 
   return (
@@ -53,59 +53,59 @@ export const Header: React.FC<HeaderProps> = ({
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? 'bg-white/95 backdrop-blur-md border-b border-[#E6E6E6] py-3.5 shadow-[0_1px_3px_rgba(0,0,0,0.03)]'
-            : 'bg-transparent py-6'
+            ? 'bg-white/98 backdrop-blur-md border-b border-[#E6E6E6] py-4 shadow-sm'
+            : 'bg-transparent py-5 sm:py-6'
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
-          {/* Brand Zone (Single element lockup) */}
+          {/* Brand Zone */}
           <button
             onClick={() => handleNavClick('/')}
-            className="group text-left cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F58220]"
+            className="group text-left cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F58220] py-1"
             aria-label="Work Construtora - Ir para página inicial"
           >
             <Logo variant={isLightText ? 'light' : 'dark'} size="md" />
           </button>
 
-          {/* Desktop Nav Links */}
-          <nav className="hidden md:flex items-center gap-8 lg:gap-10">
+          {/* Desktop Nav Links (Maior legibilidade e espaçamento refinado) */}
+          <nav className="hidden md:flex items-center gap-8 lg:gap-12">
             {navLinks.map((link) => {
               const isActive = currentPath === link.path;
               return (
                 <button
                   key={link.path}
                   onClick={() => handleNavClick(link.path)}
-                  className={`text-sm tracking-wide transition-colors cursor-pointer relative py-1 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#F58220] ${
+                  className={`text-[15px] lg:text-base font-medium tracking-normal transition-colors cursor-pointer relative py-2 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#F58220] ${
                     isLightText
                       ? isActive
-                        ? 'text-white font-medium'
-                        : 'text-white/80 hover:text-white'
+                        ? 'text-white'
+                        : 'text-white/85 hover:text-white'
                       : isActive
-                      ? 'text-[#111111] font-medium'
-                      : 'text-[#111111]/75 hover:text-[#111111]'
+                      ? 'text-[#111111]'
+                      : 'text-[#111111]/80 hover:text-[#F58220]'
                   }`}
                 >
                   {link.label}
                   {isActive && (
-                    <span className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-[#F58220]" />
+                    <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#F58220]" />
                   )}
                 </button>
               );
             })}
           </nav>
 
-          {/* Action Zone: Fale conosco */}
+          {/* Action Zone: Fale com a Work */}
           <div className="hidden md:flex items-center">
             <button
               onClick={() => handleNavClick('/contato')}
-              className={`text-xs font-semibold uppercase tracking-[0.12em] transition-all cursor-pointer inline-flex items-center gap-1.5 pb-0.5 border-b focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F58220] ${
+              className={`px-5 py-2.5 text-xs font-semibold uppercase tracking-wider transition-all cursor-pointer inline-flex items-center gap-2 border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F58220] ${
                 isLightText
-                  ? 'text-white border-white/60 hover:border-[#F58220] hover:text-[#F58220]'
-                  : 'text-[#111111] border-[#111111] hover:border-[#F58220] hover:text-[#F58220]'
+                  ? 'text-white border-white/70 hover:bg-white hover:text-[#111111]'
+                  : 'text-[#111111] border-[#111111] hover:bg-[#F58220] hover:border-[#F58220] hover:text-[#111111]'
               }`}
             >
               Fale conosco
-              <span className="text-[#F58220] font-sans">↗</span>
+              <span className="text-[#F58220] group-hover:text-inherit font-sans">↗</span>
             </button>
           </div>
 
@@ -113,14 +113,14 @@ export const Header: React.FC<HeaderProps> = ({
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className={`p-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F58220] ${
+              className={`p-2.5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F58220] ${
                 isLightText && !mobileMenuOpen ? 'text-white' : 'text-[#111111]'
               }`}
               aria-label={mobileMenuOpen ? 'Fechar menu' : 'Abrir menu de navegação'}
             >
               <div className="w-6 h-4 relative flex flex-col justify-between">
                 <span
-                  className={`w-full h-[1.5px] transition-transform duration-200 ${
+                  className={`w-full h-[2px] transition-transform duration-200 ${
                     mobileMenuOpen
                       ? 'rotate-45 translate-y-[7px] bg-white'
                       : isLightText
@@ -129,7 +129,7 @@ export const Header: React.FC<HeaderProps> = ({
                   }`}
                 />
                 <span
-                  className={`w-full h-[1.5px] transition-opacity duration-200 ${
+                  className={`w-full h-[2px] transition-opacity duration-200 ${
                     mobileMenuOpen
                       ? 'opacity-0 bg-white'
                       : isLightText
@@ -138,7 +138,7 @@ export const Header: React.FC<HeaderProps> = ({
                   }`}
                 />
                 <span
-                  className={`w-full h-[1.5px] transition-transform duration-200 ${
+                  className={`w-full h-[2px] transition-transform duration-200 ${
                     mobileMenuOpen
                       ? '-rotate-45 -translate-y-[7px] bg-white'
                       : isLightText
@@ -152,7 +152,7 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
       </header>
 
-      {/* Mobile Fullscreen Menu (Fundo Preto com números em laranja e links brancos) */}
+      {/* Mobile Fullscreen Menu */}
       <div
         className={`fixed inset-0 z-40 bg-[#111111] transition-all duration-300 md:hidden flex flex-col justify-between px-8 py-24 ${
           mobileMenuOpen
@@ -161,19 +161,14 @@ export const Header: React.FC<HeaderProps> = ({
         }`}
         aria-hidden={!mobileMenuOpen}
       >
-        <div className="flex flex-col gap-6 mt-8">
+        <div className="flex flex-col gap-5 mt-8">
           {navLinks.map((link) => (
             <button
               key={link.path}
               onClick={() => handleNavClick(link.path)}
-              className="group flex items-baseline gap-4 text-left py-2 border-b border-[#2A2A2A] transition-colors"
+              className="text-left py-3 border-b border-[#2A2A2A] text-white text-2xl font-semibold hover:text-[#F58220] transition-colors"
             >
-              <span className="text-[#F58220] font-sans text-xs tracking-widest font-semibold">
-                {link.num}
-              </span>
-              <span className="text-white text-3xl font-editorial font-light tracking-wide group-hover:text-[#F58220] transition-colors">
-                {link.label}
-              </span>
+              {link.label}
             </button>
           ))}
         </div>
@@ -181,12 +176,12 @@ export const Header: React.FC<HeaderProps> = ({
         <div className="flex flex-col gap-4 pt-8 border-t border-[#2A2A2A]">
           <button
             onClick={() => handleNavClick('/contato')}
-            className="w-full py-4 text-center text-xs font-semibold uppercase tracking-[0.18em] text-[#111111] bg-[#F58220] hover:bg-[#F58220]/90 transition-colors"
+            className="w-full py-4 text-center text-xs font-semibold uppercase tracking-[0.16em] text-[#111111] bg-[#F58220] hover:bg-[#F58220]/90 transition-colors"
           >
             Fale com a Work ↗
           </button>
-          <div className="flex justify-between items-center text-[11px] text-[#E6E6E6]/60 pt-2">
-            <span>BELÉM — PARÁ</span>
+          <div className="flex justify-between items-center text-xs text-[#E6E6E6]/70 pt-2">
+            <span>Belém — Pará</span>
             <span>(91) 99144-7742</span>
           </div>
         </div>

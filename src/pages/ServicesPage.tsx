@@ -15,68 +15,61 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate }) => {
   };
 
   return (
-    <div className="w-full bg-[#FFFFFF]">
+    <div className="w-full bg-[#FFFFFF] text-[#111111]">
       {/* Hero Section */}
-      <section className="pt-36 pb-20 px-6 md:px-12 bg-[#F7F7F5] border-b border-[#E6E6E6]">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-center gap-3 text-xs font-mono text-[#111111]/50 mb-6">
-            <span className="text-[#F58220] font-semibold">02</span>
-            <span>·</span>
-            <span>CAPACIDADE TÉCNICA</span>
-            <span>·</span>
-            <span>SERVIÇOS DE ENGENHARIA</span>
-          </div>
+      <section className="pt-36 pb-16 px-6 md:px-12 bg-[#F7F7F5] border-b border-[#E6E6E6]">
+        <div className="max-w-7xl mx-auto space-y-4">
+          <span className="text-[#F58220] font-sans text-xs uppercase tracking-wider font-semibold block">
+            Serviços de Engenharia
+          </span>
 
-          <h1 className="font-editorial text-5xl sm:text-6xl md:text-7xl text-[#111111] font-normal leading-[1.05] tracking-tight max-w-4xl balance">
-            Engenharia integrada <br />
-            <span className="text-[#F58220] italic">para cada etapa.</span>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-semibold text-[#111111] leading-tight tracking-tight max-w-4xl">
+            Soluções completas para cada etapa da obra
           </h1>
 
-          <p className="mt-8 text-lg sm:text-xl text-[#111111]/80 font-light max-w-2xl leading-relaxed">
-            Atuamos no planejamento, gestão e execução de obras e projetos de engenharia,
-            oferecendo soluções em construção civil, Built to Suit e projetos
-            complementares.
+          <p className="text-base sm:text-lg text-[#111111]/75 max-w-2xl leading-relaxed">
+            Atuamos no planejamento, gestão e execução de obras e projetos de engenharia, oferecendo soluções em construção civil, Built to Suit e projetos complementares.
           </p>
         </div>
       </section>
 
       {/* Serviço 01: Construção e Administração */}
-      <section className="py-24 px-6 md:px-12 bg-[#FFFFFF]">
+      <section className="py-20 sm:py-24 px-6 md:px-12 bg-[#FFFFFF]">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center pb-20 border-b border-[#E6E6E6]">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center pb-16 border-b border-[#E6E6E6]">
             <div className="lg:col-span-5 space-y-6">
-              <div className="flex items-baseline gap-4">
-                <span className="font-mono text-3xl text-[#F58220] font-semibold">01</span>
-                <span className="text-xs font-mono uppercase tracking-widest text-[#111111]/50">
-                  CONSTRUÇÃO CIVIL
+              <div className="space-y-2">
+                <span className="text-xs uppercase tracking-wider text-[#F58220] font-semibold block">
+                  Construção Civil
                 </span>
+                <h2 className="text-3xl sm:text-4xl font-heading font-semibold text-[#111111] leading-tight">
+                  {SERVICES[0].titulo}
+                </h2>
               </div>
-              <h2 className="font-editorial text-4xl sm:text-5xl text-[#111111] font-normal leading-tight">
-                {SERVICES[0].titulo}
-              </h2>
+
               <p className="text-base text-[#111111]/80 leading-relaxed">
                 {SERVICES[0].descricao}
               </p>
 
-              {/* Detalhamento com linhas discretas */}
-              <div className="pt-6 border-t border-[#E6E6E6] space-y-3">
-                <span className="text-xs font-mono text-[#F58220] uppercase tracking-widest block font-semibold">
-                  ESCOPO DE ATUAÇÃO
+              {/* Detalhamento do Escopo */}
+              <div className="pt-4 border-t border-[#E6E6E6] space-y-3">
+                <span className="text-xs font-semibold uppercase tracking-wider text-[#111111]/60 block">
+                  Escopo de Atuação
                 </span>
-                <ul className="space-y-2.5 text-sm text-[#111111]/85">
+                <ul className="space-y-2 text-sm text-[#111111]/85">
                   {SERVICES[0].detalhes?.map((item, idx) => (
-                    <li key={idx} className="flex items-start gap-3">
-                      <span className="text-[#F58220] font-mono text-xs mt-0.5">·</span>
+                    <li key={idx} className="flex items-start gap-2.5">
+                      <span className="text-[#F58220] font-bold">·</span>
                       <span>{item}</span>
                     </li>
                   ))}
                 </ul>
               </div>
 
-              <div className="pt-4">
+              <div className="pt-2">
                 <button
                   onClick={() => handleNav('/contato')}
-                  className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-[#111111] hover:text-[#F58220] transition-colors pb-1 border-b border-[#111111] hover:border-[#F58220] cursor-pointer"
+                  className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#111111] hover:text-[#F58220] transition-colors pb-1 border-b border-[#111111] hover:border-[#F58220] cursor-pointer"
                 >
                   Solicitar proposta para obra ↗
                 </button>
@@ -84,53 +77,49 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate }) => {
             </div>
 
             <div className="lg:col-span-7">
-              <div className="relative aspect-[16/10] bg-[#F2F2EF] overflow-hidden border border-[#E6E6E6]">
+              <div className="relative aspect-[16/10] bg-[#F7F7F5] overflow-hidden border border-[#E6E6E6]">
                 <img
                   src={heroWorkSite}
                   alt="Execução de obra Work Construtora"
                   className="w-full h-full object-cover img-editorial"
                   loading="lazy"
                 />
-                <div className="absolute bottom-4 left-4 bg-white/95 px-4 py-2 border border-[#E6E6E6] text-xs font-mono text-[#111111]">
-                  CANTEIRO DE OBRAS // EXECUÇÃO
-                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Serviço 02: Built to Suit (BTS) - Fundo Escuro Estratégico */}
-      <section className="py-24 sm:py-32 px-6 md:px-12 bg-[#111111] text-white border-t border-[#2A2A2A]">
+      {/* Serviço 02: Built to Suit (BTS) - Agora em fundo claro com harmonia */}
+      <section className="py-20 sm:py-24 px-6 md:px-12 bg-[#F7F7F5] border-t border-[#E6E6E6]">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
             <div className="lg:col-span-6 space-y-6">
-              <div className="flex items-baseline gap-4">
-                <span className="font-mono text-3xl text-[#F58220] font-semibold">02</span>
-                <span className="text-xs font-mono uppercase tracking-widest text-[#E6E6E6]/60">
-                  BUILT TO SUIT
+              <div className="space-y-2">
+                <span className="text-xs uppercase tracking-wider text-[#F58220] font-semibold block">
+                  Built to Suit — BTS
                 </span>
+                <h2 className="text-3xl sm:text-4xl font-heading font-semibold text-[#111111] leading-tight">
+                  Empreendimentos sob medida para sua empresa
+                </h2>
               </div>
-              <h2 className="font-editorial text-4xl sm:text-5xl lg:text-6xl text-white font-normal leading-tight">
-                Built to Suit <br />
-                <span className="text-[#F58220] italic">Engenharia sob medida.</span>
-              </h2>
-              <p className="text-base text-[#E6E6E6]/80 leading-relaxed font-light">
+
+              <p className="text-base text-[#111111]/80 leading-relaxed">
                 {SERVICES[1].descricao}
               </p>
 
-              {/* Fluxo BTS */}
-              <div className="pt-6 border-t border-[#2A2A2A]">
-                <span className="text-xs font-mono text-[#F58220] uppercase tracking-widest block mb-4">
-                  ETAPAS DO CICLO BUILT TO SUIT
+              {/* Etapas do Ciclo BTS */}
+              <div className="pt-4 border-t border-[#E6E6E6] space-y-4">
+                <span className="text-xs font-semibold uppercase tracking-wider text-[#111111]/60 block">
+                  Etapas do Ciclo Built to Suit
                 </span>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                   {SERVICES[1].fluxo?.map((f) => (
-                    <div key={f.etapa} className="p-4 bg-[#181818] border border-[#2A2A2A]">
-                      <span className="font-mono text-xs text-[#F58220] block mb-1">
-                        {f.etapa}
+                    <div key={f.etapa} className="p-4 bg-white border border-[#E6E6E6]">
+                      <span className="text-xs font-semibold text-[#F58220] block mb-1">
+                        Etapa {f.etapa}
                       </span>
-                      <span className="text-xs font-semibold tracking-wider text-white">
+                      <span className="text-xs font-semibold tracking-wider text-[#111111]">
                         {f.label}
                       </span>
                     </div>
@@ -138,10 +127,10 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate }) => {
                 </div>
               </div>
 
-              <div className="pt-4">
+              <div className="pt-2">
                 <button
                   onClick={() => handleNav('/contato')}
-                  className="px-6 py-3.5 bg-[#F58220] hover:bg-[#F58220]/90 text-[#111111] text-xs font-semibold uppercase tracking-[0.16em] transition-colors cursor-pointer"
+                  className="px-6 py-3.5 bg-[#111111] hover:bg-[#F58220] text-white hover:text-[#111111] text-xs font-semibold uppercase tracking-wider transition-colors cursor-pointer"
                 >
                   Consultar sobre Built to Suit ↗
                 </button>
@@ -149,20 +138,13 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate }) => {
             </div>
 
             <div className="lg:col-span-6">
-              <div className="relative aspect-[4/3] bg-[#181818] overflow-hidden border border-[#2A2A2A]">
+              <div className="relative aspect-[4/3] bg-white overflow-hidden border border-[#E6E6E6]">
                 <img
                   src={motionEngineeringImg}
                   alt="Empreendimento sob medida"
                   className="w-full h-full object-cover img-editorial"
                   loading="lazy"
                 />
-                <div className="absolute bottom-4 left-4 right-4 bg-[#111111]/90 backdrop-blur-sm p-4 border border-[#2A2A2A] flex justify-between items-center text-xs">
-                  <div>
-                    <span className="font-mono text-[#F58220] block font-semibold">BUILT TO SUIT</span>
-                    <span className="text-white/70">Empreendimentos sob medida</span>
-                  </div>
-                  <span className="font-mono text-white/50">WORK CONSTRUTORA</span>
-                </div>
               </div>
             </div>
           </div>
@@ -170,37 +152,28 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate }) => {
       </section>
 
       {/* Serviço 03: Projetos de Engenharia */}
-      <section className="py-24 sm:py-32 px-6 md:px-12 bg-[#FFFFFF]">
-        <div className="max-w-7xl mx-auto">
-          <div className="pb-16 border-b border-[#E6E6E6]">
-            <div className="flex items-baseline gap-4 mb-3">
-              <span className="font-mono text-3xl text-[#F58220] font-semibold">03</span>
-              <span className="text-xs font-mono uppercase tracking-widest text-[#111111]/50">
-                DISCIPLINAS TÉCNICAS
-              </span>
-            </div>
-            <h2 className="font-editorial text-4xl sm:text-5xl lg:text-6xl text-[#111111] font-normal leading-tight">
+      <section className="py-20 sm:py-24 px-6 md:px-12 bg-[#FFFFFF] border-t border-[#E6E6E6]">
+        <div className="max-w-7xl mx-auto space-y-12">
+          <div className="max-w-2xl space-y-2">
+            <span className="text-xs uppercase tracking-wider text-[#F58220] font-semibold block">
+              Disciplinas Complementares
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-heading font-semibold text-[#111111]">
               Projetos de Engenharia
             </h2>
-            <p className="mt-4 text-base sm:text-lg text-[#111111]/80 max-w-2xl font-light">
+            <p className="text-base text-[#111111]/75 leading-relaxed">
               Desenvolvimento de projetos complementares para apoiar o planejamento e a execução da obra.
             </p>
           </div>
 
-          {/* Grid de 4 Projetos de Engenharia (Sem Ícones) */}
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
-            {SERVICES[2].escopos?.map((escopo, idx) => (
-              <div key={escopo.nome} className="pb-8 border-b border-[#E6E6E6] space-y-3">
-                <div className="flex items-center gap-3">
-                  <span className="font-mono text-xs text-[#F58220] font-semibold">
-                    03.{idx + 1}
-                  </span>
-                  <div className="h-[1px] w-6 bg-[#F58220]" />
-                </div>
-                <h3 className="font-editorial text-3xl text-[#111111] font-normal">
+          {/* Grid de 4 Projetos Complementares */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {SERVICES[2].escopos?.map((escopo) => (
+              <div key={escopo.nome} className="p-6 bg-[#F7F7F5] border border-[#E6E6E6] space-y-2">
+                <h3 className="text-2xl font-heading font-semibold text-[#111111]">
                   Projeto {escopo.nome}
                 </h3>
-                <p className="text-sm text-[#111111]/75 leading-relaxed pt-1">
+                <p className="text-sm text-[#111111]/75 leading-relaxed">
                   {escopo.descricao}
                 </p>
               </div>
@@ -208,23 +181,13 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate }) => {
           </div>
 
           {/* Imagem Técnica Complementar */}
-          <div className="mt-16 relative aspect-[21/9] bg-[#F2F2EF] overflow-hidden border border-[#E6E6E6]">
+          <div className="relative aspect-[21/9] bg-[#F7F7F5] overflow-hidden border border-[#E6E6E6]">
             <img
               src={municipalidadeConstruir}
               alt="Desenvolvimento de projetos de engenharia"
               className="w-full h-full object-cover img-editorial"
               loading="lazy"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-transparent flex items-center p-8 md:p-16">
-              <div className="max-w-md text-white">
-                <span className="text-xs font-mono text-[#F58220] uppercase tracking-widest block mb-2 font-semibold">
-                  PROJETOS DE ENGENHARIA
-                </span>
-                <p className="font-editorial text-2xl sm:text-3xl font-light">
-                  Projetos desenvolvidos para apoiar o planejamento e a execução da obra.
-                </p>
-              </div>
-            </div>
           </div>
         </div>
       </section>
@@ -233,16 +196,16 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate }) => {
       <section className="py-20 px-6 md:px-12 bg-[#F7F7F5] border-t border-[#E6E6E6]">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
           <div>
-            <h2 className="font-editorial text-4xl text-[#111111] font-normal leading-tight">
+            <h2 className="text-3xl sm:text-4xl font-heading font-semibold text-[#111111]">
               Tem um projeto ou obra em planejamento?
             </h2>
-            <p className="text-sm text-[#111111]/70 mt-2">
+            <p className="text-sm text-[#111111]/75 mt-2">
               Apresente suas diretrizes ou projeto arquitetônico para análise técnica da Work.
             </p>
           </div>
           <button
             onClick={() => handleNav('/contato')}
-            className="px-8 py-4 bg-[#111111] text-white hover:bg-[#F58220] hover:text-[#111111] text-xs font-semibold uppercase tracking-[0.16em] transition-colors cursor-pointer whitespace-nowrap"
+            className="px-8 py-4 bg-[#111111] hover:bg-[#F58220] text-white hover:text-[#111111] text-xs font-semibold uppercase tracking-wider transition-colors cursor-pointer whitespace-nowrap"
           >
             Fale com nossos engenheiros ↗
           </button>

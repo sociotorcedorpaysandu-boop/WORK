@@ -17,17 +17,17 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         {/* Top Section with Big CTA */}
         <div className="pb-16 border-b border-[#2A2A2A] flex flex-col lg:flex-row lg:items-end justify-between gap-8">
           <div>
-            <span className="text-[#F58220] font-sans text-xs uppercase tracking-[0.25em] font-semibold block mb-4">
-              CONTATO & PROJETOS
+            <span className="text-[#F58220] font-sans text-xs uppercase tracking-wider font-semibold block mb-3">
+              Contato & Projetos
             </span>
-            <h2 className="font-editorial text-4xl sm:text-5xl lg:text-6xl text-white font-normal leading-[1.05] tracking-tight">
-              Vamos construir juntos?
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-semibold text-white tracking-tight">
+              Vamos construir o próximo projeto?
             </h2>
           </div>
           <div>
             <button
               onClick={() => handleNav('/contato')}
-              className="inline-flex items-center gap-3 px-7 py-4 bg-[#F58220] hover:bg-[#F58220]/90 text-[#111111] font-sans font-semibold text-xs tracking-[0.16em] uppercase transition-colors cursor-pointer group"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-[#F58220] hover:bg-[#F58220]/90 text-[#111111] font-semibold text-xs tracking-wider uppercase transition-colors cursor-pointer group"
             >
               Fale com a Work
               <span className="text-sm transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">

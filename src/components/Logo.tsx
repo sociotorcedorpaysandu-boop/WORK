@@ -17,9 +17,9 @@ export const Logo: React.FC<LogoProps> = ({
   className = ''
 }) => {
   const heightClasses = {
-    sm: showWordmark ? 'h-8' : 'h-7',
-    md: showWordmark ? 'h-10' : 'h-9',
-    lg: showWordmark ? 'h-14' : 'h-12'
+    sm: showWordmark ? 'h-9' : 'h-8',
+    md: showWordmark ? 'h-12 sm:h-13' : 'h-10',
+    lg: showWordmark ? 'h-16 sm:h-18' : 'h-14'
   };
 
   const isLight = variant === 'light';

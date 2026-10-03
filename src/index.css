@@ -6,11 +6,11 @@
   --color-work-white: #FFFFFF;
   --color-work-gray: #E6E6E6;
   --color-work-sand: #F7F7F5;
-  --color-work-sand-light: #F2F2EF;
+  --color-work-sand-light: #F4F4F2;
   --color-work-dark: #181818;
   --color-work-darker: #2A2A2A;
 
-  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-heading: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   --font-sans: 'Work Sans', system-ui, -apple-system, sans-serif;
 }
 
@@ -21,9 +21,16 @@ html {
   color: #111111;
 }
 
-/* Custom editorial typography utilities */
+/* Primary headings font */
+.font-heading {
+  font-family: var(--font-heading);
+  letter-spacing: -0.02em;
+}
+
+/* Backward compatibility: maps editorial headings to clean modern Plus Jakarta Sans */
 .font-editorial {
-  font-family: var(--font-serif);
+  font-family: var(--font-heading);
+  letter-spacing: -0.02em;
 }
 
 .font-interface {
@@ -32,11 +39,11 @@ html {
 
 /* Custom subtle image reveal */
 .img-editorial {
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease;
 }
 
 .img-editorial:hover {
-  transform: scale(1.02);
+  transform: scale(1.015);
 }
 
 /* Remove default scrollbars for horizontal overflows if any */
