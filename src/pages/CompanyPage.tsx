@@ -1,6 +1,6 @@
 import React from 'react';
 import { COMPANY_INFO } from '@/src/data/company';
-import { TEAM } from '@/src/data/team';
+import { TEAM, TAREK_IMAGE, GABRIEL_IMAGE, ENGINEERING_TEAM_IMAGE } from '@/src/data/team';
 import execucaoImg from '@/src/assets/images/municipalidade_execucao_real.jpg';
 import estruturaImg from '@/src/assets/images/municipalidade_estrutura_real.jpg';
 
@@ -16,7 +16,7 @@ export const CompanyPage: React.FC<CompanyPageProps> = ({ onNavigate }) => {
 
   return (
     <div className="w-full bg-[#FFFFFF] text-[#111111]">
-      {/* 01. Hero Section (Mais claro, institucional e direto) */}
+      {/* 01. Hero Section (Topo / Apresentação) */}
       <section className="pt-36 pb-16 px-6 md:px-12 bg-[#F7F7F5] border-b border-[#E6E6E6]">
         <div className="max-w-7xl mx-auto space-y-4">
           <span className="text-[#F58220] font-sans text-xs uppercase tracking-wider font-semibold block">
@@ -27,28 +27,33 @@ export const CompanyPage: React.FC<CompanyPageProps> = ({ onNavigate }) => {
             A Work Construtora
           </h1>
 
-          <p className="text-base sm:text-lg text-[#111111]/75 max-w-2xl leading-relaxed">
-            {COMPANY_INFO.resumo}
-          </p>
+          <div className="space-y-2 max-w-3xl">
+            <p className="text-base sm:text-lg text-[#111111]/85 leading-relaxed">
+              Criada em 2022, a Work Construtora atua no setor da construção civil com o propósito de oferecer soluções eficientes e de qualidade para obras e reformas.
+            </p>
+            <p className="text-sm sm:text-base text-[#111111]/70 leading-relaxed">
+              Desde sua criação, a empresa vem estruturando sua atuação a partir da integração entre gestão, planejamento, engenharia e execução.
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* 02. Bloco: História e Origem (Texto + Foto Real da Obra) */}
+      {/* 02. Bloco: Missão e Atuação (Texto + Foto Real da Obra) */}
       <section className="py-20 sm:py-24 px-6 md:px-12 bg-[#FFFFFF]">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
             <div className="lg:col-span-6 space-y-4">
               <span className="text-xs uppercase tracking-wider text-[#F58220] font-semibold block">
-                História e Fundação
+                Missão & Atuação
               </span>
               <h2 className="text-3xl sm:text-4xl font-heading font-semibold text-[#111111] leading-tight">
                 Construção civil com seriedade e presença no Pará
               </h2>
               <p className="text-base text-[#111111]/80 leading-relaxed">
-                Criada em 2022 em Belém, a Work Construtora atua no setor da construção civil com o propósito de oferecer soluções eficientes e de qualidade para obras e reformas.
+                Nossa missão é transformar projetos em resultados concretos, aliando planejamento, responsabilidade e qualidade técnica em cada etapa da execução.
               </p>
               <p className="text-base text-[#111111]/80 leading-relaxed">
-                Nossa atuação combina planejamento, responsabilidade, organização, qualidade técnica, segurança e transparência em todas as etapas da construção.
+                Cada trabalho é conduzido de forma organizada, buscando acompanhar as diferentes fases da obra com clareza e responsabilidade.
               </p>
             </div>
 
@@ -66,22 +71,22 @@ export const CompanyPage: React.FC<CompanyPageProps> = ({ onNavigate }) => {
         </div>
       </section>
 
-      {/* 03. Bloco: Planejamento & Gestão (Texto + Foto Real de Estrutura) */}
+      {/* 03. Bloco: Qualidade, Segurança e Organização (Texto + Foto Real de Estrutura) */}
       <section className="py-20 sm:py-24 px-6 md:px-12 bg-[#F7F7F5] border-t border-[#E6E6E6]">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
             <div className="lg:col-span-6 lg:order-2 space-y-4">
               <span className="text-xs uppercase tracking-wider text-[#F58220] font-semibold block">
-                Planejamento & Gestão
+                Qualidade, Segurança & Organização
               </span>
               <h2 className="text-3xl sm:text-4xl font-heading font-semibold text-[#111111] leading-tight">
                 Engenharia presente do escritório ao canteiro
               </h2>
               <p className="text-base text-[#111111]/80 leading-relaxed">
-                Na Work, a gestão atua com foco em planejamento, organização dos processos e relacionamento com clientes e parceiros.
+                Trabalhamos com compromisso com as normas e requisitos técnicos vigentes, buscando segurança, organização e excelência nos serviços realizados.
               </p>
-              <p className="text-sm text-[#111111]/70 leading-relaxed">
-                A proximidade entre engenharia e administração garante acompanhamento direto dos trabalhos, alinhamento técnico e cumprimento dos prazos estabelecidos.
+              <p className="text-base text-[#111111]/80 leading-relaxed">
+                Na Work, a gestão atua com foco em planejamento, organização dos processos e relacionamento com clientes e parceiros.
               </p>
             </div>
 
@@ -177,69 +182,130 @@ export const CompanyPage: React.FC<CompanyPageProps> = ({ onNavigate }) => {
                 Nossa Equipe
               </h2>
             </div>
-            <p className="text-sm text-[#111111]/70 max-w-sm">
-              Profissionais dedicados ao planejamento, gestão administrativa e acompanhamento de obras.
-            </p>
+            <div className="max-w-md space-y-1.5">
+              <p className="text-sm text-[#111111]/80 leading-relaxed">
+                Com uma equipe integrada e preparada, a Work Construtora busca consolidar sua atuação no mercado por meio da confiança, transparência e compromisso com seus clientes, parceiros e profissionais.
+              </p>
+              <p className="text-xs text-[#111111]/60 leading-relaxed">
+                A integração entre as áreas contribui para uma comunicação mais próxima e para o acompanhamento das diferentes etapas dos projetos.
+              </p>
+            </div>
           </div>
 
-          {/* Diretoria & Administrativo */}
+          {/* Diretoria & Administrativo: Fotos individuais humanizadas */}
           <div className="space-y-4">
             <span className="text-xs uppercase tracking-wider text-[#111111]/60 font-semibold block">
               Diretoria e Administração
             </span>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {TEAM.filter((m) => m.departamento !== 'Engenharia').map((member) => (
-                <div
-                  key={member.id}
-                  className="p-6 bg-[#F7F7F5] border border-[#E6E6E6] flex gap-5 items-center"
-                >
-                  <div className="w-16 h-16 shrink-0 bg-white border border-[#E6E6E6] flex items-center justify-center text-lg font-heading font-semibold text-[#111111]">
-                    {member.iniciais}
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-heading font-semibold text-[#111111]">
-                      {member.nome}
-                    </h3>
-                    <p className="text-xs uppercase tracking-wider text-[#F58220] font-medium mt-1">
-                      {member.cargo}
-                    </p>
-                  </div>
+              {/* Tarek Abdulmassih - Foto real */}
+              <div className="p-6 bg-[#F7F7F5] border border-[#E6E6E6] flex gap-5 items-center">
+                <div className="w-20 h-20 sm:w-24 sm:h-24 shrink-0 bg-white border border-[#E6E6E6] overflow-hidden">
+                  <img
+                    src={TAREK_IMAGE}
+                    alt="Tarek Abdulmassih — Diretor e Administrativo"
+                    className="w-full h-full object-cover object-center img-editorial"
+                    referrerPolicy="no-referrer"
+                    loading="lazy"
+                  />
                 </div>
-              ))}
+                <div className="space-y-1">
+                  <h3 className="text-xl font-heading font-semibold text-[#111111]">
+                    Tarek Abdulmassih
+                  </h3>
+                  <p className="text-xs uppercase tracking-wider text-[#F58220] font-semibold">
+                    Diretor e Administrativo
+                  </p>
+                </div>
+              </div>
+
+              {/* Gabriel Costa - Foto profissional IA */}
+              <div className="p-6 bg-[#F7F7F5] border border-[#E6E6E6] flex gap-5 items-center">
+                <div className="w-20 h-20 sm:w-24 sm:h-24 shrink-0 bg-white border border-[#E6E6E6] overflow-hidden">
+                  <img
+                    src={GABRIEL_IMAGE}
+                    alt="Gabriel Costa — Administrativo"
+                    className="w-full h-full object-cover object-center img-editorial"
+                    referrerPolicy="no-referrer"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="space-y-1">
+                  <h3 className="text-xl font-heading font-semibold text-[#111111]">
+                    Gabriel Costa
+                  </h3>
+                  <p className="text-xs uppercase tracking-wider text-[#F58220] font-semibold">
+                    Administrativo
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* Corpo de Engenharia */}
+          {/* Engenharia: UMA ÚNICA imagem com os 3 engenheiros juntos + nomes separados */}
           <div className="space-y-4 pt-6 border-t border-[#E6E6E6]">
             <span className="text-xs uppercase tracking-wider text-[#111111]/60 font-semibold block">
-              Corpo de Engenharia
+              Engenharia
             </span>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-              {TEAM.filter((m) => m.departamento === 'Engenharia').map((member) => (
-                <div
-                  key={member.id}
-                  className="p-6 bg-[#F7F7F5] border border-[#E6E6E6] flex flex-col justify-between space-y-4"
-                >
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 shrink-0 bg-white border border-[#E6E6E6] flex items-center justify-center text-base font-heading font-semibold text-[#111111]">
-                      {member.iniciais}
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-heading font-semibold text-[#111111]">
-                        {member.nome}
-                      </h3>
-                      <p className="text-xs text-[#F58220] font-medium">
-                        {member.cargo}
-                      </p>
-                    </div>
-                  </div>
-                  {member.bioCurta && (
-                    <p className="text-xs text-[#111111]/70 leading-relaxed pt-3 border-t border-[#E6E6E6]">
-                      {member.bioCurta}
-                    </p>
-                  )}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-[#F7F7F5] border border-[#E6E6E6] p-6 sm:p-8">
+              {/* UMA única imagem com os 3 engenheiros juntos */}
+              <div className="lg:col-span-7 overflow-hidden aspect-[16/10] bg-white border border-[#E6E6E6]">
+                <img
+                  src={ENGINEERING_TEAM_IMAGE}
+                  alt="Equipe de Engenharia da Work Construtora"
+                  className="w-full h-full object-cover img-editorial"
+                  referrerPolicy="no-referrer"
+                  loading="lazy"
+                />
+              </div>
+
+              {/* Identificação do grupo e nomes separados */}
+              <div className="lg:col-span-5 space-y-6">
+                <div className="space-y-2">
+                  <span className="text-xs font-mono uppercase tracking-widest text-[#F58220] font-semibold block">
+                    Corpo Técnico
+                  </span>
+                  <h3 className="text-2xl sm:text-3xl font-heading font-semibold text-[#111111]">
+                    Engenharia
+                  </h3>
+                  <p className="text-sm text-[#111111]/75 leading-relaxed">
+                    Acompanhamento técnico, rigor construtivo e presença ativa nas obras.
+                  </p>
                 </div>
-              ))}
+
+                <div className="pt-4 border-t border-[#E6E6E6] space-y-2">
+                  <span className="text-xs uppercase tracking-wider text-[#111111]/60 font-semibold block mb-1">
+                    Engenheiros Responsáveis
+                  </span>
+
+                  <div className="p-3 bg-white border border-[#E6E6E6] flex items-center justify-between">
+                    <span className="text-base font-heading font-semibold text-[#111111]">
+                      Claudio Porpino
+                    </span>
+                    <span className="text-xs uppercase tracking-wider text-[#F58220] font-medium">
+                      Engenharia
+                    </span>
+                  </div>
+
+                  <div className="p-3 bg-white border border-[#E6E6E6] flex items-center justify-between">
+                    <span className="text-base font-heading font-semibold text-[#111111]">
+                      Ailton Vale
+                    </span>
+                    <span className="text-xs uppercase tracking-wider text-[#F58220] font-medium">
+                      Engenharia
+                    </span>
+                  </div>
+
+                  <div className="p-3 bg-white border border-[#E6E6E6] flex items-center justify-between">
+                    <span className="text-base font-heading font-semibold text-[#111111]">
+                      Carlos Rocha
+                    </span>
+                    <span className="text-xs uppercase tracking-wider text-[#F58220] font-medium">
+                      Engenharia
+                    </span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

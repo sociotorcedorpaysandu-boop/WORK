@@ -7,7 +7,7 @@ import symbolWork from '@/src/assets/images/Design_sem_nome__85_-removebg-previe
 import { MunicipalidadeEvolution } from '@/src/components/MunicipalidadeEvolution';
 import { ProjectPlaceholder } from '@/src/components/ProjectPlaceholder';
 import { FEATURED_PROJECTS } from '@/src/data/projects';
-import { TEAM } from '@/src/data/team';
+import { TEAM, TAREK_IMAGE, GABRIEL_IMAGE, ENGINEERING_TEAM_IMAGE } from '@/src/data/team';
 
 interface HomePageProps {
   onNavigate: (path: string) => void;
@@ -360,30 +360,69 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               </h3>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
-              {TEAM.map((member) => (
-                <div
-                  key={member.id}
-                  className="p-5 bg-white border border-[#E6E6E6] flex flex-col justify-between space-y-4"
-                >
-                  <div className="w-12 h-12 bg-[#F7F7F5] border border-[#E6E6E6] flex items-center justify-center text-sm font-heading font-semibold text-[#111111]">
-                    {member.iniciais}
-                  </div>
-                  <div>
-                    <h4 className="text-base font-heading font-semibold text-[#111111]">
-                      {member.nome}
-                    </h4>
-                    <p className="text-xs text-[#F58220] font-medium mt-1">
-                      {member.cargo}
-                    </p>
-                    {member.bioCurta && (
-                      <p className="text-xs text-[#111111]/60 mt-2 leading-relaxed">
-                        {member.bioCurta}
-                      </p>
-                    )}
-                  </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {/* Tarek Abdulmassih */}
+              <div className="p-6 bg-white border border-[#E6E6E6] flex gap-4 items-center">
+                <div className="w-16 h-16 shrink-0 bg-[#F7F7F5] border border-[#E6E6E6] overflow-hidden">
+                  <img
+                    src={TAREK_IMAGE}
+                    alt="Tarek Abdulmassih — Diretor e Administrativo"
+                    className="w-full h-full object-cover object-center img-editorial"
+                    referrerPolicy="no-referrer"
+                    loading="lazy"
+                  />
                 </div>
-              ))}
+                <div>
+                  <h4 className="text-base font-heading font-semibold text-[#111111]">
+                    Tarek Abdulmassih
+                  </h4>
+                  <p className="text-xs text-[#F58220] font-semibold mt-0.5">
+                    Diretor e Administrativo
+                  </p>
+                </div>
+              </div>
+
+              {/* Gabriel Costa */}
+              <div className="p-6 bg-white border border-[#E6E6E6] flex gap-4 items-center">
+                <div className="w-16 h-16 shrink-0 bg-[#F7F7F5] border border-[#E6E6E6] overflow-hidden">
+                  <img
+                    src={GABRIEL_IMAGE}
+                    alt="Gabriel Costa — Administrativo"
+                    className="w-full h-full object-cover object-center img-editorial"
+                    referrerPolicy="no-referrer"
+                    loading="lazy"
+                  />
+                </div>
+                <div>
+                  <h4 className="text-base font-heading font-semibold text-[#111111]">
+                    Gabriel Costa
+                  </h4>
+                  <p className="text-xs text-[#F58220] font-semibold mt-0.5">
+                    Administrativo
+                  </p>
+                </div>
+              </div>
+
+              {/* Engenharia (3 Engenheiros) */}
+              <div className="p-6 bg-white border border-[#E6E6E6] flex gap-4 items-center">
+                <div className="w-16 h-16 shrink-0 bg-[#F7F7F5] border border-[#E6E6E6] overflow-hidden">
+                  <img
+                    src={ENGINEERING_TEAM_IMAGE}
+                    alt="Engenharia — Claudio Porpino, Ailton Vale e Carlos Rocha"
+                    className="w-full h-full object-cover img-editorial"
+                    referrerPolicy="no-referrer"
+                    loading="lazy"
+                  />
+                </div>
+                <div>
+                  <h4 className="text-base font-heading font-semibold text-[#111111]">
+                    Engenharia
+                  </h4>
+                  <p className="text-xs text-[#111111]/70 mt-0.5 leading-snug">
+                    Claudio Porpino · Ailton Vale · Carlos Rocha
+                  </p>
+                </div>
+              </div>
             </div>
 
             <div className="pt-4 flex justify-start">

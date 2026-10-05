@@ -26,6 +26,8 @@ export const COMPANY_INFO = {
   email: 'abdulmassih.tarek@gmail.com',
   resumo:
     'Criada em 2022, a Work Construtora atua no setor da construção civil com o propósito de oferecer soluções eficientes e de qualidade para obras e reformas.',
+  apoioResumo:
+    'Desde sua criação, a empresa vem estruturando sua atuação a partir da integração entre gestão, planejamento, engenharia e execução.',
   pilares: [
     {
       numero: '01',

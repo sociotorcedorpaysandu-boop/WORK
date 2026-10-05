@@ -3,6 +3,10 @@
  * Baseado estritamente no briefing oficial.
  */
 
+import tarekImg from '@/src/assets/images/tarek_abdulmassih.jpg';
+import gabrielImg from '@/src/assets/images/gabriel_costa.jpg';
+import engenhariaImg from '@/src/assets/images/equipe_engenharia.jpg';
+
 export interface TeamMember {
   id: string;
   nome: string;
@@ -10,6 +14,7 @@ export interface TeamMember {
   departamento: 'Diretoria' | 'Administrativo' | 'Engenharia';
   bioCurta?: string;
   iniciais: string;
+  foto?: string;
 }
 
 export const TEAM: TeamMember[] = [
@@ -19,7 +24,8 @@ export const TEAM: TeamMember[] = [
     cargo: 'Diretor e Administrativo',
     departamento: 'Diretoria',
     bioCurta: 'Diretoria e Administrativo',
-    iniciais: 'TA'
+    iniciais: 'TA',
+    foto: tarekImg
   },
   {
     id: 'gabriel-costa',
@@ -27,7 +33,8 @@ export const TEAM: TeamMember[] = [
     cargo: 'Administrativo',
     departamento: 'Administrativo',
     bioCurta: 'Administrativo',
-    iniciais: 'GC'
+    iniciais: 'GC',
+    foto: gabrielImg
   },
   {
     id: 'claudio-porpino',
@@ -54,3 +61,7 @@ export const TEAM: TeamMember[] = [
     iniciais: 'CR'
   }
 ];
+
+export const ENGINEERING_TEAM_IMAGE = engenhariaImg;
+export const TAREK_IMAGE = tarekImg;
+export const GABRIEL_IMAGE = gabrielImg;
