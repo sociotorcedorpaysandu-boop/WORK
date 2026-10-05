@@ -1,9 +1,9 @@
 import React from 'react';
 import { COMPANY_INFO } from '@/src/data/company';
-import fundacaoImg from '@/src/assets/images/municipalidade_fundacao_1790992233978.jpg';
-import estruturaImg from '@/src/assets/images/municipalidade_estrutura_1790992243499.jpg';
-import execucaoImg from '@/src/assets/images/municipalidade_execucao_1790992253931.jpg';
-import finalImg from '@/src/assets/images/municipalidade_final_1790992266785.jpg';
+import fundacaoImg from '@/src/assets/images/municipalidade_fundacao_real.jpg';
+import estruturaImg from '@/src/assets/images/municipalidade_estrutura_real.jpg';
+import execucaoImg from '@/src/assets/images/municipalidade_execucao_real.jpg';
+import finalImg from '@/src/assets/images/municipalidade_projeto_final_real.jpg';
 
 export const ContactPage: React.FC = () => {
   return (
@@ -158,6 +158,7 @@ export const ContactPage: React.FC = () => {
                   src={finalImg}
                   alt="Projeto Final concluído Work"
                   className="w-full h-full object-cover img-editorial"
+                  style={{ objectPosition: 'center 18%' }}
                   loading="lazy"
                 />
               </div>

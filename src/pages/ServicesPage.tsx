@@ -1,8 +1,8 @@
 import React from 'react';
 import { SERVICES } from '@/src/data/services';
-import estruturaImg from '@/src/assets/images/municipalidade_estrutura_1790992243499.jpg';
-import execucaoImg from '@/src/assets/images/municipalidade_execucao_1790992253931.jpg';
-import finalImg from '@/src/assets/images/municipalidade_final_1790992266785.jpg';
+import estruturaImg from '@/src/assets/images/municipalidade_estrutura_real.jpg';
+import execucaoImg from '@/src/assets/images/municipalidade_execucao_real.jpg';
+import finalImg from '@/src/assets/images/municipalidade_projeto_final_real.jpg';
 
 interface ServicesPageProps {
   onNavigate: (path: string) => void;
@@ -47,9 +47,11 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate }) => {
                 </h2>
               </div>
 
-              <p className="text-base text-[#111111]/80 leading-relaxed">
-                {SERVICES[0].descricao}
-              </p>
+              <div className="space-y-3 text-base text-[#111111]/80 leading-relaxed">
+                {SERVICES[0].paragrafos?.map((p, idx) => (
+                  <p key={idx}>{p}</p>
+                )) || <p>{SERVICES[0].descricao}</p>}
+              </div>
 
               {/* Detalhamento do Escopo */}
               <div className="pt-4 border-t border-[#E6E6E6] space-y-3">
@@ -97,16 +99,18 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate }) => {
             <div className="lg:col-span-6 space-y-6">
               <div className="space-y-2">
                 <span className="text-xs uppercase tracking-wider text-[#F58220] font-semibold block">
-                  Built to Suit — BTS
+                  Solução Imobiliária
                 </span>
                 <h2 className="text-3xl sm:text-4xl font-heading font-semibold text-[#111111] leading-tight">
-                  Empreendimentos sob medida para sua empresa
+                  {SERVICES[1].titulo}
                 </h2>
               </div>
 
-              <p className="text-base text-[#111111]/80 leading-relaxed">
-                {SERVICES[1].descricao}
-              </p>
+              <div className="space-y-3 text-base text-[#111111]/80 leading-relaxed">
+                {SERVICES[1].paragrafos?.map((p, idx) => (
+                  <p key={idx}>{p}</p>
+                )) || <p>{SERVICES[1].descricao}</p>}
+              </div>
 
               {/* Etapas do Ciclo BTS */}
               <div className="pt-4 border-t border-[#E6E6E6] space-y-4">
@@ -143,6 +147,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate }) => {
                   src={finalImg}
                   alt="Empreendimento corporativo Work"
                   className="w-full h-full object-cover img-editorial"
+                  style={{ objectPosition: 'center 18%' }}
                   loading="lazy"
                 />
               </div>

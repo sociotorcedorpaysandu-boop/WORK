@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import fundacaoImg from '@/src/assets/images/municipalidade_fundacao_1790992233978.jpg';
-import estruturaImg from '@/src/assets/images/municipalidade_estrutura_1790992243499.jpg';
-import finalImg from '@/src/assets/images/municipalidade_final_1790992266785.jpg';
+import fundacaoImg from '@/src/assets/images/municipalidade_fundacao_real.jpg';
+import estruturaImg from '@/src/assets/images/municipalidade_estrutura_real.jpg';
+import finalImg from '@/src/assets/images/municipalidade_projeto_final_real.jpg';
 
 interface StepData {
   num: string;
@@ -14,6 +14,7 @@ interface StepData {
   metricLabel: string;
   metricValue: string;
   indicador: string;
+  objectPosition?: string;
 }
 
 const STEPS: StepData[] = [
@@ -54,7 +55,8 @@ const STEPS: StepData[] = [
     statusTag: 'OBRA FINALIZADA',
     metricLabel: 'FINALIZAÇÃO',
     metricValue: 'Acabamentos e entrega',
-    indicador: 'Conclusão'
+    indicador: 'Conclusão',
+    objectPosition: 'center 18%'
   }
 ];
 
@@ -138,6 +140,7 @@ export const EngineeringInMotion: React.FC = () => {
                 src={step.imagem}
                 alt={step.titulo}
                 className="w-full h-full object-cover img-editorial"
+                style={{ objectPosition: step.objectPosition || 'center' }}
                 loading="lazy"
               />
             </div>

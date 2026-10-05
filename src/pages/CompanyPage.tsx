@@ -1,8 +1,8 @@
 import React from 'react';
 import { COMPANY_INFO } from '@/src/data/company';
 import { TEAM } from '@/src/data/team';
-import execucaoImg from '@/src/assets/images/municipalidade_execucao_1790992253931.jpg';
-import estruturaImg from '@/src/assets/images/municipalidade_estrutura_1790992243499.jpg';
+import execucaoImg from '@/src/assets/images/municipalidade_execucao_real.jpg';
+import estruturaImg from '@/src/assets/images/municipalidade_estrutura_real.jpg';
 
 interface CompanyPageProps {
   onNavigate: (path: string) => void;

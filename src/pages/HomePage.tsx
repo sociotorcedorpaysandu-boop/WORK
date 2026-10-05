@@ -1,8 +1,8 @@
 import React from 'react';
-import fundacaoImg from '@/src/assets/images/municipalidade_fundacao_1790992233978.jpg';
-import estruturaImg from '@/src/assets/images/municipalidade_estrutura_1790992243499.jpg';
-import execucaoImg from '@/src/assets/images/municipalidade_execucao_1790992253931.jpg';
-import finalImg from '@/src/assets/images/municipalidade_final_1790992266785.jpg';
+import fundacaoImg from '@/src/assets/images/municipalidade_fundacao_real.jpg';
+import estruturaImg from '@/src/assets/images/municipalidade_estrutura_real.jpg';
+import execucaoImg from '@/src/assets/images/municipalidade_execucao_real.jpg';
+import finalImg from '@/src/assets/images/municipalidade_projeto_final_real.jpg';
 import symbolWork from '@/src/assets/images/Design_sem_nome__85_-removebg-preview.svg';
 import { MunicipalidadeEvolution } from '@/src/components/MunicipalidadeEvolution';
 import { ProjectPlaceholder } from '@/src/components/ProjectPlaceholder';
@@ -249,6 +249,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                   src={finalImg}
                   alt="Built to Suit — BTS"
                   className="w-full h-full object-cover img-editorial"
+                  style={{ objectPosition: 'center 18%' }}
                   loading="lazy"
                 />
               </div>
@@ -542,6 +543,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                   src={finalImg}
                   alt="Edifício finalizado Work"
                   className="w-full h-full object-cover img-editorial"
+                  style={{ objectPosition: 'center 18%' }}
                   loading="lazy"
                 />
               </div>

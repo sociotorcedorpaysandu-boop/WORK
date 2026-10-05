@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import fundacaoImg from '@/src/assets/images/municipalidade_fundacao_1790992233978.jpg';
-import estruturaImg from '@/src/assets/images/municipalidade_estrutura_1790992243499.jpg';
-import execucaoImg from '@/src/assets/images/municipalidade_execucao_1790992253931.jpg';
-import finalImg from '@/src/assets/images/municipalidade_final_1790992266785.jpg';
+import fundacaoImg from '@/src/assets/images/municipalidade_fundacao_real.jpg';
+import estruturaImg from '@/src/assets/images/municipalidade_estrutura_real.jpg';
+import execucaoImg from '@/src/assets/images/municipalidade_execucao_real.jpg';
+import finalImg from '@/src/assets/images/municipalidade_projeto_final_real.jpg';
 
 interface Stage {
   id: string;
@@ -10,6 +10,7 @@ interface Stage {
   subtitulo: string;
   descricao: string;
   imagem: string;
+  objectPosition?: string;
 }
 
 const STAGES: Stage[] = [
@@ -18,33 +19,38 @@ const STAGES: Stage[] = [
     nome: 'Fundação',
     subtitulo: 'Etapa inicial da obra',
     descricao: 'Etapas iniciais da execução e preparação da base da edificação.',
-    imagem: fundacaoImg
+    imagem: fundacaoImg,
+    objectPosition: 'center 50%'
   },
   {
     id: 'estrutura',
     nome: 'Estrutura',
     subtitulo: 'Desenvolvimento dos pavimentos',
     descricao: 'Evolução da estrutura e desenvolvimento dos pavimentos.',
-    imagem: estruturaImg
+    imagem: estruturaImg,
+    objectPosition: 'center 25%'
   },
   {
     id: 'execucao',
     nome: 'Execução',
     subtitulo: 'Avanço construtivo',
     descricao: 'Continuidade dos serviços e avanço das etapas construtivas.',
-    imagem: execucaoImg
+    imagem: execucaoImg,
+    objectPosition: 'center 30%'
   },
   {
     id: 'resultado',
     nome: 'Projeto final',
     subtitulo: 'Edifício concluído',
     descricao: 'Visualização do resultado final do empreendimento.',
-    imagem: finalImg
+    imagem: finalImg,
+    objectPosition: 'center 18%'
   }
 ];
 
 export const MunicipalidadeEvolution: React.FC = () => {
   const [activeStage, setActiveStage] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const current = STAGES[activeStage];
 
@@ -86,20 +92,31 @@ export const MunicipalidadeEvolution: React.FC = () => {
           })}
         </div>
 
-        {/* Main Stage Presentation (Foto Real Grande + Texto Objetivo) */}
+        {/* Main Stage Presentation (Foto Real Grande Enquadrada + Texto Objetivo) */}
         <div className="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          {/* Main Photo */}
+          {/* Main Photo Enquadrada */}
           <div className="lg:col-span-8">
-            <div className="relative aspect-[16/10] sm:aspect-[16/9] bg-[#E6E6E6] overflow-hidden border border-[#E6E6E6]">
+            <div className="relative aspect-[4/3] sm:aspect-[16/10] bg-[#E6E6E6] overflow-hidden border border-[#E6E6E6] group">
               <img
                 src={current.imagem}
                 alt={`Prédio Municipalidade — ${current.nome}`}
-                className="w-full h-full object-cover img-editorial"
+                className="w-full h-full object-cover img-editorial transition-all duration-300"
+                style={{ objectPosition: current.objectPosition || 'center' }}
                 loading="lazy"
               />
-              <div className="absolute top-4 left-4 bg-white/95 px-3 py-1.5 border border-[#E6E6E6] text-xs font-medium text-[#111111]">
+              <div className="absolute top-4 left-4 bg-white/95 px-3 py-1.5 border border-[#E6E6E6] text-xs font-medium text-[#111111] shadow-xs">
                 {current.nome}
               </div>
+
+              {/* Ação para ver foto completa */}
+              <button
+                onClick={() => setIsModalOpen(true)}
+                className="absolute bottom-4 right-4 bg-white/95 hover:bg-white px-3 py-1.5 border border-[#E6E6E6] text-xs font-medium text-[#111111] hover:text-[#F58220] transition-colors flex items-center gap-1.5 shadow-xs cursor-pointer"
+                title="Ampliar foto completa da obra"
+              >
+                <span>Ampliar foto</span>
+                <span>↗</span>
+              </button>
             </div>
           </div>
 
@@ -138,6 +155,7 @@ export const MunicipalidadeEvolution: React.FC = () => {
                       src={s.imagem}
                       alt={s.nome}
                       className="w-full h-full object-cover"
+                      style={{ objectPosition: s.objectPosition || 'center' }}
                       loading="lazy"
                     />
                   </button>
@@ -162,6 +180,43 @@ export const MunicipalidadeEvolution: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Modal de foto completa */}
+      {isModalOpen && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          onClick={() => setIsModalOpen(false)}
+          className="fixed inset-0 z-50 bg-[#111111]/90 backdrop-blur-xs flex items-center justify-center p-4 sm:p-8"
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="relative max-w-4xl max-h-[90vh] bg-white border border-[#E6E6E6] p-4 flex flex-col items-center shadow-2xl"
+          >
+            <div className="w-full flex items-center justify-between pb-3 mb-3 border-b border-[#E6E6E6]">
+              <div>
+                <span className="text-xs uppercase font-semibold text-[#F58220] tracking-wider block">
+                  Prédio Municipalidade — {current.nome}
+                </span>
+                <p className="text-xs text-[#111111]/70">{current.subtitulo}</p>
+              </div>
+              <button
+                onClick={() => setIsModalOpen(false)}
+                className="px-3 py-1.5 bg-[#111111] hover:bg-[#F58220] text-white hover:text-[#111111] text-xs font-semibold uppercase tracking-wider transition-colors cursor-pointer"
+              >
+                Fechar ✕
+              </button>
+            </div>
+            <div className="max-h-[75vh] overflow-hidden flex items-center justify-center bg-[#F7F7F5] border border-[#E6E6E6]">
+              <img
+                src={current.imagem}
+                alt={`Prédio Municipalidade — ${current.nome}`}
+                className="max-h-[72vh] w-auto object-contain"
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

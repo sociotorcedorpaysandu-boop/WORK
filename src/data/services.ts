@@ -9,6 +9,7 @@ export interface ServiceItem {
   titulo: string;
   subtitulo?: string;
   descricao: string;
+  paragrafos?: string[];
   detalhes?: string[];
   fluxo?: { etapa: string; label: string }[];
   escopos?: { nome: string; descricao: string }[];
@@ -18,10 +19,14 @@ export const SERVICES: ServiceItem[] = [
   {
     id: 'construcao-administracao',
     numero: '01',
-    titulo: 'Construção, administração e desenvolvimento de obras e reformas',
+    titulo: 'Construção/Administração e desenvolvimento de obras e reformas',
     subtitulo: 'Residencial, Comercial e Industrial',
     descricao:
-      'Execução de obras e reformas residenciais, comerciais e industriais, envolvendo planejamento, cronograma, materiais, mão de obra e controle de qualidade.',
+      'A Work Construtora atua na execução de obras e reformas residenciais, comerciais e industriais, oferecendo soluções completas para diferentes necessidades da construção civil. Trabalhamos em todas as etapas do processo, desde fundações, estrutura, alvenaria e instalações, até revestimentos, pintura, acabamentos e entrega final. Nossa atuação inclui o gerenciamento do cronograma, compra e controle de materiais, gestão de mão de obra e controle de qualidade, garantindo organização, eficiência e acompanhamento em cada etapa da obra.',
+    paragrafos: [
+      'A Work Construtora atua na execução de obras e reformas residenciais, comerciais e industriais, oferecendo soluções completas para diferentes necessidades da construção civil. Trabalhamos em todas as etapas do processo, desde fundações, estrutura, alvenaria e instalações, até revestimentos, pintura, acabamentos e entrega final.',
+      'Nossa atuação inclui o gerenciamento do cronograma, compra e controle de materiais, gestão de mão de obra e controle de qualidade, garantindo organização, eficiência e acompanhamento em cada etapa da obra.'
+    ],
     detalhes: [
       'Planejamento de etapas e cronograma executivo',
       'Gestão de materiais e suprimentos',
@@ -32,10 +37,14 @@ export const SERVICES: ServiceItem[] = [
   {
     id: 'built-to-suit',
     numero: '02',
-    titulo: 'Built to Suit — BTS',
-    subtitulo: 'Empreendimentos sob medida',
+    titulo: 'BTS (Built to Suit)',
+    subtitulo: 'Solução sob medida para empresas',
     descricao:
-      'Empreendimentos desenvolvidos sob medida para atender às necessidades específicas da operação de cada empresa.',
+      'Built to Suit (BTS) é uma solução imobiliária desenvolvida sob medida para atender às necessidades específicas de cada empresa. Cuidamos do desenvolvimento e da construção do empreendimento de acordo com as características e operações do cliente. O modelo proporciona maior personalização, eficiência e planejamento, com possibilidade de contrato de locação de longo prazo após a conclusão da obra.',
+    paragrafos: [
+      'Built to Suit (BTS) é uma solução imobiliária desenvolvida sob medida para atender às necessidades específicas de cada empresa. Cuidamos do desenvolvimento e da construção do empreendimento de acordo com as características e operações do cliente.',
+      'O modelo proporciona maior personalização, eficiência e planejamento, com possibilidade de contrato de locação de longo prazo após a conclusão da obra.'
+    ],
     fluxo: [
       { etapa: '01', label: 'NECESSIDADE' },
       { etapa: '02', label: 'PROJETO' },

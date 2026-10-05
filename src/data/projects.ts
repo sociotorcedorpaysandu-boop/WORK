@@ -2,35 +2,44 @@
  * WORK CONSTRUTORA - Catálogo Oficial de Obras e Projetos
  * 
  * Regra estrita: Somente nomes e dados confirmados no briefing original.
- * Dados não confirmados são definidos como null ou "—".
- * Fotos reais são usadas unicamente quando fornecidas oficialmente pela Work.
- * Quando a foto real não estiver disponível, é utilizado placeholder neutro,
- * sem associar fotos de outras obras nem imagens geradas por IA.
+ * Estrutura de dados de cada obra:
+ * - nome
+ * - imagemCapa
+ * - periodo
+ * - descricao
+ * - metragem
+ * - acabamento
+ * - informacoesComplementares
+ * - galeria[]
+ * 
+ * Quando alguma informação ainda não estiver disponível:
+ * usar "—" ou manter o campo preparado no código.
  */
 
 export interface Project {
   id: string;
   slug: string;
   nome: string;
-  categoria: string | null;
-  ano: string | null;
-  periodo: string | null;
-  metragem: string | null;
-  localizacao: string | null;
-  acabamento: string | null;
-  descricao: string | null;
-  detalhesTecnicos?: string[];
   imagemCapa: string | null;
+  periodo: string | null;
+  descricao: string | null;
+  metragem: string | null;
+  acabamento: string | null;
+  informacoesComplementares: string | null;
   galeria: string[];
+  // Campos complementares de controle e compatibilidade com listagens
   temFotoReal: boolean;
-  servicos: string[];
-  cliente: string | null;
-  depoimento: {
+  destaqueHome: boolean;
+  categoria?: string | null;
+  aliases?: string[];
+  detalhesTecnicos?: string[];
+  servicos?: string[];
+  cliente?: string | null;
+  depoimento?: {
     autor: string;
     cargo: string;
     texto: string;
   } | null;
-  destaqueHome?: boolean;
 }
 
 export const PROJECTS: Project[] = [
@@ -38,101 +47,79 @@ export const PROJECTS: Project[] = [
     id: 'edson-corporate',
     slug: 'edson-corporate',
     nome: 'Edson Corporate',
-    categoria: null,
-    ano: null,
-    periodo: null,
-    metragem: null,
-    localizacao: null,
-    acabamento: null,
-    descricao: null,
-    detalhesTecnicos: [],
     imagemCapa: null,
+    periodo: '—',
+    descricao: '—',
+    metragem: '—',
+    acabamento: '—',
+    informacoesComplementares: '—',
     galeria: [],
     temFotoReal: false,
-    servicos: [],
-    cliente: null,
-    depoimento: null,
-    destaqueHome: true
+    destaqueHome: true,
+    categoria: null
   },
   {
     id: 'vila-nova-corporate',
     slug: 'vila-nova-corporate',
     nome: 'Vila Nova Corporate',
-    categoria: null,
-    ano: null,
-    periodo: null,
-    metragem: null,
-    localizacao: null,
-    acabamento: null,
-    descricao: null,
-    detalhesTecnicos: [],
     imagemCapa: null,
+    periodo: '—',
+    descricao: '—',
+    metragem: '—',
+    acabamento: '—',
+    informacoesComplementares: '—',
     galeria: [],
     temFotoReal: false,
-    servicos: [],
-    cliente: null,
-    depoimento: null,
-    destaqueHome: true
+    destaqueHome: true,
+    categoria: null
   },
   {
-    id: 'reforma-residencial-salinas',
-    slug: 'reforma-residencial-salinas',
-    nome: 'Reforma Residencial — Salinas / Andrea Borges',
-    categoria: null,
-    ano: null,
-    periodo: null,
-    metragem: null,
-    localizacao: null,
-    acabamento: null,
-    descricao: null,
-    detalhesTecnicos: [],
+    id: 'reforma-casa-salinas',
+    slug: 'reforma-casa-salinas',
+    aliases: ['reforma-residencial-salinas'],
+    nome: 'Reforma Casa Salinas / Andrea Borges',
     imagemCapa: null,
+    periodo: '—',
+    descricao: '—',
+    metragem: '—',
+    acabamento: '—',
+    informacoesComplementares: '—',
     galeria: [],
     temFotoReal: false,
-    servicos: [],
-    cliente: null,
-    depoimento: null,
-    destaqueHome: true
+    destaqueHome: true,
+    categoria: null
   },
   {
-    id: 'colegio-ananindeua',
-    slug: 'colegio-ananindeua',
-    nome: 'Colégio Ananindeua',
-    categoria: null,
-    ano: null,
-    periodo: null,
-    metragem: null,
-    localizacao: null,
-    acabamento: null,
-    descricao: null,
-    detalhesTecnicos: [],
+    id: 'reforma-colegio-ananindeua',
+    slug: 'reforma-colegio-ananindeua',
+    aliases: ['colegio-ananindeua'],
+    nome: 'Reforma Colégio Ananindeua',
     imagemCapa: null,
+    periodo: '—',
+    descricao: '—',
+    metragem: '—',
+    acabamento: '—',
+    informacoesComplementares: '—',
     galeria: [],
     temFotoReal: false,
-    servicos: [],
-    cliente: null,
-    depoimento: null,
-    destaqueHome: false
+    destaqueHome: false,
+    categoria: null
   },
   {
-    id: 'frota-martins',
-    slug: 'frota-martins',
-    nome: 'Frota Martins',
-    categoria: null,
-    ano: null,
-    periodo: null,
-    metragem: null,
-    localizacao: null,
-    acabamento: null,
-    descricao: null,
-    detalhesTecnicos: [],
+    id: 'reforma-frota-martins',
+    slug: 'reforma-frota-martins',
+    aliases: ['frota-martins'],
+    nome: 'Reforma Frota Martins',
     imagemCapa: null,
+    periodo: '—',
+    descricao: '—',
+    metragem: '—',
+    acabamento: '—',
+    informacoesComplementares: '—',
     galeria: [],
     temFotoReal: false,
-    servicos: [],
-    cliente: null,
-    depoimento: null,
-    destaqueHome: false
+    destaqueHome: false,
+    categoria: null
   }
 ];
 
