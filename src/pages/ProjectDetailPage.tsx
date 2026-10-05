@@ -40,12 +40,13 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
       ======================================================== */}
       <section className="relative min-h-[60vh] sm:min-h-[70vh] flex flex-col justify-end pt-36 pb-16 px-6 md:px-12 bg-[#111111] text-white overflow-hidden">
         {/* 1. Foto principal da obra */}
-        {project.temFotoReal && project.imagemCapa ? (
+        {project.imagemCapa ? (
           <div className="absolute inset-0 z-0">
             <img
               src={project.imagemCapa}
               alt={`Foto principal de ${project.nome}`}
               className="w-full h-full object-cover object-center opacity-50 filter brightness-95"
+              referrerPolicy="no-referrer"
               loading="eager"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-[#111111]/40 to-transparent" />
@@ -231,6 +232,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                     src={foto}
                     alt={`${project.nome} — Registro ${idx + 1}`}
                     className="w-full h-full object-cover img-editorial"
+                    referrerPolicy="no-referrer"
                     loading="lazy"
                   />
                 </div>

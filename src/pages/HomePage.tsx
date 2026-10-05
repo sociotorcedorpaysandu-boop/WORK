@@ -122,11 +122,12 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                         isEven ? 'lg:order-2' : 'lg:order-1'
                       }`}
                     >
-                      {project.temFotoReal && project.imagemCapa ? (
+                      {project.imagemCapa ? (
                         <img
                           src={project.imagemCapa}
                           alt={project.nome}
                           className="w-full h-full object-cover img-editorial"
+                          referrerPolicy="no-referrer"
                           loading="lazy"
                         />
                       ) : (

@@ -53,11 +53,12 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate }) => {
                   className="group cursor-pointer pb-20 border-b border-[#E6E6E6] space-y-8"
                 >
                   <div className="overflow-hidden aspect-[16/9] sm:aspect-[21/9] bg-[#F7F7F5] border border-[#E6E6E6]">
-                    {project.temFotoReal && project.imagemCapa ? (
+                    {project.imagemCapa ? (
                       <img
                         src={project.imagemCapa}
                         alt={project.nome}
                         className="w-full h-full object-cover img-editorial"
+                        referrerPolicy="no-referrer"
                         loading="lazy"
                       />
                     ) : (
@@ -119,11 +120,12 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate }) => {
 
                     {/* Imagem à Direita */}
                     <div className="lg:col-span-7 overflow-hidden aspect-[16/10] bg-[#F7F7F5] border border-[#E6E6E6] lg:order-2">
-                      {project.temFotoReal && project.imagemCapa ? (
+                      {project.imagemCapa ? (
                         <img
                           src={project.imagemCapa}
                           alt={project.nome}
                           className="w-full h-full object-cover img-editorial"
+                          referrerPolicy="no-referrer"
                           loading="lazy"
                         />
                       ) : (
@@ -149,11 +151,12 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate }) => {
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
                   {/* Imagem à Esquerda */}
                   <div className="lg:col-span-7 overflow-hidden aspect-[16/10] bg-[#F7F7F5] border border-[#E6E6E6]">
-                    {project.temFotoReal && project.imagemCapa ? (
+                    {project.imagemCapa ? (
                       <img
                         src={project.imagemCapa}
                         alt={project.nome}
                         className="w-full h-full object-cover img-editorial"
+                        referrerPolicy="no-referrer"
                         loading="lazy"
                       />
                     ) : (
