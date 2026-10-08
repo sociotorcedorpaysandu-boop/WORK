@@ -39,22 +39,20 @@ html {
 
 /* ========================================================
    SLOW ZOOM / KEN BURNS EFFECT (HERO)
-   Suave, contínuo, discreto e respeita prefers-reduced-motion
+   Aproximação suave, perceptível e contínua (14s, 1.00 -> 1.09)
+   Respeita prefers-reduced-motion
 ======================================================== */
 @keyframes slowZoomKenBurns {
   0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.08);
+    transform: scale(1.00);
   }
   100% {
-    transform: scale(1);
+    transform: scale(1.09);
   }
 }
 
 .animate-slow-zoom {
-  animation: slowZoomKenBurns 28s ease-in-out infinite alternate;
+  animation: slowZoomKenBurns 14s ease-in-out infinite alternate;
   transform-origin: center center;
   will-change: transform;
 }

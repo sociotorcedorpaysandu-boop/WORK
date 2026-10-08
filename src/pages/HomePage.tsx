@@ -28,16 +28,17 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
   // Garante que Municipalidade é o 1º de exatamente 3 destaques
   const featuredThree = FEATURED_PROJECTS.slice(0, 3);
 
-  // Controle de scroll para o frame sticky desktop (3 etapas em wrapper de 300vh)
+  // Controle de scroll contínuo para o frame sticky desktop (3 etapas suaves em wrapper de 300vh)
   const desktopStickyWrapperRef = useRef<HTMLDivElement>(null);
-  const [activeProjectIndex, setActiveProjectIndex] = useState(0);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const rafIdRef = useRef<number | null>(null);
 
   useEffect(() => {
-    const handleScroll = () => {
+    const updateScrollProgress = () => {
       if (!desktopStickyWrapperRef.current) return;
       const rect = desktopStickyWrapperRef.current.getBoundingClientRect();
       const windowHeight = window.innerHeight;
-      // Offset de ancoragem sticky no topo
+      // Offset de ancoragem sticky no topo (top-20 / top-24)
       const stickyOffset = 96;
       const totalScrollableDistance = rect.height - windowHeight;
 
@@ -45,28 +46,129 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
       const currentScrolled = stickyOffset - rect.top;
       const progress = Math.min(Math.max(currentScrolled / totalScrollableDistance, 0), 1);
+      setScrollProgress(progress);
+    };
 
-      // Divisão proporcional em 3 etapas para as 3 obras
-      let index = 0;
-      if (progress < 0.33) {
-        index = 0;
-      } else if (progress < 0.67) {
-        index = 1;
-      } else {
-        index = 2;
-      }
-      setActiveProjectIndex(index);
+    const handleScroll = () => {
+      if (rafIdRef.current !== null) return;
+      rafIdRef.current = requestAnimationFrame(() => {
+        rafIdRef.current = null;
+        updateScrollProgress();
+      });
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('resize', handleScroll);
-    handleScroll();
+    updateScrollProgress();
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleScroll);
+      if (rafIdRef.current !== null) {
+        cancelAnimationFrame(rafIdRef.current);
+      }
     };
   }, []);
+
+  // Interpolação contínua e suave de opacidade, escala e translação para cada obra
+  const computeProjectStyles = (idx: number, p: number) => {
+    let opacity = 0;
+    let imageTranslateY = 0;
+    let imageScale = 1;
+    let textTranslateY = 0;
+
+    if (idx === 0) {
+      if (p <= 0.20) {
+        opacity = 1;
+        imageTranslateY = 0;
+        imageScale = 1;
+        textTranslateY = 0;
+      } else if (p < 0.42) {
+        const t = (p - 0.20) / (0.42 - 0.20);
+        opacity = 1 - t;
+        imageTranslateY = -24 * t;
+        imageScale = 1 + 0.03 * t;
+        textTranslateY = -18 * t;
+      } else {
+        opacity = 0;
+        imageTranslateY = -24;
+        imageScale = 1.03;
+        textTranslateY = -18;
+      }
+    } else if (idx === 1) {
+      if (p < 0.20) {
+        opacity = 0;
+        imageTranslateY = 24;
+        imageScale = 0.98;
+        textTranslateY = 18;
+      } else if (p < 0.42) {
+        const t = (p - 0.20) / (0.42 - 0.20);
+        opacity = t;
+        imageTranslateY = 24 * (1 - t);
+        imageScale = 0.98 + 0.02 * t;
+        textTranslateY = 18 * (1 - t);
+      } else if (p <= 0.60) {
+        opacity = 1;
+        imageTranslateY = 0;
+        imageScale = 1;
+        textTranslateY = 0;
+      } else if (p < 0.82) {
+        const t = (p - 0.60) / (0.82 - 0.60);
+        opacity = 1 - t;
+        imageTranslateY = -24 * t;
+        imageScale = 1 + 0.03 * t;
+        textTranslateY = -18 * t;
+      } else {
+        opacity = 0;
+        imageTranslateY = -24;
+        imageScale = 1.03;
+        textTranslateY = -18;
+      }
+    } else if (idx === 2) {
+      if (p < 0.60) {
+        opacity = 0;
+        imageTranslateY = 24;
+        imageScale = 0.98;
+        textTranslateY = 18;
+      } else if (p < 0.82) {
+        const t = (p - 0.60) / (0.82 - 0.60);
+        opacity = t;
+        imageTranslateY = 24 * (1 - t);
+        imageScale = 0.98 + 0.02 * t;
+        textTranslateY = 18 * (1 - t);
+      } else {
+        opacity = 1;
+        imageTranslateY = 0;
+        imageScale = 1;
+        textTranslateY = 0;
+      }
+    }
+
+    const isVisible = opacity > 0.01;
+    const isInteractive = opacity > 0.45;
+
+    return {
+      opacity,
+      isVisible,
+      imageStyle: {
+        opacity,
+        transform: `translate3d(0, ${imageTranslateY.toFixed(2)}px, 0) scale(${imageScale.toFixed(4)})`,
+        visibility: isVisible ? ('visible' as const) : ('hidden' as const),
+        pointerEvents: isInteractive ? ('auto' as const) : ('none' as const),
+        willChange: 'opacity, transform',
+      },
+      textStyle: {
+        opacity,
+        transform: `translate3d(0, ${textTranslateY.toFixed(2)}px, 0)`,
+        visibility: isVisible ? ('visible' as const) : ('hidden' as const),
+        pointerEvents: isInteractive ? ('auto' as const) : ('none' as const),
+        willChange: 'opacity, transform',
+      },
+    };
+  };
+
+  // Determina qual estágio está predominante para os marcadores sutis
+  const activeStage = scrollProgress < 0.31 ? 0 : scrollProgress < 0.71 ? 1 : 2;
 
   return (
     <div className="w-full bg-[#FFFFFF] text-[#111111]">
@@ -169,24 +271,21 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               <div className="sticky top-20 lg:top-24 h-[calc(100vh-6rem)] min-h-[560px] max-h-[760px] flex items-center justify-center">
                 <div className="w-full bg-white border border-[#E6E6E6] shadow-sm p-8 lg:p-12 work-corner-accent">
                   <div className="grid grid-cols-12 gap-8 lg:gap-14 items-center">
-                    {/* Frame da Imagem à Esquerda com Crossfade Suave */}
+                    {/* Frame da Imagem à Esquerda com Crossfade e Escala Contínuos */}
                     <div className="col-span-7 relative overflow-hidden aspect-[16/10] bg-[#F7F7F5] border border-[#E6E6E6] w-full">
                       {featuredThree.map((project, idx) => {
-                        const isActive = activeProjectIndex === idx;
+                        const { imageStyle } = computeProjectStyles(idx, scrollProgress);
                         return (
                           <div
                             key={project.id}
-                            className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
-                              isActive ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
-                            }`}
+                            style={imageStyle}
+                            className="absolute inset-0"
                           >
                             {project.imagemCapa ? (
                               <img
                                 src={project.imagemCapa}
                                 alt={project.nome}
-                                className={`w-full h-full object-cover img-editorial transition-transform duration-1000 ease-out ${
-                                  isActive ? 'scale-100' : 'scale-105'
-                                }`}
+                                className="w-full h-full object-cover img-editorial"
                                 referrerPolicy="no-referrer"
                                 loading={idx === 0 ? 'eager' : 'lazy'}
                               />
@@ -202,31 +301,28 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                       })}
                     </div>
 
-                    {/* Conteúdo à Direita com Fade e Leve Deslocamento */}
+                    {/* Conteúdo à Direita com Fade e Translate Suave Vinculado ao Scroll */}
                     <div className="col-span-5 relative min-h-[340px] flex items-center">
                       {featuredThree.map((project, idx) => {
-                        const isActive = activeProjectIndex === idx;
+                        const { textStyle } = computeProjectStyles(idx, scrollProgress);
                         return (
                           <div
                             key={project.id}
-                            className={`transition-all duration-500 ease-out space-y-5 w-full ${
-                              isActive
-                                ? 'opacity-100 translate-y-0 relative z-10 pointer-events-auto'
-                                : 'opacity-0 translate-y-4 absolute inset-0 z-0 pointer-events-none'
-                            }`}
+                            style={textStyle}
+                            className="space-y-5 w-full absolute inset-0 my-auto flex flex-col justify-center"
                           >
-                            {/* Barra de identificação da categoria e progresso suave */}
+                            {/* Barra de identificação da categoria e marcadores sincronizados com o scroll */}
                             <div className="border-b border-[#E6E6E6] pb-3 flex items-center justify-between">
                               <span className="text-xs font-mono uppercase tracking-wider text-[#F58220] font-semibold">
                                 {project.categoria || 'Engenharia'}
                               </span>
-                              {/* Marcadores discretos das 3 etapas */}
+                              {/* Marcadores discretos das 3 etapas sincronizados com o scroll */}
                               <div className="flex items-center gap-1.5" aria-hidden="true">
                                 {featuredThree.map((_, barIdx) => (
                                   <span
                                     key={barIdx}
                                     className={`h-1.5 transition-all duration-300 ${
-                                      barIdx === activeProjectIndex
+                                      barIdx === activeStage
                                         ? 'w-6 bg-[#F58220]'
                                         : 'w-2 bg-[#E6E6E6]'
                                     }`}
