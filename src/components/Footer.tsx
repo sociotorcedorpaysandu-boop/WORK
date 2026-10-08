@@ -129,12 +129,12 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </li>
               <li>
                 <a
-                  href="https://www.instagram.com/workconstrutora"
+                  href="https://www.instagram.com/workjaconstrutora/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-white inline-flex items-center gap-1.5 transition-colors"
                 >
-                  Instagram (@workconstrutora)
+                  Instagram (@workjaconstrutora)
                   <span className="text-[#F58220] text-xs">↗</span>
                 </a>
               </li>
@@ -157,7 +157,14 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             <span>WORK CONSTRUTORA © 2026. Todos os direitos reservados.</span>
           </div>
           <div>
-            <span>Desenvolvido por Bredi Tecnologia</span>
+            <a
+              href="https://www.bredi.com.br/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition-colors"
+            >
+              Desenvolvido por Bredi Tecnologia
+            </a>
           </div>
         </div>
       </div>

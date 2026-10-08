@@ -80,14 +80,14 @@ export const ContactPage: React.FC = () => {
                   Instagram Oficial
                 </span>
                 <h2 className="text-2xl sm:text-3xl font-heading font-semibold text-[#111111]">
-                  @workconstrutora
+                  @workjaconstrutora
                 </h2>
                 <p className="text-sm text-[#111111]/75 leading-relaxed">
                   Acompanhe fotos de canteiro, etapas de obras e projetos em andamento em Belém.
                 </p>
               </div>
               <a
-                href="https://www.instagram.com/workconstrutora"
+                href="https://www.instagram.com/workjaconstrutora/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full py-3.5 bg-[#111111] hover:bg-[#F58220] text-white hover:text-[#111111] text-xs font-semibold uppercase tracking-wider transition-colors text-center inline-block cursor-pointer btn-work-chamfer"

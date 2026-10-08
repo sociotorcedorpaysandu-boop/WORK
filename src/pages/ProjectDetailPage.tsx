@@ -81,9 +81,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
 
           <div className="space-y-3">
             <div className="flex items-center gap-3 text-xs font-mono text-[#F58220]">
-              <span className="font-semibold uppercase tracking-wider">OBRA REGISTRADA</span>
-              <span>·</span>
-              <span className="text-[#E6E6E6]/70 uppercase tracking-wider">WORK CONSTRUTORA</span>
+              <span className="text-[#F58220] uppercase tracking-wider font-semibold">WORK CONSTRUTORA</span>
             </div>
 
             {/* 2. Nome da obra */}
@@ -163,7 +161,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                 {project.descricao}
               </p>
             ) : (
-              <p className="text-base text-[#111111]/55 leading-relaxed font-sans italic">
+              <p className="text-base text-[#111111]/55 leading-relaxed font-sans">
                 —
               </p>
             )}
@@ -182,7 +180,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                 {project.informacoesComplementares}
               </p>
             ) : (
-              <p className="text-base text-[#111111]/55 leading-relaxed font-sans italic">
+              <p className="text-base text-[#111111]/55 leading-relaxed font-sans">
                 —
               </p>
             )}

@@ -108,7 +108,8 @@ export const PROJECTS: Project[] = [
     temFotoReal: true,
     destaqueHome: true,
     hasEvolution: true,
-    isMock: false,
+    // Marcado como isMock para permitir futura substituição quando o cliente fornecer dados técnicos oficiais
+    isMock: true,
     categoria: 'Corporativo'
   },
   {

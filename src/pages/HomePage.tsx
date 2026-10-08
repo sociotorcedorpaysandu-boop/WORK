@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import portico1Img from '@/src/assets/images/municipalidade_portico_1.jpeg';
 import ifcImg from '@/src/assets/images/ifc_work.png';
 import fundacaoImg from '@/src/assets/images/municipalidade_fundacao_real.jpg';
 import estruturaImg from '@/src/assets/images/municipalidade_estrutura_real.jpg';
-import execucaoImg from '@/src/assets/images/municipalidade_execucao_real.jpg';
 import finalImg from '@/src/assets/images/municipalidade_projeto_final_real.jpg';
 import { ProjectPlaceholder } from '@/src/components/ProjectPlaceholder';
 import { FEATURED_PROJECTS } from '@/src/data/projects';
@@ -28,6 +27,46 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
   // Garante que Municipalidade é o 1º de exatamente 3 destaques
   const featuredThree = FEATURED_PROJECTS.slice(0, 3);
+
+  // Controle de scroll para o frame sticky desktop (3 etapas em wrapper de 300vh)
+  const desktopStickyWrapperRef = useRef<HTMLDivElement>(null);
+  const [activeProjectIndex, setActiveProjectIndex] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!desktopStickyWrapperRef.current) return;
+      const rect = desktopStickyWrapperRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      // Offset de ancoragem sticky no topo
+      const stickyOffset = 96;
+      const totalScrollableDistance = rect.height - windowHeight;
+
+      if (totalScrollableDistance <= 0) return;
+
+      const currentScrolled = stickyOffset - rect.top;
+      const progress = Math.min(Math.max(currentScrolled / totalScrollableDistance, 0), 1);
+
+      // Divisão proporcional em 3 etapas para as 3 obras
+      let index = 0;
+      if (progress < 0.33) {
+        index = 0;
+      } else if (progress < 0.67) {
+        index = 1;
+      } else {
+        index = 2;
+      }
+      setActiveProjectIndex(index);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleScroll);
+    handleScroll();
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
+  }, []);
 
   return (
     <div className="w-full bg-[#FFFFFF] text-[#111111]">
@@ -68,14 +107,14 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             <div className="pt-4 flex flex-wrap items-center gap-4">
               <button
                 onClick={() => scrollToSection('obras-destaque')}
-                className="btn-work-primary"
+                className="btn-work-primary cursor-pointer"
               >
                 Ver obras ↘
               </button>
 
               <button
                 onClick={() => handleNav('/empresa')}
-                className="btn-work-outline"
+                className="btn-work-outline cursor-pointer"
               >
                 Sobre a Work →
               </button>
@@ -86,9 +125,10 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
       {/* ========================================================
           2. OBRAS EM DESTAQUE NA HOME
-          - Municipalidade é o 1º de 3 destaques
-          - Desktop: Efeito Parallax/Sticky suave sem scroll hijacking
-          - Mobile: Rolagem vertical simples, fluida e com imagens grandes
+          - Ordem: 1. Prédio Municipalidade | 2. Edson Corporate | 3. Vila Nova Corporate
+          - Desktop (lg: >=1024px): Seção sticky controlada pelo scroll (wrapper 300vh, 1 obra por etapa)
+          - Mobile / Tablet (<1024px): Rolagem normal sequencial (imagem → título → descrição → botão)
+          - CTA Geral: FORA da área sticky, em fluxo normal da página
       ======================================================== */}
       <section id="obras-destaque" className="py-20 sm:py-28 px-6 md:px-12 bg-[#FFFFFF]">
         <div className="max-w-7xl mx-auto">
@@ -117,154 +157,203 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           </div>
 
           {/* ====================================================
-              DESKTOP (md e acima): Sticky / Parallax Suave
-              A seção permanece visualmente ativa com cartões que empilham
-              suavemente a top-28 com scroll natural do usuário
+              DESKTOP (lg: >= 1024px): Sticky Controlado pelo Scroll
+              - Wrapper com 300vh para 3 etapas naturais de rolagem
+              - Apenas UMA obra visível por vez no frame sticky
+              - Imagem à esquerda com crossfade + conteúdo à direita com fade suave
+              - Sem textos decorativos 01/03 ou DESTAQUE PRIORITÁRIO
           ==================================================== */}
-          <div className="hidden md:block mt-14 space-y-12">
-            {featuredThree.map((project, idx) => {
-              const itemNumber = String(idx + 1).padStart(2, '0');
-              const isFirst = idx === 0;
-
-              return (
-                <div
-                  key={project.id}
-                  onClick={() => handleNav(`/obras/${project.slug}`)}
-                  style={{ top: `${7 + idx * 0.75}rem` }}
-                  className="sticky cursor-pointer group bg-white border border-[#E6E6E6] hover:border-[#F58220] p-8 lg:p-10 shadow-xs hover:shadow-md transition-all duration-300 work-corner-accent"
-                >
-                  <div className="grid grid-cols-12 gap-8 lg:gap-12 items-center">
-                    {/* Imagem do Projeto */}
-                    <div className="col-span-7 overflow-hidden aspect-[16/10] bg-[#F7F7F5] border border-[#E6E6E6]">
-                      {project.imagemCapa ? (
-                        <img
-                          src={project.imagemCapa}
-                          alt={project.nome}
-                          className="w-full h-full object-cover img-editorial"
-                          referrerPolicy="no-referrer"
-                          loading="lazy"
-                        />
-                      ) : (
-                        <ProjectPlaceholder
-                          nome={project.nome}
-                          categoria={project.categoria}
-                          aspect="h-full min-h-[300px]"
-                        />
-                      )}
+          <div className="hidden lg:block mt-8">
+            <div ref={desktopStickyWrapperRef} className="relative h-[300vh]">
+              {/* Frame visual sticky que permanece centralizado durante a rolagem */}
+              <div className="sticky top-20 lg:top-24 h-[calc(100vh-6rem)] min-h-[560px] max-h-[760px] flex items-center justify-center">
+                <div className="w-full bg-white border border-[#E6E6E6] shadow-sm p-8 lg:p-12 work-corner-accent">
+                  <div className="grid grid-cols-12 gap-8 lg:gap-14 items-center">
+                    {/* Frame da Imagem à Esquerda com Crossfade Suave */}
+                    <div className="col-span-7 relative overflow-hidden aspect-[16/10] bg-[#F7F7F5] border border-[#E6E6E6] w-full">
+                      {featuredThree.map((project, idx) => {
+                        const isActive = activeProjectIndex === idx;
+                        return (
+                          <div
+                            key={project.id}
+                            className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+                              isActive ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
+                            }`}
+                          >
+                            {project.imagemCapa ? (
+                              <img
+                                src={project.imagemCapa}
+                                alt={project.nome}
+                                className={`w-full h-full object-cover img-editorial transition-transform duration-1000 ease-out ${
+                                  isActive ? 'scale-100' : 'scale-105'
+                                }`}
+                                referrerPolicy="no-referrer"
+                                loading={idx === 0 ? 'eager' : 'lazy'}
+                              />
+                            ) : (
+                              <ProjectPlaceholder
+                                nome={project.nome}
+                                categoria={project.categoria}
+                                aspect="h-full min-h-[340px]"
+                              />
+                            )}
+                          </div>
+                        );
+                      })}
                     </div>
 
-                    {/* Dados e Apresentação do Projeto */}
-                    <div className="col-span-5 space-y-5">
-                      <div className="flex items-center justify-between border-b border-[#E6E6E6] pb-3">
-                        <span className="text-xs font-mono font-semibold uppercase tracking-widest text-[#F58220]">
-                          {itemNumber} / 03 {isFirst && '· DESTAQUE PRIORITÁRIO'}
-                        </span>
-                        <span className="text-xs font-mono uppercase text-[#111111]/50">
-                          {project.categoria || 'Engenharia'}
-                        </span>
-                      </div>
+                    {/* Conteúdo à Direita com Fade e Leve Deslocamento */}
+                    <div className="col-span-5 relative min-h-[340px] flex items-center">
+                      {featuredThree.map((project, idx) => {
+                        const isActive = activeProjectIndex === idx;
+                        return (
+                          <div
+                            key={project.id}
+                            className={`transition-all duration-500 ease-out space-y-5 w-full ${
+                              isActive
+                                ? 'opacity-100 translate-y-0 relative z-10 pointer-events-auto'
+                                : 'opacity-0 translate-y-4 absolute inset-0 z-0 pointer-events-none'
+                            }`}
+                          >
+                            {/* Barra de identificação da categoria e progresso suave */}
+                            <div className="border-b border-[#E6E6E6] pb-3 flex items-center justify-between">
+                              <span className="text-xs font-mono uppercase tracking-wider text-[#F58220] font-semibold">
+                                {project.categoria || 'Engenharia'}
+                              </span>
+                              {/* Marcadores discretos das 3 etapas */}
+                              <div className="flex items-center gap-1.5" aria-hidden="true">
+                                {featuredThree.map((_, barIdx) => (
+                                  <span
+                                    key={barIdx}
+                                    className={`h-1.5 transition-all duration-300 ${
+                                      barIdx === activeProjectIndex
+                                        ? 'w-6 bg-[#F58220]'
+                                        : 'w-2 bg-[#E6E6E6]'
+                                    }`}
+                                  />
+                                ))}
+                              </div>
+                            </div>
 
-                      <div className="space-y-2">
-                        <h3 className="text-2xl lg:text-3xl font-heading font-semibold text-[#111111] group-hover:text-[#F58220] transition-colors leading-tight">
-                          {project.nome}
-                        </h3>
-                        {project.periodo && (
-                          <p className="text-xs font-mono text-[#111111]/60">
-                            Período: {project.periodo}
-                          </p>
-                        )}
-                      </div>
+                            <div className="space-y-2">
+                              <h3 className="text-3xl lg:text-4xl font-heading font-semibold text-[#111111] leading-tight">
+                                {project.nome}
+                              </h3>
+                              {project.periodo && (
+                                <p className="text-xs font-mono text-[#111111]/60">
+                                  Período: {project.periodo}
+                                </p>
+                              )}
+                            </div>
 
-                      {project.descricao && project.descricao !== '—' && (
-                        <p className="text-sm lg:text-base text-[#111111]/75 leading-relaxed line-clamp-3">
-                          {project.descricao}
-                        </p>
-                      )}
+                            {project.descricao && project.descricao !== '—' && (
+                              <p className="text-base text-[#111111]/75 leading-relaxed line-clamp-3">
+                                {project.descricao}
+                              </p>
+                            )}
 
-                      <div className="pt-2 flex items-center gap-4">
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            handleNav(`/obras/${project.slug}`);
-                          }}
-                          className="btn-work-dark"
-                        >
-                          Ver detalhes da obra ↗
-                        </button>
-                      </div>
+                            <div className="pt-2">
+                              <button
+                                onClick={() => handleNav(`/obras/${project.slug}`)}
+                                className="btn-work-dark cursor-pointer"
+                              >
+                                Ver detalhes da obra ↗
+                              </button>
+                            </div>
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
                 </div>
-              );
-            })}
+              </div>
+            </div>
           </div>
 
           {/* ====================================================
-              MOBILE (abaixo de md): Rolagem Vertical Normal
-              Simples, fluida e natural, com imagens grandes
+              MOBILE & TABLET (< 1024px): Rolagem Vertical Normal
+              - Sem sticky ou parallax complexo
+              - Sequência: Imagem → Título → Descrição → "Ver detalhes da obra"
+              - Sem elementos presos ou sobreposição
           ==================================================== */}
-          <div className="md:hidden mt-10 space-y-12">
-            {featuredThree.map((project, idx) => {
-              const itemNumber = String(idx + 1).padStart(2, '0');
-              const isFirst = idx === 0;
-
-              return (
+          <div className="lg:hidden mt-10 space-y-16">
+            {featuredThree.map((project) => (
+              <div
+                key={project.id}
+                className="space-y-5 pb-12 border-b border-[#E6E6E6] last:border-b-0"
+              >
+                {/* 1. Imagem */}
                 <div
-                  key={project.id}
                   onClick={() => handleNav(`/obras/${project.slug}`)}
-                  className="cursor-pointer group pb-10 border-b border-[#E6E6E6] last:border-b-0 space-y-5"
+                  className="cursor-pointer overflow-hidden aspect-[16/10] bg-[#F7F7F5] border border-[#E6E6E6] work-corner-accent"
                 >
-                  <div className="flex items-center justify-between text-xs font-mono">
-                    <span className="text-[#F58220] font-semibold">
-                      {itemNumber} / 03 {isFirst && '· PRIORITÁRIO'}
-                    </span>
-                    <span className="text-[#111111]/50">{project.categoria || 'Engenharia'}</span>
-                  </div>
-
-                  <div className="overflow-hidden aspect-[16/10] bg-[#F7F7F5] border border-[#E6E6E6] work-corner-accent">
-                    {project.imagemCapa ? (
-                      <img
-                        src={project.imagemCapa}
-                        alt={project.nome}
-                        className="w-full h-full object-cover img-editorial"
-                        referrerPolicy="no-referrer"
-                        loading="lazy"
-                      />
-                    ) : (
-                      <ProjectPlaceholder
-                        nome={project.nome}
-                        categoria={project.categoria}
-                        aspect="h-full min-h-[240px]"
-                      />
-                    )}
-                  </div>
-
-                  <div className="space-y-2">
-                    <h3 className="text-2xl font-heading font-semibold text-[#111111] group-hover:text-[#F58220] transition-colors leading-tight">
-                      {project.nome}
-                    </h3>
-                    {project.descricao && (
-                      <p className="text-sm text-[#111111]/75 leading-relaxed line-clamp-3">
-                        {project.descricao}
-                      </p>
-                    )}
-                  </div>
-
-                  <div>
-                    <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-[#111111] group-hover:text-[#F58220] transition-colors border-b border-[#111111] group-hover:border-[#F58220] pb-1">
-                      Ver detalhes da obra ↗
-                    </span>
-                  </div>
+                  {project.imagemCapa ? (
+                    <img
+                      src={project.imagemCapa}
+                      alt={project.nome}
+                      className="w-full h-full object-cover img-editorial"
+                      referrerPolicy="no-referrer"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <ProjectPlaceholder
+                      nome={project.nome}
+                      categoria={project.categoria}
+                      aspect="h-full min-h-[240px]"
+                    />
+                  )}
                 </div>
-              );
-            })}
+
+                {/* 2. Título */}
+                <div className="space-y-1">
+                  {project.categoria && (
+                    <span className="text-xs font-mono uppercase tracking-wider text-[#F58220] font-semibold block">
+                      {project.categoria}
+                    </span>
+                  )}
+                  <h3
+                    onClick={() => handleNav(`/obras/${project.slug}`)}
+                    className="text-2xl font-heading font-semibold text-[#111111] hover:text-[#F58220] transition-colors leading-tight cursor-pointer"
+                  >
+                    {project.nome}
+                  </h3>
+                  {project.periodo && (
+                    <p className="text-xs font-mono text-[#111111]/60">
+                      Período: {project.periodo}
+                    </p>
+                  )}
+                </div>
+
+                {/* 3. Descrição */}
+                {project.descricao && project.descricao !== '—' && (
+                  <p className="text-sm text-[#111111]/75 leading-relaxed">
+                    {project.descricao}
+                  </p>
+                )}
+
+                {/* 4. "Ver detalhes da obra" */}
+                <div>
+                  <button
+                    onClick={() => handleNav(`/obras/${project.slug}`)}
+                    className="btn-work-dark cursor-pointer"
+                  >
+                    Ver detalhes da obra ↗
+                  </button>
+                </div>
+              </div>
+            ))}
           </div>
 
-          {/* CTA Geral */}
-          <div className="pt-12 text-center">
+          {/* ====================================================
+              CTA GERAL: "Ver catálogo completo de obras"
+              - Posicionado estritamente FORA da área sticky
+              - Aparece em fluxo normal da página após o término das 3 obras
+              - Sem position:absolute, sem sobreposição
+          ==================================================== */}
+          <div className="pt-16 pb-6 text-center border-t border-[#E6E6E6] mt-8">
             <button
               onClick={() => handleNav('/obras')}
-              className="btn-work-dark"
+              className="btn-work-dark cursor-pointer"
             >
               Ver catálogo completo de obras ↗
             </button>
@@ -532,7 +621,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             <div className="pt-4 flex justify-start">
               <button
                 onClick={() => handleNav('/empresa')}
-                className="btn-work-dark"
+                className="btn-work-dark cursor-pointer"
               >
                 Conheça a trajetória completa da Work ↗
               </button>
@@ -542,7 +631,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
       </section>
 
       {/* ========================================================
-          5. REDES SOCIAIS & CANAIS DIRETOS (Com Instagram oficial corrigido e ativo)
+          5. REDES SOCIAIS & CANAIS DIRETOS (Com Instagram @workjaconstrutora oficial)
       ======================================================== */}
       <section className="py-20 sm:py-28 px-6 md:px-12 bg-[#FFFFFF] border-t border-[#E6E6E6]">
         <div className="max-w-7xl mx-auto space-y-16">
@@ -611,7 +700,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
             {/* Instagram Oficial Ativo e Corrigido */}
             <a
-              href="https://www.instagram.com/workconstrutora"
+              href="https://www.instagram.com/workjaconstrutora/"
               target="_blank"
               rel="noopener noreferrer"
               className="p-6 bg-[#F7F7F5] hover:bg-white border border-[#E6E6E6] hover:border-[#F58220] transition-all flex flex-col justify-between space-y-4 group work-corner-accent cursor-pointer"
@@ -621,7 +710,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                   Instagram Oficial
                 </span>
                 <h4 className="text-xl font-heading font-semibold text-[#111111] group-hover:text-[#F58220] transition-colors">
-                  @workconstrutora
+                  @workjaconstrutora
                 </h4>
                 <p className="text-xs text-[#111111]/70 leading-relaxed">
                   Acompanhe fotos e registros das nossas obras e projetos em Belém.
