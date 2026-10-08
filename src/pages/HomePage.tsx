@@ -1,13 +1,13 @@
 import React from 'react';
+import portico1Img from '@/src/assets/images/municipalidade_portico_1.jpeg';
+import ifcImg from '@/src/assets/images/ifc_work.png';
 import fundacaoImg from '@/src/assets/images/municipalidade_fundacao_real.jpg';
 import estruturaImg from '@/src/assets/images/municipalidade_estrutura_real.jpg';
 import execucaoImg from '@/src/assets/images/municipalidade_execucao_real.jpg';
 import finalImg from '@/src/assets/images/municipalidade_projeto_final_real.jpg';
-import symbolWork from '@/src/assets/images/Design_sem_nome__85_-removebg-preview.svg';
-import { MunicipalidadeEvolution } from '@/src/components/MunicipalidadeEvolution';
 import { ProjectPlaceholder } from '@/src/components/ProjectPlaceholder';
 import { FEATURED_PROJECTS } from '@/src/data/projects';
-import { TEAM, TAREK_IMAGE, GABRIEL_IMAGE, ENGINEERING_TEAM_IMAGE } from '@/src/data/team';
+import { TAREK_IMAGE, GABRIEL_IMAGE, ENGINEERING_TEAM_IMAGE } from '@/src/data/team';
 
 interface HomePageProps {
   onNavigate: (path: string) => void;
@@ -26,29 +26,36 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
     }
   };
 
+  // Garante que Municipalidade é o 1º de exatamente 3 destaques
+  const featuredThree = FEATURED_PROJECTS.slice(0, 3);
+
   return (
     <div className="w-full bg-[#FFFFFF] text-[#111111]">
       {/* ========================================================
-          1. HERO SECTION (Visual forte, mais claro e direto)
+          1. HERO SECTION (Imagem Municipalidade Pórtico 1 + Slow Zoom / Ken Burns)
       ======================================================== */}
-      <section className="relative min-h-[85vh] lg:min-h-[88vh] flex flex-col justify-center pt-28 pb-16 px-6 md:px-12 bg-[#111111] text-white overflow-hidden">
-        {/* Foto real da Work como pano de fundo com contraste calibrado */}
-        <div className="absolute inset-0 z-0">
+      <section className="relative min-h-[85vh] lg:min-h-[90vh] flex flex-col justify-center pt-28 pb-16 px-6 md:px-12 bg-[#111111] text-white overflow-hidden">
+        {/* Foto real municipalidade portico 1 com movimento de aproximação suave e contínuo (Ken Burns) */}
+        <div className="absolute inset-0 z-0 overflow-hidden">
           <img
-            src={execucaoImg}
-            alt="Canteiro de obras Work Construtora"
-            className="w-full h-full object-cover object-center opacity-40 filter brightness-95"
+            src={portico1Img}
+            alt="Work Construtora — Prédio Municipalidade"
+            className="w-full h-full object-cover object-center opacity-45 filter brightness-95 animate-slow-zoom"
             loading="eager"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-[#111111]/50 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#111111]/80 via-transparent to-transparent" />
+          {/* Gradientes elegantes calibrados para contraste e alta legibilidade */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-[#111111]/55 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#111111]/85 via-[#111111]/40 to-transparent" />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto w-full py-12">
           <div className="max-w-3xl space-y-6">
-            <span className="inline-block text-xs uppercase font-sans tracking-wider text-[#F58220] font-semibold">
-              Work Construtora — Belém / PA
-            </span>
+            <div className="inline-flex items-center gap-2">
+              <span className="w-2 h-2 bg-[#F58220] rotate-45 shrink-0" />
+              <span className="text-xs uppercase font-sans tracking-widest text-[#F58220] font-semibold">
+                Work Construtora — Belém / PA
+              </span>
+            </div>
 
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-semibold text-white leading-[1.08] tracking-tight">
               Engenharia para transformar projetos em realidade.
@@ -61,14 +68,14 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             <div className="pt-4 flex flex-wrap items-center gap-4">
               <button
                 onClick={() => scrollToSection('obras-destaque')}
-                className="px-8 py-4 bg-[#F58220] hover:bg-[#F58220]/90 text-[#111111] font-semibold text-sm tracking-wide uppercase transition-colors cursor-pointer"
+                className="btn-work-primary"
               >
                 Ver obras ↘
               </button>
 
               <button
                 onClick={() => handleNav('/empresa')}
-                className="px-7 py-4 border border-white/40 hover:border-white hover:bg-white/10 text-white font-medium text-sm tracking-wide transition-colors cursor-pointer"
+                className="btn-work-outline"
               >
                 Sobre a Work →
               </button>
@@ -78,50 +85,57 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
       </section>
 
       {/* ========================================================
-          2. OBRAS EM DESTAQUE (Posição prioritária na Home)
+          2. OBRAS EM DESTAQUE NA HOME
+          - Municipalidade é o 1º de 3 destaques
+          - Desktop: Efeito Parallax/Sticky suave sem scroll hijacking
+          - Mobile: Rolagem vertical simples, fluida e com imagens grandes
       ======================================================== */}
       <section id="obras-destaque" className="py-20 sm:py-28 px-6 md:px-12 bg-[#FFFFFF]">
         <div className="max-w-7xl mx-auto">
-          {/* Header */}
+          {/* Header da Seção */}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-12 border-b border-[#E6E6E6]">
             <div>
-              <span className="text-[#F58220] font-sans text-xs uppercase tracking-wider font-semibold block mb-2">
-                Portfólio Selecionado
-              </span>
+              <div className="flex items-center gap-2 mb-2">
+                <span className="w-1.5 h-1.5 bg-[#F58220] rotate-45" />
+                <span className="text-[#F58220] font-sans text-xs uppercase tracking-wider font-semibold">
+                  Portfólio Selecionado
+                </span>
+              </div>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-heading text-[#111111] font-semibold tracking-tight">
                 Obras em destaque
               </h2>
             </div>
             <button
               onClick={() => handleNav('/obras')}
-              className="text-sm font-semibold uppercase tracking-wider text-[#111111] hover:text-[#F58220] transition-colors pb-1 border-b border-[#111111] hover:border-[#F58220] cursor-pointer inline-flex items-center gap-1.5 self-start md:self-auto"
+              className="text-sm font-semibold uppercase tracking-wider text-[#111111] hover:text-[#F58220] transition-colors pb-1 border-b border-[#111111] hover:border-[#F58220] cursor-pointer inline-flex items-center gap-1.5 self-start md:self-auto group"
             >
               Ver todas as obras
-              <span className="text-[#F58220]">↗</span>
+              <span className="text-[#F58220] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+                ↗
+              </span>
             </button>
           </div>
 
-          {/* Obras alternando posições (imagem esquerda/texto direita, depois invertido) */}
-          <div className="mt-14 space-y-20">
-            {FEATURED_PROJECTS.map((project, idx) => {
-              const isEven = idx % 2 === 1;
+          {/* ====================================================
+              DESKTOP (md e acima): Sticky / Parallax Suave
+              A seção permanece visualmente ativa com cartões que empilham
+              suavemente a top-28 com scroll natural do usuário
+          ==================================================== */}
+          <div className="hidden md:block mt-14 space-y-12">
+            {featuredThree.map((project, idx) => {
+              const itemNumber = String(idx + 1).padStart(2, '0');
+              const isFirst = idx === 0;
+
               return (
                 <div
                   key={project.id}
                   onClick={() => handleNav(`/obras/${project.slug}`)}
-                  className="group cursor-pointer pb-16 border-b border-[#E6E6E6] last:border-b-0"
+                  style={{ top: `${7 + idx * 0.75}rem` }}
+                  className="sticky cursor-pointer group bg-white border border-[#E6E6E6] hover:border-[#F58220] p-8 lg:p-10 shadow-xs hover:shadow-md transition-all duration-300 work-corner-accent"
                 >
-                  <div
-                    className={`grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center ${
-                      isEven ? 'lg:flex-row-reverse' : ''
-                    }`}
-                  >
-                    {/* Imagem Real ou Placeholder Neutro Sem IA */}
-                    <div
-                      className={`lg:col-span-7 overflow-hidden aspect-[16/10] bg-[#F7F7F5] border border-[#E6E6E6] ${
-                        isEven ? 'lg:order-2' : 'lg:order-1'
-                      }`}
-                    >
+                  <div className="grid grid-cols-12 gap-8 lg:gap-12 items-center">
+                    {/* Imagem do Projeto */}
+                    <div className="col-span-7 overflow-hidden aspect-[16/10] bg-[#F7F7F5] border border-[#E6E6E6]">
                       {project.imagemCapa ? (
                         <img
                           src={project.imagemCapa}
@@ -134,31 +148,49 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                         <ProjectPlaceholder
                           nome={project.nome}
                           categoria={project.categoria}
-                          aspect="h-full min-h-[280px]"
+                          aspect="h-full min-h-[300px]"
                         />
                       )}
                     </div>
 
-                    {/* Conteúdo Institucional Objetivo */}
-                    <div
-                      className={`lg:col-span-5 space-y-4 ${
-                        isEven ? 'lg:order-1' : 'lg:order-2'
-                      }`}
-                    >
-                      <h3 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-semibold text-[#111111] group-hover:text-[#F58220] transition-colors">
-                        {project.nome}
-                      </h3>
+                    {/* Dados e Apresentação do Projeto */}
+                    <div className="col-span-5 space-y-5">
+                      <div className="flex items-center justify-between border-b border-[#E6E6E6] pb-3">
+                        <span className="text-xs font-mono font-semibold uppercase tracking-widest text-[#F58220]">
+                          {itemNumber} / 03 {isFirst && '· DESTAQUE PRIORITÁRIO'}
+                        </span>
+                        <span className="text-xs font-mono uppercase text-[#111111]/50">
+                          {project.categoria || 'Engenharia'}
+                        </span>
+                      </div>
+
+                      <div className="space-y-2">
+                        <h3 className="text-2xl lg:text-3xl font-heading font-semibold text-[#111111] group-hover:text-[#F58220] transition-colors leading-tight">
+                          {project.nome}
+                        </h3>
+                        {project.periodo && (
+                          <p className="text-xs font-mono text-[#111111]/60">
+                            Período: {project.periodo}
+                          </p>
+                        )}
+                      </div>
 
                       {project.descricao && project.descricao !== '—' && (
-                        <p className="text-base text-[#111111]/75 leading-relaxed">
+                        <p className="text-sm lg:text-base text-[#111111]/75 leading-relaxed line-clamp-3">
                           {project.descricao}
                         </p>
                       )}
 
-                      <div className="pt-3">
-                        <span className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-[#111111] group-hover:text-[#F58220] transition-colors border-b border-[#111111] group-hover:border-[#F58220] pb-1">
-                          Saiba mais ↗
-                        </span>
+                      <div className="pt-2 flex items-center gap-4">
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleNav(`/obras/${project.slug}`);
+                          }}
+                          className="btn-work-dark"
+                        >
+                          Ver detalhes da obra ↗
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -167,53 +199,114 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             })}
           </div>
 
-          {/* CTA geral */}
-          <div className="pt-8 text-center">
+          {/* ====================================================
+              MOBILE (abaixo de md): Rolagem Vertical Normal
+              Simples, fluida e natural, com imagens grandes
+          ==================================================== */}
+          <div className="md:hidden mt-10 space-y-12">
+            {featuredThree.map((project, idx) => {
+              const itemNumber = String(idx + 1).padStart(2, '0');
+              const isFirst = idx === 0;
+
+              return (
+                <div
+                  key={project.id}
+                  onClick={() => handleNav(`/obras/${project.slug}`)}
+                  className="cursor-pointer group pb-10 border-b border-[#E6E6E6] last:border-b-0 space-y-5"
+                >
+                  <div className="flex items-center justify-between text-xs font-mono">
+                    <span className="text-[#F58220] font-semibold">
+                      {itemNumber} / 03 {isFirst && '· PRIORITÁRIO'}
+                    </span>
+                    <span className="text-[#111111]/50">{project.categoria || 'Engenharia'}</span>
+                  </div>
+
+                  <div className="overflow-hidden aspect-[16/10] bg-[#F7F7F5] border border-[#E6E6E6] work-corner-accent">
+                    {project.imagemCapa ? (
+                      <img
+                        src={project.imagemCapa}
+                        alt={project.nome}
+                        className="w-full h-full object-cover img-editorial"
+                        referrerPolicy="no-referrer"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <ProjectPlaceholder
+                        nome={project.nome}
+                        categoria={project.categoria}
+                        aspect="h-full min-h-[240px]"
+                      />
+                    )}
+                  </div>
+
+                  <div className="space-y-2">
+                    <h3 className="text-2xl font-heading font-semibold text-[#111111] group-hover:text-[#F58220] transition-colors leading-tight">
+                      {project.nome}
+                    </h3>
+                    {project.descricao && (
+                      <p className="text-sm text-[#111111]/75 leading-relaxed line-clamp-3">
+                        {project.descricao}
+                      </p>
+                    )}
+                  </div>
+
+                  <div>
+                    <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-[#111111] group-hover:text-[#F58220] transition-colors border-b border-[#111111] group-hover:border-[#F58220] pb-1">
+                      Ver detalhes da obra ↗
+                    </span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* CTA Geral */}
+          <div className="pt-12 text-center">
             <button
               onClick={() => handleNav('/obras')}
-              className="px-8 py-4 bg-[#111111] hover:bg-[#F58220] text-white hover:text-[#111111] text-xs font-semibold uppercase tracking-wider transition-colors cursor-pointer"
+              className="btn-work-dark"
             >
-              Ver todas as obras ↗
+              Ver catálogo completo de obras ↗
             </button>
           </div>
         </div>
       </section>
 
       {/* ========================================================
-          3. MUNICIPALIDADE / EVOLUÇÃO DA OBRA
-      ======================================================== */}
-      <MunicipalidadeEvolution />
-
-      {/* ========================================================
-          4. SERVIÇOS (Resumo Objetivo — Referência Magma)
+          3. SERVIÇOS (Construção, BTS e Projetos de Engenharia)
       ======================================================== */}
       <section className="py-20 sm:py-28 px-6 md:px-12 bg-[#FFFFFF] border-t border-[#E6E6E6]">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-12 border-b border-[#E6E6E6]">
             <div>
-              <span className="text-[#F58220] font-sans text-xs uppercase tracking-wider font-semibold block mb-2">
-                Atuação da Construtora
-              </span>
+              <div className="flex items-center gap-2 mb-2">
+                <span className="w-1.5 h-1.5 bg-[#F58220] rotate-45" />
+                <span className="text-[#F58220] font-sans text-xs uppercase tracking-wider font-semibold">
+                  Atuação da Construtora
+                </span>
+              </div>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-heading text-[#111111] font-semibold tracking-tight">
                 Nossos Serviços
               </h2>
             </div>
             <button
               onClick={() => handleNav('/servicos')}
-              className="text-sm font-semibold uppercase tracking-wider text-[#111111] hover:text-[#F58220] transition-colors pb-1 border-b border-[#111111] hover:border-[#F58220] cursor-pointer inline-flex items-center gap-1.5 self-start md:self-auto"
+              className="text-sm font-semibold uppercase tracking-wider text-[#111111] hover:text-[#F58220] transition-colors pb-1 border-b border-[#111111] hover:border-[#F58220] cursor-pointer inline-flex items-center gap-1.5 self-start md:self-auto group"
             >
               Conheça nossos serviços
-              <span className="text-[#F58220]">↗</span>
+              <span className="text-[#F58220] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+                ↗
+              </span>
             </button>
           </div>
 
-          {/* Blocos Objetivos de Serviços (Fotos Reais + Título + Resumo Literal + Link) */}
+          {/* Blocos de Serviços com Botões e Cantos Work */}
           <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
             {/* Serviço 01 */}
             <div
               onClick={() => handleNav('/servicos')}
-              className="group cursor-pointer flex flex-col justify-between bg-[#F7F7F5] border border-[#E6E6E6] hover:border-[#F58220] transition-all"
+              className="group cursor-pointer flex flex-col justify-between bg-[#F7F7F5] border border-[#E6E6E6] hover:border-[#F58220] transition-all work-corner-accent"
             >
               <div className="aspect-[16/10] overflow-hidden bg-[#E6E6E6]">
                 <img
@@ -243,7 +336,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             {/* Serviço 02 */}
             <div
               onClick={() => handleNav('/servicos')}
-              className="group cursor-pointer flex flex-col justify-between bg-[#F7F7F5] border border-[#E6E6E6] hover:border-[#F58220] transition-all"
+              className="group cursor-pointer flex flex-col justify-between bg-[#F7F7F5] border border-[#E6E6E6] hover:border-[#F58220] transition-all work-corner-accent"
             >
               <div className="aspect-[16/10] overflow-hidden bg-[#E6E6E6]">
                 <img
@@ -274,7 +367,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             {/* Serviço 03 */}
             <div
               onClick={() => handleNav('/servicos')}
-              className="group cursor-pointer flex flex-col justify-between bg-[#F7F7F5] border border-[#E6E6E6] hover:border-[#F58220] transition-all"
+              className="group cursor-pointer flex flex-col justify-between bg-[#F7F7F5] border border-[#E6E6E6] hover:border-[#F58220] transition-all work-corner-accent"
             >
               <div className="aspect-[16/10] overflow-hidden bg-[#E6E6E6]">
                 <img
@@ -305,16 +398,19 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
       </section>
 
       {/* ========================================================
-          5. EMPRESA (Conteúdo distribuído em blocos + fotos reais)
+          4. A WORK CONSTRUTORA (Com imagem IFC do Drive devidamente enquadrada)
       ======================================================== */}
       <section className="py-20 sm:py-28 px-6 md:px-12 bg-[#F7F7F5] border-t border-[#E6E6E6]">
         <div className="max-w-7xl mx-auto space-y-16">
           {/* Header */}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-12 border-b border-[#E6E6E6]">
             <div>
-              <span className="text-[#F58220] font-sans text-xs uppercase tracking-wider font-semibold block mb-2">
-                Institucional
-              </span>
+              <div className="flex items-center gap-2 mb-2">
+                <span className="w-1.5 h-1.5 bg-[#F58220] rotate-45" />
+                <span className="text-[#F58220] font-sans text-xs uppercase tracking-wider font-semibold">
+                  Institucional
+                </span>
+              </div>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-heading text-[#111111] font-semibold tracking-tight">
                 A Work Construtora
               </h2>
@@ -324,16 +420,23 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             </p>
           </div>
 
-          {/* Bloco 1: História & Atuação Integrada (Com foto real da obra, sem fotos geradas por IA) */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            <div className="lg:col-span-6 overflow-hidden aspect-[4/3] bg-[#E6E6E6] border border-[#E6E6E6]">
-              <img
-                src={execucaoImg}
-                alt="Execução da obra da Work Construtora"
-                className="w-full h-full object-cover img-editorial"
-                loading="lazy"
-              />
+          {/* Bloco: Imagem IFC do Drive + Texto Institucional Integrado */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
+            {/* Imagem IFC (Renderização e Modelagem Técnica BIM / IFC) com enquadramento harmonioso */}
+            <div className="lg:col-span-6">
+              <div className="relative overflow-hidden aspect-[4/3] sm:aspect-[16/11] bg-[#ECECE8] border border-[#E6E6E6] flex items-center justify-center p-4 sm:p-6 work-corner-accent group">
+                <img
+                  src={ifcImg}
+                  alt="Modelagem técnica e planejamento de obra Work Construtora"
+                  className="w-full h-full object-contain object-center transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute bottom-3 left-3 bg-white/90 backdrop-blur-xs px-2.5 py-1 border border-[#E6E6E6] text-[11px] font-mono uppercase tracking-wider text-[#111111]/80">
+                  Planejamento BIM & Engenharia
+                </div>
+              </div>
             </div>
+
             <div className="lg:col-span-6 space-y-4">
               <span className="text-xs font-semibold uppercase tracking-wider text-[#F58220]">
                 Diretoria & Planejamento
@@ -350,7 +453,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             </div>
           </div>
 
-          {/* Bloco 2: Equipe Técnica Confirmada (Composição simples: monograma + nome + cargo) */}
+          {/* Bloco Equipe Confirmada com fotos reais/oficiais */}
           <div className="pt-8 border-t border-[#E6E6E6] space-y-8">
             <div>
               <span className="text-xs uppercase tracking-wider text-[#F58220] font-semibold block mb-2">
@@ -362,8 +465,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {/* Tarek Abdulmassih */}
-              <div className="p-6 bg-white border border-[#E6E6E6] flex gap-4 items-center">
+              {/* Tarek Abdulmassih - Foto Real Drive */}
+              <div className="p-6 bg-white border border-[#E6E6E6] flex gap-4 items-center work-corner-accent">
                 <div className="w-16 h-16 shrink-0 bg-[#F7F7F5] border border-[#E6E6E6] overflow-hidden">
                   <img
                     src={TAREK_IMAGE}
@@ -384,7 +487,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               </div>
 
               {/* Gabriel Costa */}
-              <div className="p-6 bg-white border border-[#E6E6E6] flex gap-4 items-center">
+              <div className="p-6 bg-white border border-[#E6E6E6] flex gap-4 items-center work-corner-accent">
                 <div className="w-16 h-16 shrink-0 bg-[#F7F7F5] border border-[#E6E6E6] overflow-hidden">
                   <img
                     src={GABRIEL_IMAGE}
@@ -405,7 +508,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               </div>
 
               {/* Engenharia (3 Engenheiros) */}
-              <div className="p-6 bg-white border border-[#E6E6E6] flex gap-4 items-center">
+              <div className="p-6 bg-white border border-[#E6E6E6] flex gap-4 items-center work-corner-accent">
                 <div className="w-16 h-16 shrink-0 bg-[#F7F7F5] border border-[#E6E6E6] overflow-hidden">
                   <img
                     src={ENGINEERING_TEAM_IMAGE}
@@ -429,7 +532,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             <div className="pt-4 flex justify-start">
               <button
                 onClick={() => handleNav('/empresa')}
-                className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-[#111111] hover:text-[#F58220] transition-colors border-b border-[#111111] hover:border-[#F58220] pb-1 cursor-pointer"
+                className="btn-work-dark"
               >
                 Conheça a trajetória completa da Work ↗
               </button>
@@ -439,15 +542,18 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
       </section>
 
       {/* ========================================================
-          6. REDES SOCIAIS / CONTATO (Área visualmente forte, sem formulário)
+          5. REDES SOCIAIS & CANAIS DIRETOS (Com Instagram oficial corrigido e ativo)
       ======================================================== */}
       <section className="py-20 sm:py-28 px-6 md:px-12 bg-[#FFFFFF] border-t border-[#E6E6E6]">
         <div className="max-w-7xl mx-auto space-y-16">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-12 border-b border-[#E6E6E6]">
             <div>
-              <span className="text-[#F58220] font-sans text-xs uppercase tracking-wider font-semibold block mb-2">
-                Fale com a Construtora
-              </span>
+              <div className="flex items-center gap-2 mb-2">
+                <span className="w-1.5 h-1.5 bg-[#F58220] rotate-45" />
+                <span className="text-[#F58220] font-sans text-xs uppercase tracking-wider font-semibold">
+                  Fale com a Construtora
+                </span>
+              </div>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-heading text-[#111111] font-semibold tracking-tight">
                 Canais Diretos & Redes Sociais
               </h2>
@@ -464,13 +570,13 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               href="https://wa.me/5591991447742"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-6 bg-[#F7F7F5] hover:bg-white border border-[#E6E6E6] hover:border-[#F58220] transition-all flex flex-col justify-between space-y-4 group"
+              className="p-6 bg-[#F7F7F5] hover:bg-white border border-[#E6E6E6] hover:border-[#F58220] transition-all flex flex-col justify-between space-y-4 group work-corner-accent cursor-pointer"
             >
               <div className="space-y-1">
                 <span className="text-xs uppercase font-semibold text-[#F58220] tracking-wider block">
                   WhatsApp Oficial
                 </span>
-                <h4 className="text-xl font-heading font-semibold text-[#111111]">
+                <h4 className="text-xl font-heading font-semibold text-[#111111] group-hover:text-[#F58220] transition-colors">
                   (91) 99144-7742
                 </h4>
                 <p className="text-xs text-[#111111]/70 leading-relaxed">
@@ -485,13 +591,13 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             {/* E-mail */}
             <a
               href="mailto:abdulmassih.tarek@gmail.com"
-              className="p-6 bg-[#F7F7F5] hover:bg-white border border-[#E6E6E6] hover:border-[#F58220] transition-all flex flex-col justify-between space-y-4 group"
+              className="p-6 bg-[#F7F7F5] hover:bg-white border border-[#E6E6E6] hover:border-[#F58220] transition-all flex flex-col justify-between space-y-4 group work-corner-accent cursor-pointer"
             >
               <div className="space-y-1">
                 <span className="text-xs uppercase font-semibold text-[#F58220] tracking-wider block">
                   E-mail Direto
                 </span>
-                <h4 className="text-base font-heading font-semibold text-[#111111] truncate">
+                <h4 className="text-base font-heading font-semibold text-[#111111] group-hover:text-[#F58220] transition-colors truncate">
                   abdulmassih.tarek@gmail.com
                 </h4>
                 <p className="text-xs text-[#111111]/70 leading-relaxed">
@@ -503,33 +609,41 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               </span>
             </a>
 
-            {/* Instagram - Ação temporariamente oculta */}
-            <div className="p-6 bg-[#F7F7F5] border border-[#E6E6E6] flex flex-col justify-between space-y-4">
+            {/* Instagram Oficial Ativo e Corrigido */}
+            <a
+              href="https://www.instagram.com/workconstrutora"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-6 bg-[#F7F7F5] hover:bg-white border border-[#E6E6E6] hover:border-[#F58220] transition-all flex flex-col justify-between space-y-4 group work-corner-accent cursor-pointer"
+            >
               <div className="space-y-1">
                 <span className="text-xs uppercase font-semibold text-[#F58220] tracking-wider block">
                   Instagram Oficial
                 </span>
-                <h4 className="text-xl font-heading font-semibold text-[#111111]">
-                  Work Construtora
+                <h4 className="text-xl font-heading font-semibold text-[#111111] group-hover:text-[#F58220] transition-colors">
+                  @workconstrutora
                 </h4>
                 <p className="text-xs text-[#111111]/70 leading-relaxed">
                   Acompanhe fotos e registros das nossas obras e projetos em Belém.
                 </p>
               </div>
-            </div>
+              <span className="text-xs font-semibold uppercase tracking-wider text-[#111111] group-hover:text-[#F58220] transition-colors inline-flex items-center gap-1">
+                Acessar perfil ↗
+              </span>
+            </a>
 
             {/* Endereço & Mapa */}
             <a
               href="https://maps.google.com/?q=Tv.+Dom+Romualdo+de+Seixas,+567+-+Umarizal,+Belém+-+PA"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-6 bg-[#F7F7F5] hover:bg-white border border-[#E6E6E6] hover:border-[#F58220] transition-all flex flex-col justify-between space-y-4 group"
+              className="p-6 bg-[#F7F7F5] hover:bg-white border border-[#E6E6E6] hover:border-[#F58220] transition-all flex flex-col justify-between space-y-4 group work-corner-accent cursor-pointer"
             >
               <div className="space-y-1">
                 <span className="text-xs uppercase font-semibold text-[#F58220] tracking-wider block">
                   Escritório em Belém
                 </span>
-                <h4 className="text-base font-heading font-semibold text-[#111111]">
+                <h4 className="text-base font-heading font-semibold text-[#111111] group-hover:text-[#F58220] transition-colors">
                   Tv. Dom Romualdo de Seixas, 567
                 </h4>
                 <p className="text-xs text-[#111111]/70 leading-relaxed">
@@ -540,54 +654,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                 Ver no Google Maps ↗
               </span>
             </a>
-          </div>
-
-          {/* Faixa Visual com Registros Reais de Canteiro */}
-          <div className="space-y-4">
-            <div className="flex justify-between items-baseline">
-              <span className="text-xs font-semibold uppercase tracking-wider text-[#111111]/60">
-                Registros do Canteiro de Obras
-              </span>
-              <span className="text-xs font-medium text-[#111111]/50">
-                Fotos reais da obra — Belém / PA
-              </span>
-            </div>
-
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <div className="aspect-square bg-[#F7F7F5] overflow-hidden border border-[#E6E6E6]">
-                <img
-                  src={fundacaoImg}
-                  alt="Fundação de obra Work"
-                  className="w-full h-full object-cover img-editorial"
-                  loading="lazy"
-                />
-              </div>
-              <div className="aspect-square bg-[#F7F7F5] overflow-hidden border border-[#E6E6E6]">
-                <img
-                  src={estruturaImg}
-                  alt="Estrutura de edifício Work"
-                  className="w-full h-full object-cover img-editorial"
-                  loading="lazy"
-                />
-              </div>
-              <div className="aspect-square bg-[#F7F7F5] overflow-hidden border border-[#E6E6E6]">
-                <img
-                  src={execucaoImg}
-                  alt="Execução de fachada Work"
-                  className="w-full h-full object-cover img-editorial"
-                  loading="lazy"
-                />
-              </div>
-              <div className="aspect-square bg-[#F7F7F5] overflow-hidden border border-[#E6E6E6]">
-                <img
-                  src={finalImg}
-                  alt="Edifício finalizado Work"
-                  className="w-full h-full object-cover img-editorial"
-                  style={{ objectPosition: 'center 18%' }}
-                  loading="lazy"
-                />
-              </div>
-            </div>
           </div>
         </div>
       </section>

@@ -3,7 +3,7 @@
  * Baseado estritamente no briefing oficial.
  */
 
-import tarekImg from '@/src/assets/images/tarek_abdulmassih.jpg';
+import tarekImg from '@/src/assets/images/tarek_real_drive.jpg';
 import gabrielImg from '@/src/assets/images/gabriel_costa.jpg';
 import engenhariaImg from '@/src/assets/images/equipe_engenharia.jpg';
 

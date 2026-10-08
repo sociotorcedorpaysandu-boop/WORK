@@ -98,7 +98,7 @@ export const Header: React.FC<HeaderProps> = ({
           <div className="hidden md:flex items-center">
             <button
               onClick={() => handleNavClick('/contato')}
-              className={`px-5 py-2.5 text-xs font-semibold uppercase tracking-wider transition-all cursor-pointer inline-flex items-center gap-2 border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F58220] ${
+              className={`px-5 py-2.5 text-xs font-semibold uppercase tracking-wider transition-all cursor-pointer inline-flex items-center gap-2 border btn-work-chamfer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F58220] ${
                 isLightText
                   ? 'text-white border-white/70 hover:bg-white hover:text-[#111111]'
                   : 'text-[#111111] border-[#111111] hover:bg-[#F58220] hover:border-[#F58220] hover:text-[#111111]'

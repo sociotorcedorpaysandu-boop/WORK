@@ -324,7 +324,7 @@ export const CompanyPage: React.FC<CompanyPageProps> = ({ onNavigate }) => {
           </div>
           <button
             onClick={() => handleNav('/contato')}
-            className="px-8 py-4 bg-[#111111] text-white hover:bg-[#181818] text-xs font-semibold uppercase tracking-wider transition-colors cursor-pointer whitespace-nowrap"
+            className="btn-work-dark whitespace-nowrap"
           >
             Fale com a Work ↗
           </button>

@@ -206,7 +206,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate }) => {
           </div>
           <button
             onClick={() => handleNav('/contato')}
-            className="px-8 py-4 bg-[#111111] hover:bg-[#F58220] text-white hover:text-[#111111] text-xs font-semibold uppercase tracking-wider transition-colors cursor-pointer whitespace-nowrap"
+            className="btn-work-dark whitespace-nowrap"
           >
             Fale conosco ↗
           </button>

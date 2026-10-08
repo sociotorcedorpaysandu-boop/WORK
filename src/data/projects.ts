@@ -10,6 +10,13 @@
  * - CONTENT_PLACEHOLDER: dados técnicos provisórios fáceis de substituir
  */
 
+// IMAGENS DE OBRAS REAIS WORK (DRIVE OFICIAL)
+import municipalidadePortico1 from '@/src/assets/images/municipalidade_portico_1.jpeg';
+import municipalidadePortico2 from '@/src/assets/images/municipalidade_portico_2.jpeg';
+import municipalidadeExecucao from '@/src/assets/images/municipalidade_execucao_real.jpg';
+import municipalidadeEstrutura from '@/src/assets/images/municipalidade_estrutura_real.jpg';
+import municipalidadeFundacao from '@/src/assets/images/municipalidade_fundacao_real.jpg';
+
 // IMAGENS DE CAPA (MOCK_PROJECT_IMAGE)
 import edsonCapa from '@/src/assets/images/edson_corporate_building_1790334474133.jpg';
 import vilaNovaCapa from '@/src/assets/images/vila_nova_corporate_1790334484578.jpg';
@@ -59,6 +66,8 @@ export interface Project {
   galeria: string[];
   // Marcador explícito de demonstração
   isMock?: boolean;
+  // Obra com acompanhamento de evolução fotográfica
+  hasEvolution?: boolean;
   // Campos complementares de controle e compatibilidade com listagens
   temFotoReal: boolean;
   destaqueHome: boolean;
@@ -75,6 +84,33 @@ export interface Project {
 }
 
 export const PROJECTS: Project[] = [
+  {
+    id: 'municipalidade',
+    slug: 'municipalidade',
+    aliases: ['predio-municipalidade'],
+    nome: 'Prédio Municipalidade',
+    // DRIVE OFICIAL: municipalidade portico 1
+    imagemCapa: municipalidadePortico1,
+    periodo: '2023 a 2024',
+    descricao:
+      'Edifício comercial e corporativo executado pela Work Construtora em Belém, com rigor técnico nas etapas de fundação, estrutura de concreto armado e execução completa de fachada e pórtico de entrada.',
+    metragem: '2.100 m²',
+    acabamento: 'Alto padrão / Comercial corporativo',
+    informacoesComplementares:
+      'Acompanhamento técnico integral em todas as etapas da obra, desde a fundação profunda e estruturação dos pavimentos até o fechamento de fachada, pórtico de entrada e acabamentos das áreas comuns.',
+    galeria: [
+      municipalidadePortico1,
+      municipalidadePortico2,
+      municipalidadeExecucao,
+      municipalidadeEstrutura,
+      municipalidadeFundacao
+    ],
+    temFotoReal: true,
+    destaqueHome: true,
+    hasEvolution: true,
+    isMock: false,
+    categoria: 'Corporativo'
+  },
   {
     id: 'edson-corporate',
     slug: 'edson-corporate',
@@ -136,7 +172,7 @@ export const PROJECTS: Project[] = [
     galeria: [salinasG1, salinasG2, salinasG3, salinasG4],
     isMock: true,
     temFotoReal: false,
-    destaqueHome: true,
+    destaqueHome: false,
     categoria: 'Residencial'
   },
   {

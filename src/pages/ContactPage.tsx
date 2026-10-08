@@ -73,19 +73,27 @@ export const ContactPage: React.FC = () => {
               </a>
             </div>
 
-            {/* Instagram - Ação temporariamente oculta */}
-            <div className="p-8 bg-[#F7F7F5] border border-[#E6E6E6] flex flex-col justify-between space-y-6">
+            {/* Instagram Oficial */}
+            <div className="p-8 bg-[#F7F7F5] border border-[#E6E6E6] flex flex-col justify-between space-y-6 work-corner-accent">
               <div className="space-y-3">
                 <span className="text-xs uppercase font-semibold text-[#F58220] tracking-wider block">
                   Instagram Oficial
                 </span>
                 <h2 className="text-2xl sm:text-3xl font-heading font-semibold text-[#111111]">
-                  Work Construtora
+                  @workconstrutora
                 </h2>
                 <p className="text-sm text-[#111111]/75 leading-relaxed">
                   Acompanhe fotos de canteiro, etapas de obras e projetos em andamento em Belém.
                 </p>
               </div>
+              <a
+                href="https://www.instagram.com/workconstrutora"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-3.5 bg-[#111111] hover:bg-[#F58220] text-white hover:text-[#111111] text-xs font-semibold uppercase tracking-wider transition-colors text-center inline-block cursor-pointer btn-work-chamfer"
+              >
+                Acessar Instagram ↗
+              </a>
             </div>
           </div>
 

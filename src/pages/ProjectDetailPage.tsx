@@ -1,5 +1,6 @@
 import React from 'react';
 import { PROJECTS, Project } from '@/src/data/projects';
+import { MunicipalidadeEvolution } from '@/src/components/MunicipalidadeEvolution';
 
 interface ProjectDetailPageProps {
   slug: string;
@@ -188,7 +189,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
           </div>
 
           {/* Bloco de consulta direta com a Work */}
-          <div className="pt-8 border-t border-[#E6E6E6] flex flex-col sm:flex-row sm:items-center justify-between gap-6 bg-[#F7F7F5] p-8 border border-[#E6E6E6]">
+          <div className="pt-8 border-t border-[#E6E6E6] flex flex-col sm:flex-row sm:items-center justify-between gap-6 bg-[#F7F7F5] p-8 border border-[#E6E6E6] work-corner-accent">
             <div>
               <h4 className="text-lg font-heading font-semibold text-[#111111]">
                 Deseja consultar especificações técnicas ou projeto similar?
@@ -199,13 +200,20 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
             </div>
             <button
               onClick={() => handleNav('/contato')}
-              className="px-6 py-3.5 bg-[#111111] hover:bg-[#F58220] text-white hover:text-[#111111] text-xs font-semibold uppercase tracking-wider transition-colors cursor-pointer whitespace-nowrap self-start sm:self-auto"
+              className="btn-work-dark whitespace-nowrap self-start sm:self-auto cursor-pointer"
             >
               Falar com a equipe ↗
             </button>
           </div>
         </div>
       </section>
+
+      {/* ========================================================
+          EVOLUÇÃO DA OBRA (Quando aplicável: Municipalidade)
+      ======================================================== */}
+      {(project.hasEvolution || project.id === 'municipalidade' || project.slug === 'municipalidade') && (
+        <MunicipalidadeEvolution embeddedInDetail />
+      )}
 
       {/* ========================================================
           08. GALERIA DE FOTOS (Somente exibida quando houver fotos)

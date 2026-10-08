@@ -37,13 +37,181 @@ html {
   font-family: var(--font-sans);
 }
 
-/* Custom subtle image reveal */
+/* ========================================================
+   SLOW ZOOM / KEN BURNS EFFECT (HERO)
+   Suave, contínuo, discreto e respeita prefers-reduced-motion
+======================================================== */
+@keyframes slowZoomKenBurns {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-slow-zoom {
+  animation: slowZoomKenBurns 28s ease-in-out infinite alternate;
+  transform-origin: center center;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-slow-zoom {
+    animation: none !important;
+    transform: none !important;
+  }
+  
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ========================================================
+   WORK BOTÕES GEOMÉTRICOS
+   Inspirados nos cortes em 45° e vigas angulares da marca Work
+======================================================== */
+/* Recorte chanfrado sutil no canto superior direito inspirado na coluna Work */
+.btn-work-chamfer {
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+  position: relative;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-work-chamfer:hover {
+  transform: translateY(-1px);
+}
+
+.btn-work-chamfer-reverse {
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%);
+  position: relative;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Botão Primário Laranja Work */
+.btn-work-primary {
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+  background-color: #F58220;
+  color: #111111;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 0.8125rem;
+  padding: 0.95rem 1.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-work-primary:hover {
+  background-color: #FA8E32;
+  box-shadow: 0 4px 14px rgba(245, 130, 32, 0.25);
+  transform: translateY(-1px);
+}
+
+/* Botão Secundário Dark Work */
+.btn-work-dark {
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+  background-color: #111111;
+  color: #FFFFFF;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 0.8125rem;
+  padding: 0.95rem 1.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  border-left: 2px solid transparent;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-work-dark:hover {
+  background-color: #F58220;
+  color: #111111;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
+}
+
+/* Botão Outline / Vidro */
+.btn-work-outline {
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #FFFFFF;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  font-size: 0.8125rem;
+  padding: 0.95rem 1.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-work-outline:hover {
+  border-color: #FFFFFF;
+  background-color: rgba(255, 255, 255, 0.12);
+  transform: translateY(-1px);
+}
+
+/* ========================================================
+   ELEMENTOS GEOMÉTRICOS DA MARCA
+======================================================== */
+/* Cantoneira geométrica sutil inspirada na coluna Work */
+.work-corner-accent {
+  position: relative;
+}
+.work-corner-accent::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 12px;
+  height: 12px;
+  background: linear-gradient(135deg, transparent 50%, #F58220 50%);
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Divisor sutil com detalhe angular da Work */
+.work-geometric-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+.work-geometric-divider::before,
+.work-geometric-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background-color: #E6E6E6;
+}
+.work-geometric-divider-mark {
+  width: 6px;
+  height: 6px;
+  background-color: #F58220;
+  transform: rotate(45deg);
+}
+
+/* Imagens com leve zoom hover */
 .img-editorial {
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
 }
 
 .img-editorial:hover {
-  transform: scale(1.015);
+  transform: scale(1.018);
 }
 
 /* Remove default scrollbars for horizontal overflows if any */

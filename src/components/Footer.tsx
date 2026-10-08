@@ -27,7 +27,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           <div>
             <button
               onClick={() => handleNav('/contato')}
-              className="inline-flex items-center gap-3 px-8 py-4 bg-[#F58220] hover:bg-[#F58220]/90 text-[#111111] font-semibold text-xs tracking-wider uppercase transition-colors cursor-pointer group"
+              className="btn-work-primary group"
             >
               Fale com a Work
               <span className="text-sm transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
@@ -124,6 +124,17 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   className="hover:text-white inline-flex items-center gap-1.5 transition-colors"
                 >
                   WhatsApp
+                  <span className="text-[#F58220] text-xs">↗</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.instagram.com/workconstrutora"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white inline-flex items-center gap-1.5 transition-colors"
+                >
+                  Instagram (@workconstrutora)
                   <span className="text-[#F58220] text-xs">↗</span>
                 </a>
               </li>

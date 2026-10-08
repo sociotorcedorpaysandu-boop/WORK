@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import fundacaoImg from '@/src/assets/images/municipalidade_fundacao_real.jpg';
 import estruturaImg from '@/src/assets/images/municipalidade_estrutura_real.jpg';
 import execucaoImg from '@/src/assets/images/municipalidade_execucao_real.jpg';
-import finalImg from '@/src/assets/images/municipalidade_projeto_final_real.jpg';
+import portico2Img from '@/src/assets/images/municipalidade_portico_2.jpeg';
 
 interface Stage {
   id: string;
@@ -41,34 +41,40 @@ const STAGES: Stage[] = [
   {
     id: 'resultado',
     nome: 'Projeto final',
-    subtitulo: 'Edifício concluído',
-    descricao: 'Visualização do resultado final do empreendimento.',
-    imagem: finalImg,
-    objectPosition: 'center 18%'
+    subtitulo: 'Pórtico e fachada concluídos',
+    descricao: 'Visualização do resultado final do empreendimento com pórtico de entrada e acabamentos.',
+    imagem: portico2Img,
+    objectPosition: 'center 35%'
   }
 ];
 
-export const MunicipalidadeEvolution: React.FC = () => {
+interface MunicipalidadeEvolutionProps {
+  embeddedInDetail?: boolean;
+}
+
+export const MunicipalidadeEvolution: React.FC<MunicipalidadeEvolutionProps> = ({
+  embeddedInDetail = false
+}) => {
   const [activeStage, setActiveStage] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const current = STAGES[activeStage];
 
   return (
-    <section className="py-20 sm:py-28 px-6 md:px-12 bg-[#F7F7F5] border-t border-[#E6E6E6]">
+    <section className={`py-20 sm:py-24 px-6 md:px-12 ${embeddedInDetail ? 'bg-[#F7F7F5] border-t border-[#E6E6E6]' : 'bg-[#F7F7F5] border-t border-[#E6E6E6]'}`}>
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-12 border-b border-[#E6E6E6]">
           <div>
             <span className="text-[#F58220] font-sans text-xs uppercase tracking-wider font-semibold block mb-2">
-              Acompanhamento de Obra
+              Acompanhamento Construtivo
             </span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-heading text-[#111111] font-semibold tracking-tight">
-              Prédio Municipalidade — Evolução da Obra
+              Evolução da Obra
             </h2>
           </div>
           <p className="text-sm sm:text-base text-[#111111]/75 max-w-md leading-relaxed">
-            Registro fotográfico das etapas construtivas da obra realizada pela Work Construtora em Belém.
+            Registro fotográfico das etapas construtivas: Fundação, Estrutura, Execução e Projeto Final.
           </p>
         </div>
 
