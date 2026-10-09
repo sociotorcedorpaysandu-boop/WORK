@@ -4,7 +4,7 @@ import ifcImg from '@/src/assets/images/ifc_work.png';
 import fundacaoImg from '@/src/assets/images/municipalidade_fundacao_real.jpg';
 import estruturaImg from '@/src/assets/images/municipalidade_estrutura_real.jpg';
 import finalImg from '@/src/assets/images/municipalidade_projeto_final_real.jpg';
-import engineeringBg from '@/src/assets/images/engineering_in_motion_site_1790334507218.jpg';
+import municipalidadeParallaxImg from '@/src/assets/images/municipalidade_parallax.jpeg';
 import { ProjectPlaceholder } from '@/src/components/ProjectPlaceholder';
 import { WorkOrganicPattern } from '@/src/components/WorkOrganicPattern';
 import { FEATURED_PROJECTS } from '@/src/data/projects';
@@ -30,26 +30,56 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
   // Garante que Municipalidade é o 1º de exatamente 3 destaques (1. Municipalidade, 2. Edson, 3. Vila Nova)
   const featuredThree = FEATURED_PROJECTS.slice(0, 3);
 
-  // Parallax suave para o fundo da seção Serviços
+  // Parallax real contínuo e suave na seção Serviços (Desktop)
   const servicesRef = useRef<HTMLElement>(null);
-  const [servicesParallaxY, setServicesParallaxY] = useState(0);
+  const [parallaxY, setParallaxY] = useState(0);
+  const rafIdRef = useRef<number | null>(null);
 
   useEffect(() => {
-    const handleScroll = () => {
+    const updateParallax = () => {
       if (!servicesRef.current) return;
+
+      // Respeitar prefers-reduced-motion e desativar no mobile
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const isMobile = window.innerWidth < 1024;
+      if (prefersReduced || isMobile) {
+        setParallaxY(0);
+        return;
+      }
+
       const rect = servicesRef.current.getBoundingClientRect();
       const windowH = window.innerHeight;
-      if (rect.top < windowH && rect.bottom > 0) {
-        // Ponto central relativo da seção
-        const centerOffset = (rect.top + rect.height / 2) - (windowH / 2);
-        // Efeito parallax suave e discreto (fator 0.10)
-        setServicesParallaxY(centerOffset * 0.10);
+      const sectionH = rect.height;
+      const totalTravel = windowH + sectionH;
+
+      if (rect.top <= windowH && rect.bottom >= 0 && totalTravel > 0) {
+        // Progresso contínuo de 0 (ao entrar na base) a 1 (ao sair pelo topo)
+        const progress = Math.min(Math.max((windowH - rect.top) / totalTravel, 0), 1);
+        // Deslocamento contínuo suave de aproximadamente 80px (-40px a +40px)
+        const move = (progress - 0.5) * 80;
+        setParallaxY(move);
       }
     };
 
+    const handleScroll = () => {
+      if (rafIdRef.current !== null) return;
+      rafIdRef.current = requestAnimationFrame(() => {
+        rafIdRef.current = null;
+        updateParallax();
+      });
+    };
+
     window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleScroll);
+    updateParallax();
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+      if (rafIdRef.current !== null) {
+        cancelAnimationFrame(rafIdRef.current);
+      }
+    };
   }, []);
 
   return (
@@ -259,35 +289,43 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
       {/* ========================================================
           3. SERVIÇOS (Construção, BTS e Projetos de Engenharia)
-          - Imagem de fundo com efeito parallax suave e discreto
-          - Padrão gráfico cinza dissipativo da Work
-          - Fundo valoriza a seção mantendo 100% de legibilidade
+          - Background fotográfico com municipalidade parallax.jpeg
+          - Parallax real no desktop com deslocamento suave e contínuo (~80px)
+          - Overlay branco translúcido (~86%) preservando clareza e total legibilidade
+          - Padrão gráfico triangular cinza Work posicionado SOBRE o background/overlay
       ======================================================== */}
       <section
         ref={servicesRef}
         className="relative py-20 sm:py-28 px-6 md:px-12 bg-[#F9F9F8] border-t border-[#E6E6E6] overflow-hidden"
       >
-        {/* Imagem de Fundo com Parallax Suave e Gracioso */}
+        {/* Background Fotográfico com Parallax Real (municipalidade parallax.jpeg) */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-          <img
-            src={engineeringBg}
-            alt=""
+          <div
             style={{
-              transform: `translate3d(0, ${servicesParallaxY.toFixed(1)}px, 0) scale(1.12)`,
+              transform: `translate3d(0, ${parallaxY.toFixed(1)}px, 0)`,
+              willChange: 'transform',
             }}
-            className="w-full h-full object-cover object-center opacity-12 filter grayscale will-change-transform"
-          />
-          {/* Véu translúcido para assegurar excelente contraste e clareza */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#F9F9F8] via-[#F9F9F8]/85 to-[#F9F9F8]" />
+            className="absolute -top-16 -bottom-16 inset-x-0 w-full h-[calc(100%+128px)]"
+          >
+            <img
+              src={municipalidadeParallaxImg}
+              alt="Prédio Municipalidade — Work Construtora"
+              className="w-full h-full object-cover object-center filter contrast-95 brightness-102"
+              loading="lazy"
+            />
+          </div>
+          {/* Camada branca translúcida forte (~86%) para manter o visual claro e elegante */}
+          <div className="absolute inset-0 bg-white/86" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#F9F9F8]/90 via-transparent to-[#F9F9F8]/90" />
         </div>
 
-        {/* Padrão Gráfico Cinza Orgânico — Dissipativo no topo direito */}
+        {/* Padrão Gráfico Triangular Cinza SOBRE a imagem/overlay (dissolvendo do canto superior direito para o centro/esquerda) */}
         <WorkOrganicPattern
           variant="top-right"
-          className="absolute top-0 right-0 w-80 sm:w-96 md:w-[480px] h-72 sm:h-80 md:h-96 z-0"
+          className="absolute top-0 right-0 w-80 sm:w-96 md:w-[500px] h-72 sm:h-80 md:h-[400px] z-10 pointer-events-none"
         />
 
-        <div className="relative z-10 max-w-7xl mx-auto">
+        <div className="relative z-20 max-w-7xl mx-auto">
           {/* Header */}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-12 border-b border-[#E6E6E6]">
             <div>
