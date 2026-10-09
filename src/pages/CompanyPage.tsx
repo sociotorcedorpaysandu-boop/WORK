@@ -3,6 +3,7 @@ import { COMPANY_INFO } from '@/src/data/company';
 import { TEAM, TAREK_IMAGE, GABRIEL_IMAGE, ENGINEERING_TEAM_IMAGE } from '@/src/data/team';
 import execucaoImg from '@/src/assets/images/municipalidade_execucao_real.jpg';
 import estruturaImg from '@/src/assets/images/municipalidade_estrutura_real.jpg';
+import { WorkOrganicPattern } from '@/src/components/WorkOrganicPattern';
 
 interface CompanyPageProps {
   onNavigate: (path: string) => void;
@@ -17,8 +18,14 @@ export const CompanyPage: React.FC<CompanyPageProps> = ({ onNavigate }) => {
   return (
     <div className="w-full bg-[#FFFFFF] text-[#111111]">
       {/* 01. Hero Section (Topo / Apresentação) */}
-      <section className="pt-36 pb-16 px-6 md:px-12 bg-[#F7F7F5] border-b border-[#E6E6E6]">
-        <div className="max-w-7xl mx-auto space-y-4">
+      <section className="relative pt-36 pb-16 px-6 md:px-12 bg-[#F7F7F5] border-b border-[#E6E6E6] overflow-hidden">
+        {/* Padrão Gráfico Cinza Orgânico — Dissipativo */}
+        <WorkOrganicPattern
+          variant="top-right"
+          className="absolute top-0 right-0 w-80 sm:w-96 md:w-[480px] h-72 sm:h-80 md:h-96 z-0"
+        />
+
+        <div className="relative z-10 max-w-7xl mx-auto space-y-4">
           <span className="text-[#F58220] font-sans text-xs uppercase tracking-wider font-semibold block">
             Institucional
           </span>

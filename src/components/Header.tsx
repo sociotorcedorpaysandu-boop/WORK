@@ -36,8 +36,8 @@ export const Header: React.FC<HeaderProps> = ({
   };
 
   // Determine header appearance
-  // When scrolled: crisp white background with subtle border
-  // When not scrolled: transparent (light logo/text if hero is dark, dark logo/text if hero is light)
+  // When scrolled: light frosted glass bar with backdrop blur and high contrast
+  // When not scrolled: subtle transparent glass effect (over dark hero or light hero)
   const isTransparent = !isScrolled;
   const isLightText = isTransparent && isHeroDark;
 
@@ -53,8 +53,10 @@ export const Header: React.FC<HeaderProps> = ({
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? 'bg-white/98 backdrop-blur-md border-b border-[#E6E6E6] py-3 shadow-xs'
-            : 'bg-transparent py-4 sm:py-5'
+            ? 'bg-white/80 backdrop-blur-md border-b border-[#E6E6E6]/80 py-3 shadow-[0_4px_24px_rgba(0,0,0,0.04)]'
+            : isHeroDark
+            ? 'bg-black/25 backdrop-blur-md border-b border-white/10 py-4 sm:py-5'
+            : 'bg-white/60 backdrop-blur-md border-b border-[#E6E6E6]/60 py-4 sm:py-5'
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
@@ -67,7 +69,7 @@ export const Header: React.FC<HeaderProps> = ({
             <Logo variant={isLightText ? 'light' : 'dark'} size="lg" />
           </button>
 
-          {/* Desktop Nav Links (Maior legibilidade e espaçamento refinado) */}
+          {/* Desktop Nav Links (Alta legibilidade e espaçamento refinado) */}
           <nav className="hidden md:flex items-center gap-8 lg:gap-12">
             {navLinks.map((link) => {
               const isActive = currentPath === link.path;
@@ -79,10 +81,10 @@ export const Header: React.FC<HeaderProps> = ({
                     isLightText
                       ? isActive
                         ? 'text-white'
-                        : 'text-white/85 hover:text-white'
+                        : 'text-white/90 hover:text-white drop-shadow-xs'
                       : isActive
                       ? 'text-[#111111]'
-                      : 'text-[#111111]/80 hover:text-[#F58220]'
+                      : 'text-[#111111]/85 hover:text-[#F58220]'
                   }`}
                 >
                   {link.label}
@@ -100,8 +102,8 @@ export const Header: React.FC<HeaderProps> = ({
               onClick={() => handleNavClick('/contato')}
               className={`px-5 py-2.5 text-xs font-semibold uppercase tracking-wider transition-all cursor-pointer inline-flex items-center gap-2 border btn-work-chamfer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F58220] ${
                 isLightText
-                  ? 'text-white border-white/70 hover:bg-white hover:text-[#111111]'
-                  : 'text-[#111111] border-[#111111] hover:bg-[#F58220] hover:border-[#F58220] hover:text-[#111111]'
+                  ? 'text-white border-white/70 bg-white/10 hover:bg-white hover:text-[#111111] backdrop-blur-xs'
+                  : 'text-[#111111] border-[#111111] bg-white/40 hover:bg-[#F58220] hover:border-[#F58220] hover:text-[#111111]'
               }`}
             >
               Fale conosco

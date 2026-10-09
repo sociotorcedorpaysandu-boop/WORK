@@ -4,7 +4,9 @@ import ifcImg from '@/src/assets/images/ifc_work.png';
 import fundacaoImg from '@/src/assets/images/municipalidade_fundacao_real.jpg';
 import estruturaImg from '@/src/assets/images/municipalidade_estrutura_real.jpg';
 import finalImg from '@/src/assets/images/municipalidade_projeto_final_real.jpg';
+import engineeringBg from '@/src/assets/images/engineering_in_motion_site_1790334507218.jpg';
 import { ProjectPlaceholder } from '@/src/components/ProjectPlaceholder';
+import { WorkOrganicPattern } from '@/src/components/WorkOrganicPattern';
 import { FEATURED_PROJECTS } from '@/src/data/projects';
 import { TAREK_IMAGE, GABRIEL_IMAGE, ENGINEERING_TEAM_IMAGE } from '@/src/data/team';
 
@@ -25,158 +27,39 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
     }
   };
 
-  // Garante que Municipalidade é o 1º de exatamente 3 destaques
+  // Garante que Municipalidade é o 1º de exatamente 3 destaques (1. Municipalidade, 2. Edson, 3. Vila Nova)
   const featuredThree = FEATURED_PROJECTS.slice(0, 3);
 
-  // Controle de scroll contínuo para o frame sticky desktop (3 etapas suaves em wrapper de 300vh)
-  const desktopStickyWrapperRef = useRef<HTMLDivElement>(null);
-  const [scrollProgress, setScrollProgress] = useState(0);
-  const rafIdRef = useRef<number | null>(null);
+  // Parallax suave para o fundo da seção Serviços
+  const servicesRef = useRef<HTMLElement>(null);
+  const [servicesParallaxY, setServicesParallaxY] = useState(0);
 
   useEffect(() => {
-    const updateScrollProgress = () => {
-      if (!desktopStickyWrapperRef.current) return;
-      const rect = desktopStickyWrapperRef.current.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-      // Offset de ancoragem sticky no topo (top-20 / top-24)
-      const stickyOffset = 96;
-      const totalScrollableDistance = rect.height - windowHeight;
-
-      if (totalScrollableDistance <= 0) return;
-
-      const currentScrolled = stickyOffset - rect.top;
-      const progress = Math.min(Math.max(currentScrolled / totalScrollableDistance, 0), 1);
-      setScrollProgress(progress);
-    };
-
     const handleScroll = () => {
-      if (rafIdRef.current !== null) return;
-      rafIdRef.current = requestAnimationFrame(() => {
-        rafIdRef.current = null;
-        updateScrollProgress();
-      });
+      if (!servicesRef.current) return;
+      const rect = servicesRef.current.getBoundingClientRect();
+      const windowH = window.innerHeight;
+      if (rect.top < windowH && rect.bottom > 0) {
+        // Ponto central relativo da seção
+        const centerOffset = (rect.top + rect.height / 2) - (windowH / 2);
+        // Efeito parallax suave e discreto (fator 0.10)
+        setServicesParallaxY(centerOffset * 0.10);
+      }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('resize', handleScroll);
-    updateScrollProgress();
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleScroll);
-      if (rafIdRef.current !== null) {
-        cancelAnimationFrame(rafIdRef.current);
-      }
-    };
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  // Interpolação contínua e suave de opacidade, escala e translação para cada obra
-  const computeProjectStyles = (idx: number, p: number) => {
-    let opacity = 0;
-    let imageTranslateY = 0;
-    let imageScale = 1;
-    let textTranslateY = 0;
-
-    if (idx === 0) {
-      if (p <= 0.20) {
-        opacity = 1;
-        imageTranslateY = 0;
-        imageScale = 1;
-        textTranslateY = 0;
-      } else if (p < 0.42) {
-        const t = (p - 0.20) / (0.42 - 0.20);
-        opacity = 1 - t;
-        imageTranslateY = -24 * t;
-        imageScale = 1 + 0.03 * t;
-        textTranslateY = -18 * t;
-      } else {
-        opacity = 0;
-        imageTranslateY = -24;
-        imageScale = 1.03;
-        textTranslateY = -18;
-      }
-    } else if (idx === 1) {
-      if (p < 0.20) {
-        opacity = 0;
-        imageTranslateY = 24;
-        imageScale = 0.98;
-        textTranslateY = 18;
-      } else if (p < 0.42) {
-        const t = (p - 0.20) / (0.42 - 0.20);
-        opacity = t;
-        imageTranslateY = 24 * (1 - t);
-        imageScale = 0.98 + 0.02 * t;
-        textTranslateY = 18 * (1 - t);
-      } else if (p <= 0.60) {
-        opacity = 1;
-        imageTranslateY = 0;
-        imageScale = 1;
-        textTranslateY = 0;
-      } else if (p < 0.82) {
-        const t = (p - 0.60) / (0.82 - 0.60);
-        opacity = 1 - t;
-        imageTranslateY = -24 * t;
-        imageScale = 1 + 0.03 * t;
-        textTranslateY = -18 * t;
-      } else {
-        opacity = 0;
-        imageTranslateY = -24;
-        imageScale = 1.03;
-        textTranslateY = -18;
-      }
-    } else if (idx === 2) {
-      if (p < 0.60) {
-        opacity = 0;
-        imageTranslateY = 24;
-        imageScale = 0.98;
-        textTranslateY = 18;
-      } else if (p < 0.82) {
-        const t = (p - 0.60) / (0.82 - 0.60);
-        opacity = t;
-        imageTranslateY = 24 * (1 - t);
-        imageScale = 0.98 + 0.02 * t;
-        textTranslateY = 18 * (1 - t);
-      } else {
-        opacity = 1;
-        imageTranslateY = 0;
-        imageScale = 1;
-        textTranslateY = 0;
-      }
-    }
-
-    const isVisible = opacity > 0.01;
-    const isInteractive = opacity > 0.45;
-
-    return {
-      opacity,
-      isVisible,
-      imageStyle: {
-        opacity,
-        transform: `translate3d(0, ${imageTranslateY.toFixed(2)}px, 0) scale(${imageScale.toFixed(4)})`,
-        visibility: isVisible ? ('visible' as const) : ('hidden' as const),
-        pointerEvents: isInteractive ? ('auto' as const) : ('none' as const),
-        willChange: 'opacity, transform',
-      },
-      textStyle: {
-        opacity,
-        transform: `translate3d(0, ${textTranslateY.toFixed(2)}px, 0)`,
-        visibility: isVisible ? ('visible' as const) : ('hidden' as const),
-        pointerEvents: isInteractive ? ('auto' as const) : ('none' as const),
-        willChange: 'opacity, transform',
-      },
-    };
-  };
-
-  // Determina qual estágio está predominante para os marcadores sutis
-  const activeStage = scrollProgress < 0.31 ? 0 : scrollProgress < 0.71 ? 1 : 2;
 
   return (
     <div className="w-full bg-[#FFFFFF] text-[#111111]">
       {/* ========================================================
           1. HERO SECTION (Imagem Municipalidade Pórtico 1 + Slow Zoom / Ken Burns)
+          Espaçamento refinado e sem lacunas excessivas
       ======================================================== */}
-      <section className="relative min-h-[85vh] lg:min-h-[90vh] flex flex-col justify-center pt-28 pb-16 px-6 md:px-12 bg-[#111111] text-white overflow-hidden">
-        {/* Foto real municipalidade portico 1 com movimento de aproximação suave e contínuo (Ken Burns) */}
+      <section className="relative min-h-[80vh] lg:min-h-[85vh] flex flex-col justify-center pt-28 pb-14 sm:pb-16 px-6 md:px-12 bg-[#111111] text-white overflow-hidden">
+        {/* Foto real municipalidade portico 1 com movimento contínuo de slow zoom (Ken Burns) */}
         <div className="absolute inset-0 z-0 overflow-hidden">
           <img
             src={portico1Img}
@@ -184,13 +67,13 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             className="w-full h-full object-cover object-center opacity-45 filter brightness-95 animate-slow-zoom"
             loading="eager"
           />
-          {/* Gradientes elegantes calibrados para contraste e alta legibilidade */}
+          {/* Gradientes elegantes para contraste impecável e legibilidade máxima */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-[#111111]/55 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#111111]/85 via-[#111111]/40 to-transparent" />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto w-full py-12">
-          <div className="max-w-3xl space-y-6">
+        <div className="relative z-10 max-w-7xl mx-auto w-full py-6 sm:py-8">
+          <div className="max-w-3xl space-y-5 sm:space-y-6">
             <div className="inline-flex items-center gap-2">
               <span className="w-2 h-2 bg-[#F58220] rotate-45 shrink-0" />
               <span className="text-xs uppercase font-sans tracking-widest text-[#F58220] font-semibold">
@@ -206,7 +89,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               Planejamento, gestão e execução de obras com precisão em cada etapa.
             </p>
 
-            <div className="pt-4 flex flex-wrap items-center gap-4">
+            <div className="pt-2 sm:pt-3 flex flex-wrap items-center gap-4">
               <button
                 onClick={() => scrollToSection('obras-destaque')}
                 className="btn-work-primary cursor-pointer"
@@ -227,15 +110,19 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
       {/* ========================================================
           2. OBRAS EM DESTAQUE NA HOME
-          - Ordem: 1. Prédio Municipalidade | 2. Edson Corporate | 3. Vila Nova Corporate
-          - Desktop (lg: >=1024px): Seção sticky controlada pelo scroll (wrapper 300vh, 1 obra por etapa)
-          - Mobile / Tablet (<1024px): Rolagem normal sequencial (imagem → título → descrição → botão)
-          - CTA Geral: FORA da área sticky, em fluxo normal da página
+          - Sem scroll sticky / parallax travado
+          - Fluxo normal da página
+          - Apresentação alternada e organizada dos 3 destaques:
+            1. Prédio Municipalidade
+            2. Edson Corporate
+            3. Vila Nova Corporate
+          - Excelente hierarquia visual e botão "Ver detalhes da obra"
+          - Botão geral "Ver catálogo completo de obras" em fluxo normal ao final
       ======================================================== */}
-      <section id="obras-destaque" className="py-20 sm:py-28 px-6 md:px-12 bg-[#FFFFFF]">
+      <section id="obras-destaque" className="py-16 sm:py-20 lg:py-24 px-6 md:px-12 bg-[#FFFFFF]">
         <div className="max-w-7xl mx-auto">
           {/* Header da Seção */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-12 border-b border-[#E6E6E6]">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-10 border-b border-[#E6E6E6]">
             <div>
               <div className="flex items-center gap-2 mb-2">
                 <span className="w-1.5 h-1.5 bg-[#F58220] rotate-45" />
@@ -258,200 +145,113 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             </button>
           </div>
 
-          {/* ====================================================
-              DESKTOP (lg: >= 1024px): Sticky Controlado pelo Scroll
-              - Wrapper com 300vh para 3 etapas naturais de rolagem
-              - Apenas UMA obra visível por vez no frame sticky
-              - Imagem à esquerda com crossfade + conteúdo à direita com fade suave
-              - Sem textos decorativos 01/03 ou DESTAQUE PRIORITÁRIO
-          ==================================================== */}
-          <div className="hidden lg:block mt-8">
-            <div ref={desktopStickyWrapperRef} className="relative h-[300vh]">
-              {/* Frame visual sticky que permanece centralizado durante a rolagem */}
-              <div className="sticky top-20 lg:top-24 h-[calc(100vh-6rem)] min-h-[560px] max-h-[760px] flex items-center justify-center">
-                <div className="w-full bg-white border border-[#E6E6E6] shadow-sm p-8 lg:p-12 work-corner-accent">
-                  <div className="grid grid-cols-12 gap-8 lg:gap-14 items-center">
-                    {/* Frame da Imagem à Esquerda com Crossfade e Escala Contínuos */}
-                    <div className="col-span-7 relative overflow-hidden aspect-[16/10] bg-[#F7F7F5] border border-[#E6E6E6] w-full">
-                      {featuredThree.map((project, idx) => {
-                        const { imageStyle } = computeProjectStyles(idx, scrollProgress);
-                        return (
-                          <div
-                            key={project.id}
-                            style={imageStyle}
-                            className="absolute inset-0"
-                          >
-                            {project.imagemCapa ? (
-                              <img
-                                src={project.imagemCapa}
-                                alt={project.nome}
-                                className="w-full h-full object-cover img-editorial"
-                                referrerPolicy="no-referrer"
-                                loading={idx === 0 ? 'eager' : 'lazy'}
-                              />
-                            ) : (
-                              <ProjectPlaceholder
-                                nome={project.nome}
-                                categoria={project.categoria}
-                                aspect="h-full min-h-[340px]"
-                              />
-                            )}
-                          </div>
-                        );
-                      })}
+          {/* Lista de Obras em Fluxo Normal — Layout Alternado e Sofisticado */}
+          <div className="mt-12 sm:mt-16 space-y-16 sm:space-y-20 lg:space-y-24">
+            {featuredThree.map((project, idx) => {
+              // Alternância visual no Desktop: 0 (Esq/Dir), 1 (Dir/Esq), 2 (Esq/Dir)
+              const isEven = idx % 2 === 0;
+
+              return (
+                <div
+                  key={project.id}
+                  className="border-b border-[#E6E6E6] pb-16 sm:pb-20 last:border-b-0 last:pb-0"
+                >
+                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
+                    {/* Imagem do Projeto */}
+                    <div
+                      className={`lg:col-span-7 ${
+                        isEven ? 'lg:order-1' : 'lg:order-2'
+                      }`}
+                    >
+                      <div
+                        onClick={() => handleNav(`/obras/${project.slug}`)}
+                        className="cursor-pointer overflow-hidden aspect-[16/10] bg-[#F7F7F5] border border-[#E6E6E6] group work-corner-accent relative"
+                      >
+                        {project.imagemCapa ? (
+                          <img
+                            src={project.imagemCapa}
+                            alt={project.nome}
+                            className="w-full h-full object-cover img-editorial transition-transform duration-700 group-hover:scale-105"
+                            referrerPolicy="no-referrer"
+                            loading={idx === 0 ? 'eager' : 'lazy'}
+                          />
+                        ) : (
+                          <ProjectPlaceholder
+                            nome={project.nome}
+                            categoria={project.categoria}
+                            aspect="h-full min-h-[300px]"
+                          />
+                        )}
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
+                      </div>
                     </div>
 
-                    {/* Conteúdo à Direita com Fade e Translate Suave Vinculado ao Scroll */}
-                    <div className="col-span-5 relative min-h-[340px] flex items-center">
-                      {featuredThree.map((project, idx) => {
-                        const { textStyle } = computeProjectStyles(idx, scrollProgress);
-                        return (
-                          <div
-                            key={project.id}
-                            style={textStyle}
-                            className="space-y-5 w-full absolute inset-0 my-auto flex flex-col justify-center"
-                          >
-                            {/* Barra de identificação da categoria e marcadores sincronizados com o scroll */}
-                            <div className="border-b border-[#E6E6E6] pb-3 flex items-center justify-between">
-                              <span className="text-xs font-mono uppercase tracking-wider text-[#F58220] font-semibold">
-                                {project.categoria || 'Engenharia'}
-                              </span>
-                              {/* Marcadores discretos das 3 etapas sincronizados com o scroll */}
-                              <div className="flex items-center gap-1.5" aria-hidden="true">
-                                {featuredThree.map((_, barIdx) => (
-                                  <span
-                                    key={barIdx}
-                                    className={`h-1.5 transition-all duration-300 ${
-                                      barIdx === activeStage
-                                        ? 'w-6 bg-[#F58220]'
-                                        : 'w-2 bg-[#E6E6E6]'
-                                    }`}
-                                  />
-                                ))}
-                              </div>
-                            </div>
+                    {/* Informações e Detalhes da Obra */}
+                    <div
+                      className={`lg:col-span-5 space-y-6 ${
+                        isEven ? 'lg:order-2' : 'lg:order-1'
+                      }`}
+                    >
+                      <div className="space-y-3">
+                        <div className="flex items-center gap-3">
+                          <span className="w-1.5 h-1.5 bg-[#F58220] rotate-45" />
+                          <span className="text-xs font-mono uppercase tracking-wider text-[#F58220] font-semibold">
+                            {project.categoria || 'Engenharia'}
+                          </span>
+                        </div>
 
-                            <div className="space-y-2">
-                              <h3 className="text-3xl lg:text-4xl font-heading font-semibold text-[#111111] leading-tight">
-                                {project.nome}
-                              </h3>
-                              {project.periodo && (
-                                <p className="text-xs font-mono text-[#111111]/60">
-                                  Período: {project.periodo}
-                                </p>
-                              )}
-                            </div>
+                        <h3
+                          onClick={() => handleNav(`/obras/${project.slug}`)}
+                          className="text-2xl sm:text-3xl lg:text-4xl font-heading font-semibold text-[#111111] hover:text-[#F58220] transition-colors leading-tight cursor-pointer"
+                        >
+                          {project.nome}
+                        </h3>
 
-                            {project.descricao && project.descricao !== '—' && (
-                              <p className="text-base text-[#111111]/75 leading-relaxed line-clamp-3">
-                                {project.descricao}
-                              </p>
-                            )}
+                        {/* Metadados Técnicos / Metragem / Período */}
+                        <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs font-mono text-[#111111]/65 pt-1">
+                          {project.metragem && (
+                            <span>Área: {project.metragem}</span>
+                          )}
+                          {project.periodo && (
+                            <>
+                              <span className="text-[#111111]/30">•</span>
+                              <span>Período: {project.periodo}</span>
+                            </>
+                          )}
+                        </div>
+                      </div>
 
-                            <div className="pt-2">
-                              <button
-                                onClick={() => handleNav(`/obras/${project.slug}`)}
-                                className="btn-work-dark cursor-pointer"
-                              >
-                                Ver detalhes da obra ↗
-                              </button>
-                            </div>
-                          </div>
-                        );
-                      })}
+                      {project.descricao && project.descricao !== '—' && (
+                        <p className="text-sm sm:text-base text-[#111111]/75 leading-relaxed">
+                          {project.descricao}
+                        </p>
+                      )}
+
+                      {/* Botão de Ação Direta da Obra */}
+                      <div className="pt-2">
+                        <button
+                          onClick={() => handleNav(`/obras/${project.slug}`)}
+                          className="btn-work-dark cursor-pointer inline-flex items-center gap-2"
+                        >
+                          Ver detalhes da obra
+                          <span className="text-[#F58220] font-sans">↗</span>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
+              );
+            })}
           </div>
 
-          {/* ====================================================
-              MOBILE & TABLET (< 1024px): Rolagem Vertical Normal
-              - Sem sticky ou parallax complexo
-              - Sequência: Imagem → Título → Descrição → "Ver detalhes da obra"
-              - Sem elementos presos ou sobreposição
-          ==================================================== */}
-          <div className="lg:hidden mt-10 space-y-16">
-            {featuredThree.map((project) => (
-              <div
-                key={project.id}
-                className="space-y-5 pb-12 border-b border-[#E6E6E6] last:border-b-0"
-              >
-                {/* 1. Imagem */}
-                <div
-                  onClick={() => handleNav(`/obras/${project.slug}`)}
-                  className="cursor-pointer overflow-hidden aspect-[16/10] bg-[#F7F7F5] border border-[#E6E6E6] work-corner-accent"
-                >
-                  {project.imagemCapa ? (
-                    <img
-                      src={project.imagemCapa}
-                      alt={project.nome}
-                      className="w-full h-full object-cover img-editorial"
-                      referrerPolicy="no-referrer"
-                      loading="lazy"
-                    />
-                  ) : (
-                    <ProjectPlaceholder
-                      nome={project.nome}
-                      categoria={project.categoria}
-                      aspect="h-full min-h-[240px]"
-                    />
-                  )}
-                </div>
-
-                {/* 2. Título */}
-                <div className="space-y-1">
-                  {project.categoria && (
-                    <span className="text-xs font-mono uppercase tracking-wider text-[#F58220] font-semibold block">
-                      {project.categoria}
-                    </span>
-                  )}
-                  <h3
-                    onClick={() => handleNav(`/obras/${project.slug}`)}
-                    className="text-2xl font-heading font-semibold text-[#111111] hover:text-[#F58220] transition-colors leading-tight cursor-pointer"
-                  >
-                    {project.nome}
-                  </h3>
-                  {project.periodo && (
-                    <p className="text-xs font-mono text-[#111111]/60">
-                      Período: {project.periodo}
-                    </p>
-                  )}
-                </div>
-
-                {/* 3. Descrição */}
-                {project.descricao && project.descricao !== '—' && (
-                  <p className="text-sm text-[#111111]/75 leading-relaxed">
-                    {project.descricao}
-                  </p>
-                )}
-
-                {/* 4. "Ver detalhes da obra" */}
-                <div>
-                  <button
-                    onClick={() => handleNav(`/obras/${project.slug}`)}
-                    className="btn-work-dark cursor-pointer"
-                  >
-                    Ver detalhes da obra ↗
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* ====================================================
-              CTA GERAL: "Ver catálogo completo de obras"
-              - Posicionado estritamente FORA da área sticky
-              - Aparece em fluxo normal da página após o término das 3 obras
-              - Sem position:absolute, sem sobreposição
-          ==================================================== */}
-          <div className="pt-16 pb-6 text-center border-t border-[#E6E6E6] mt-8">
+          {/* CTA Geral: Ver catálogo completo de obras (Posicionado em fluxo normal, sem sobreposição) */}
+          <div className="pt-14 sm:pt-16 pb-4 text-center border-t border-[#E6E6E6] mt-12 sm:mt-16">
             <button
               onClick={() => handleNav('/obras')}
-              className="btn-work-dark cursor-pointer"
+              className="btn-work-dark cursor-pointer text-sm font-semibold uppercase tracking-wider px-8 py-4 inline-flex items-center gap-2.5"
             >
-              Ver catálogo completo de obras ↗
+              Ver catálogo completo de obras
+              <span className="text-[#F58220] font-sans">↗</span>
             </button>
           </div>
         </div>
@@ -459,9 +259,35 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
       {/* ========================================================
           3. SERVIÇOS (Construção, BTS e Projetos de Engenharia)
+          - Imagem de fundo com efeito parallax suave e discreto
+          - Padrão gráfico cinza dissipativo da Work
+          - Fundo valoriza a seção mantendo 100% de legibilidade
       ======================================================== */}
-      <section className="py-20 sm:py-28 px-6 md:px-12 bg-[#FFFFFF] border-t border-[#E6E6E6]">
-        <div className="max-w-7xl mx-auto">
+      <section
+        ref={servicesRef}
+        className="relative py-20 sm:py-28 px-6 md:px-12 bg-[#F9F9F8] border-t border-[#E6E6E6] overflow-hidden"
+      >
+        {/* Imagem de Fundo com Parallax Suave e Gracioso */}
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+          <img
+            src={engineeringBg}
+            alt=""
+            style={{
+              transform: `translate3d(0, ${servicesParallaxY.toFixed(1)}px, 0) scale(1.12)`,
+            }}
+            className="w-full h-full object-cover object-center opacity-12 filter grayscale will-change-transform"
+          />
+          {/* Véu translúcido para assegurar excelente contraste e clareza */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#F9F9F8] via-[#F9F9F8]/85 to-[#F9F9F8]" />
+        </div>
+
+        {/* Padrão Gráfico Cinza Orgânico — Dissipativo no topo direito */}
+        <WorkOrganicPattern
+          variant="top-right"
+          className="absolute top-0 right-0 w-80 sm:w-96 md:w-[480px] h-72 sm:h-80 md:h-96 z-0"
+        />
+
+        <div className="relative z-10 max-w-7xl mx-auto">
           {/* Header */}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-12 border-b border-[#E6E6E6]">
             <div>
@@ -486,18 +312,18 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             </button>
           </div>
 
-          {/* Blocos de Serviços com Botões e Cantos Work */}
+          {/* Blocos de Serviços com Fundo Branco Sólido e Cantos Work */}
           <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
             {/* Serviço 01 */}
             <div
               onClick={() => handleNav('/servicos')}
-              className="group cursor-pointer flex flex-col justify-between bg-[#F7F7F5] border border-[#E6E6E6] hover:border-[#F58220] transition-all work-corner-accent"
+              className="group cursor-pointer flex flex-col justify-between bg-white border border-[#E6E6E6] hover:border-[#F58220] transition-all shadow-xs work-corner-accent"
             >
               <div className="aspect-[16/10] overflow-hidden bg-[#E6E6E6]">
                 <img
                   src={estruturaImg}
                   alt="Construção e Administração de Obras"
-                  className="w-full h-full object-cover img-editorial"
+                  className="w-full h-full object-cover img-editorial transition-transform duration-500 group-hover:scale-105"
                   loading="lazy"
                 />
               </div>
@@ -521,13 +347,13 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             {/* Serviço 02 */}
             <div
               onClick={() => handleNav('/servicos')}
-              className="group cursor-pointer flex flex-col justify-between bg-[#F7F7F5] border border-[#E6E6E6] hover:border-[#F58220] transition-all work-corner-accent"
+              className="group cursor-pointer flex flex-col justify-between bg-white border border-[#E6E6E6] hover:border-[#F58220] transition-all shadow-xs work-corner-accent"
             >
               <div className="aspect-[16/10] overflow-hidden bg-[#E6E6E6]">
                 <img
                   src={finalImg}
                   alt="Built to Suit — BTS"
-                  className="w-full h-full object-cover img-editorial"
+                  className="w-full h-full object-cover img-editorial transition-transform duration-500 group-hover:scale-105"
                   style={{ objectPosition: 'center 18%' }}
                   loading="lazy"
                 />
@@ -552,13 +378,13 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             {/* Serviço 03 */}
             <div
               onClick={() => handleNav('/servicos')}
-              className="group cursor-pointer flex flex-col justify-between bg-[#F7F7F5] border border-[#E6E6E6] hover:border-[#F58220] transition-all work-corner-accent"
+              className="group cursor-pointer flex flex-col justify-between bg-white border border-[#E6E6E6] hover:border-[#F58220] transition-all shadow-xs work-corner-accent"
             >
               <div className="aspect-[16/10] overflow-hidden bg-[#E6E6E6]">
                 <img
                   src={fundacaoImg}
                   alt="Projetos de Engenharia"
-                  className="w-full h-full object-cover img-editorial"
+                  className="w-full h-full object-cover img-editorial transition-transform duration-500 group-hover:scale-105"
                   loading="lazy"
                 />
               </div>
@@ -584,9 +410,16 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
       {/* ========================================================
           4. A WORK CONSTRUTORA (Com imagem IFC do Drive devidamente enquadrada)
+          - Padrão gráfico cinza sutil incorporado
       ======================================================== */}
-      <section className="py-20 sm:py-28 px-6 md:px-12 bg-[#F7F7F5] border-t border-[#E6E6E6]">
-        <div className="max-w-7xl mx-auto space-y-16">
+      <section className="relative py-20 sm:py-28 px-6 md:px-12 bg-[#F7F7F5] border-t border-[#E6E6E6] overflow-hidden">
+        {/* Padrão Gráfico Cinza Orgânico — Dissipativo na lateral inferior esquerda */}
+        <WorkOrganicPattern
+          variant="bottom-left"
+          className="absolute -bottom-8 -left-8 w-80 sm:w-96 md:w-[450px] h-72 sm:h-80 md:h-96 z-0"
+        />
+
+        <div className="relative z-10 max-w-7xl mx-auto space-y-16">
           {/* Header */}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-12 border-b border-[#E6E6E6]">
             <div>
@@ -794,7 +627,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               </span>
             </a>
 
-            {/* Instagram Oficial Ativo e Corrigido */}
+            {/* Instagram Oficial Ativo */}
             <a
               href="https://www.instagram.com/workjaconstrutora/"
               target="_blank"
